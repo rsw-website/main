@@ -94,7 +94,7 @@ add_action( 'woocommerce_created_customer',
  */
 
 function custom_register_redirect( $redirect ) {
-    wp_redirect('client-dashboard');
+    wp_redirect('/client-dashboard');
 }
 add_filter( 'woocommerce_registration_redirect',
  'custom_register_redirect' );
@@ -108,7 +108,7 @@ add_filter( 'woocommerce_registration_redirect',
  */
 
 function custom_login_redirect( $redirect ) {
-  wp_redirect('dashboard');
+  wp_redirect('/client-dashboard');
 }
 add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
 
