@@ -1,0 +1,140 @@
+/*
+Theme Name: Avada Child
+Description: Child theme for Avada theme
+Author: ThemeFusion
+Author URI: https://theme-fusion.com
+Template: Avada
+Version: 1.0.0
+Text Domain:  Avada
+*/
+
+/*=====General===*/
+.txt-uc{
+    text-transform:uppercase;
+}
+.align-c{
+    margin:0 auto;
+    text-align:center;
+}
+.txt-c1{
+color:#5a0700;
+}
+
+.txt-c2{
+color:#e13834;
+}
+
+.txt-c3{
+color:#dfae37;
+}
+.btn-primary{
+background:#e13834!important;
+color:#fff;
+font-size: 14px;
+text-align:center;
+width:auto;
+padding:6px 10px;
+border-radius:5px;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+text-transform:none;
+}
+.btn-c1{
+    background:#5a0700!important;
+}
+.btn-c2{
+    background:#e13834!important;
+}
+.btn-c3{
+    background:#dfae37!important;
+}
+.mb-0{
+    margin-bottom:0!important;
+}
+#main{
+    padding-top:0!important;
+    padding-bottom:0!important;
+}
+/*=====Home Page===*/
+#home-intro{
+    margin:0 auto;
+    padding-top:100px;
+    padding-bottom:60px;
+    text-align:center;
+    width:80%;
+}
+#home-intro h1, #home-intro p{
+    color:#fff;
+}
+.home-intro{
+    font-size:20px;
+    margin-bottom:20px;
+}
+.mike-quote{
+    font-size:16px;
+}
+
+#home-features{
+    margin-bottom:40px;
+}
+.home-features-box{
+    -webkit-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
+-moz-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
+box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
+border-radius:5px;
+-webkit-border-radius:5px;
+-moz-border-radius:5px;
+padding-bottom:30px;
+}
+.home-features-con{
+    padding:15px;
+}
+.home-features-con h4{
+    margin:0 auto;
+    text-align:center;
+}
+
+#rs-quick-contact{
+    padding:200px 0!important;
+}
+.home-quick-contact{
+    border-radius:15px;
+    background:#fff;
+    text-align:center;
+    max-width:440px;
+    margin:0 auto;
+    width:90%;
+    padding:40px 10px 20px;
+    font-size:20px;
+}
+.button-contact{
+    background:#e13834;
+    color:#fff;
+    text-align:center;
+    font-size:16px;
+    padding:10px 0;
+    display:block;
+    width:280px;
+    margin:0 auto;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radiius:5px;
+    
+}
+/*========Theme CSS Updates========*/
+#side-header .fusion-logo, .fusion-header .fusion-logo{
+margin-top:0!important;
+margin-bottom:0!important;
+padding:20px 0;
+height:auto!important;
+}
+.fusion-main-menu {
+    top:25px!important;
+}
+.fusion-main-menu > ul > li {
+    padding-right:20px!important;
+}
+.fusion-main-menu > ul > li > a{
+    border:none!important;
+    text-transform:uppercase!important;
+}
