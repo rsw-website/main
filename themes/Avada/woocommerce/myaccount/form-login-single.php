@@ -57,7 +57,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
 			</p>
 			<p class="woocommerce-LostPassword lost_password">
-				<a href="<?php get_permalink(woocommerce_get_page_id('myaccount')) ?>?action=register"> register </a>
+				<a href="/client-registration"> register </a>
 			</p>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
