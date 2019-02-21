@@ -152,8 +152,8 @@ padding-bottom:30px;
     
 }
 .home-tab-c2{
-    float:left;
-    
+    float: left;
+    max-width: 670px;
 }
 .home-tab-c2 ul{
     color:#fff;
