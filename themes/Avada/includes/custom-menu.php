@@ -26,7 +26,17 @@
 	    		</ul>
 			</li>   
 	<?php
-	} 
+	} else{
+		?>
+		<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children fusion-dropdown-menu fusion-last-menu-item">
+		        <a href="/client-login" class="fusion-bar-highlight">
+	    	    	<span class="menu-text">
+	    	    		Client Login
+    	    		</span>
+	    		</a>
+			</li>
+		<?php
+	}
 	?>
 </ul>
 
