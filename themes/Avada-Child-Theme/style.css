@@ -182,3 +182,12 @@ height:auto!important;
 }
 
 .fusion-main-menu ul{float:left;}
+
+#footer-logo p{
+padding-top:40px;
+}
+#footer-quote p{
+font-size:24px;
+padding:40px 0 40px 80px;
+border-left:1px solid #121416;
+}
