@@ -22,28 +22,22 @@ $display_footer = get_post_meta( $c_page_id, 'pyre_display_footer', true );
 	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area">
 		<div class="fusion-row">
 			<div class="fusion-columns fusion-columns-2 fusion-widget-area">
-				<div class="fusion-column col-lg-6 col-md-6 col-sm-6">
+				<div class="fusion-column col-lg-4 col-md-4 col-sm-12">
 					<?php if ( is_active_sidebar( 'footer_logo' ) ) : ?>
 						<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
 							<?php dynamic_sidebar( 'footer_logo' ); ?>
 						</div><!-- #primary-sidebar -->
 					<?php endif; ?>
 				</div>
-			</div>
-		</div>
-	</footer>
-
-	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area">
-		<div class="fusion-row">
-			<div class="fusion-columns fusion-columns-2 fusion-widget-area">
-				<div class="fusion-column col-lg-6 col-md-6 col-sm-6">
+			
+            <div class="fusion-column col-lg-8 col-md-8 col-sm-12">
 					<?php if ( is_active_sidebar( 'footer_quote' ) ) : ?>
 						<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
 							<?php dynamic_sidebar( 'footer_quote' ); ?>
 						</div><!-- #primary-sidebar -->
 					<?php endif; ?>
 				</div>
-			</div>
+            </div>
 		</div>
 	</footer>
 	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area<?php echo esc_attr( $footer_widget_area_center_class ); ?>">
