@@ -10,6 +10,7 @@
 			?>
 			<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children fusion-dropdown-menu fusion-last-menu-item">
 		        <a href="javascript:void(0)" class="fusion-bar-highlight">
+	    	    	<i class="fa-user-circle fas" data-name="user-circle"></i>
 	    	    	<span class="menu-text">
 	    	    		<?php echo $current_user->display_name; ?>
     	    		</span>
