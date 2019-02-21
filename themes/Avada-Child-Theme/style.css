@@ -7,8 +7,24 @@ Template: Avada
 Version: 1.0.0
 Text Domain:  Avada
 */
-
+/*======Footer==*/
+.fusion-footer-copyright-area{
+    text-align:center;
+    color:#62666d;
+}
 /*=====General===*/
+.sub-header{
+    font-size:18px;
+    font-weight:400;
+}
+.list-items{
+    list-style:none;
+    font-size:16px;
+    line-height:20px;
+}
+.list-items li{
+    margin:15px 0;
+}
 .txt-uc{
     text-transform:uppercase;
 }
@@ -121,6 +137,27 @@ padding-bottom:30px;
     -moz-border-radiius:5px;
     
 }
+/*==========Home Tabs====*/
+#home-tabs h3{
+    color:#fff;
+}
+#home-tabs .fusion-tab-heading i {
+    display:block;
+    font-size:24px!important;
+    line-height:40px!important;
+    
+}
+.home-tab-c1{
+    float:left;
+    
+}
+.home-tab-c2{
+    float:left;
+    
+}
+.home-tab-c2 ul{
+    color:#fff;
+}
 /*========Theme CSS Updates========*/
 #side-header .fusion-logo, .fusion-header .fusion-logo{
 margin-top:0!important;
@@ -137,4 +174,9 @@ height:auto!important;
 .fusion-main-menu > ul > li > a{
     border:none!important;
     text-transform:uppercase!important;
+}
+.fusion-tabs.fusion-tabs-1 .tab-pane{
+    background:none!important;
+    border:none!important;
+    
 }
