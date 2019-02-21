@@ -23,6 +23,7 @@
 				    		</a>
 		    			</li>
 	    			<?php $count++; endforeach; ?>
+	    			<a href="<?php echo wp_logout_url('/client-login'); ?>" class="menu-item menu-item-type-custom menu-item-object-custom fusion-dropdown-submenu"><span>Logout</span></a>
 
 	    		</ul>
 			</li>   
