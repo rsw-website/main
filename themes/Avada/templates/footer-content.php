@@ -24,7 +24,7 @@ $display_footer = get_post_meta( $c_page_id, 'pyre_display_footer', true );
 			<div class="fusion-columns fusion-columns-2 fusion-widget-area">
 				<div class="fusion-column col-lg-4 col-md-4 col-sm-12">
 					<?php if ( is_active_sidebar( 'footer_logo' ) ) : ?>
-						<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+						<div id="footer-logo" class="primary-sidebar widget-area" role="complementary">
 							<?php dynamic_sidebar( 'footer_logo' ); ?>
 						</div><!-- #primary-sidebar -->
 					<?php endif; ?>
@@ -32,7 +32,7 @@ $display_footer = get_post_meta( $c_page_id, 'pyre_display_footer', true );
 			
             <div class="fusion-column col-lg-8 col-md-8 col-sm-12">
 					<?php if ( is_active_sidebar( 'footer_quote' ) ) : ?>
-						<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+						<div id="footer-quote" class="primary-sidebar widget-area" role="complementary">
 							<?php dynamic_sidebar( 'footer_quote' ); ?>
 						</div><!-- #primary-sidebar -->
 					<?php endif; ?>

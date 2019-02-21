@@ -12,7 +12,7 @@
 		        <a href="javascript:void(0)" class="fusion-bar-highlight">
 	    	    	<i class="fa-user-circle fas" data-name="user-circle"></i>
 	    	    	<span class="menu-text">
-	    	    		<?php echo $current_user->display_name; ?>
+	    	    		<?php echo $current_user->user_firstname; ?>
     	    		</span>
 	    		</a>
 	    		<ul role="menu" class="sub-menu fusion-switched-side">
