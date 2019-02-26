@@ -159,3 +159,19 @@ function add_custom_theme_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
 
+function new_modify_user_table( $column ) {
+    $column['document_access'] = 'Access';
+    return $column;
+}
+add_filter( 'manage_users_columns', 'new_modify_user_table' );
+
+function new_modify_user_table_row( $val, $column_name, $user_id ) {
+    switch ($column_name) {
+        case 'document_access' :
+            return '<span aria-hidden="true">—</span>;
+            break;
+        default:
+    }
+    return $val;
+}
+add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
