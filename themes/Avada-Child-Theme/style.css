@@ -12,6 +12,19 @@ Text Domain:  Avada
     text-align:center;
     color:#62666d;
 }
+footer{
+    font-size:14px;
+}
+footer ul li{
+ font-size:14px;
+}
+footer h4{
+    text-transform:none;
+}
+.primary-link .c2{
+    color:#e13834;
+}
+
 /*=====General===*/
 .sub-header{
     font-size:18px;
@@ -190,4 +203,16 @@ padding-top:40px;
 font-size:24px;
 padding:40px 0 40px 80px;
 border-left:1px solid #121416;
+}
+
+
+/*----Header Contact Info--*/
+.fusion-contact-info{
+    font-size:14px;
+}
+.fusion-contact-info i{
+    padding-right:5px;
+}
+.fusion-contact-info i.fa-phone{
+    padding-left:20px;
 }
