@@ -1464,6 +1464,7 @@ if ( ! function_exists( 'avada_secondary_header_content' ) ) {
 			$secondary_content = avada_contact_info();
 		} elseif ( 'Social Links' === $content_to_display ) {
 			$secondary_content = avada_header_social_links();
+			die("testing");
 		} elseif ( 'Navigation' === $content_to_display ) {
 			$mobile_menu_wrapper = '';
 			if ( has_nav_menu( 'top_navigation' ) ) {
