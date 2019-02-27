@@ -1444,7 +1444,8 @@ if ( ! function_exists( 'avada_header_social_links' ) ) {
 		);
 
 		$render_social_icons = $social_icons->render_social_icons( $options );
-		$html                = ( $render_social_icons ) ? '<div class="fusion-social-links-header">' . $render_social_icons . '</div>' : '';
+		$customHeader = include_once('custom-menu.php');
+		$html                = ( $render_social_icons ) ? '<div class="fusion-social-links-header">' . $render_social_icons . $customHeader . '</div>' : '';
 
 		return $html;
 	}
@@ -1464,7 +1465,6 @@ if ( ! function_exists( 'avada_secondary_header_content' ) ) {
 			$secondary_content = avada_contact_info();
 		} elseif ( 'Social Links' === $content_to_display ) {
 			$secondary_content = avada_header_social_links();
-			include_once('custom-menu.php');
 		} elseif ( 'Navigation' === $content_to_display ) {
 			$mobile_menu_wrapper = '';
 			if ( has_nav_menu( 'top_navigation' ) ) {
