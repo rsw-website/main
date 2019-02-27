@@ -1444,8 +1444,7 @@ if ( ! function_exists( 'avada_header_social_links' ) ) {
 		);
 
 		$render_social_icons = $social_icons->render_social_icons( $options );
-		$customHeader = include_once('custom-menu.php');
-		$html                = ( $render_social_icons ) ? '<div class="fusion-social-links-header">' . $render_social_icons . $customHeader . '</div>' : '';
+		$html                = ( $render_social_icons ) ? '<div class="fusion-social-links-header">' . $render_social_icons . '</div>' : '';
 
 		return $html;
 	}

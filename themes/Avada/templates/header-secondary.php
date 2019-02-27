@@ -28,7 +28,8 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 			</div>
 		<?php endif; ?>
 		<?php if ( $content_2 ) : ?>
-			<div class="fusion-alignright">
+			<div class="fusion-alignright right-class">
+				<p>heading...</p>
 				<?php echo $content_2; // WPCS: XSS ok. ?>
 			</div>
 		<?php endif; ?>
