@@ -13,7 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<?php get_header(); ?>
+<?php //get_header(); ?>
+<?php
+	$a =  base64_encode('123');
+	echo $a;
+	echo " - ".base64_decode($a);
+
+?>
+
 <h1>Preview document</h1>
 
 
