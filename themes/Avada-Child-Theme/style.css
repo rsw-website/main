@@ -12,6 +12,7 @@ Text Domain:  Avada
 .sub-header {
     font-size: 18px;
     font-weight: 400;
+    color: #000;
 }
 .list-items {
     list-style: none;
@@ -90,6 +91,15 @@ Text Domain:  Avada
 .fusion-contact-info i.fa-envelope {
     margin-left: 15px;
 }
+.fusion-social-links-header {
+    margin-top: 10px;
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+    padding-top: 2px;
+}
+nav.fusion-secondary-menu i.fa-user {
+    padding-right: 10px;
+}
 /*========Footer========*/
 footer {
     font-size: 14px;
@@ -127,6 +137,13 @@ a.c2 {
 }
 a.c2:hover {
     text-decoration: underline;
+}
+footer a.primary-link {
+    color: #e13834;
+}
+#text-2 i {
+    font-size: 14px;
+    padding-right: 5px;
 }
 /*=========Home Page========*/
 /*--Welcome Banner--*/
@@ -192,8 +209,14 @@ a.c2:hover {
     margin-top: 10px;
 }
 /*--Home Tabs --*/
+#home-features-tab {
+    padding-top: 100px;
+}
 #home-tabs {
     color: #fff;
+}
+#home-tabs .tab-pane {
+    padding-top: 30px;
 }
 #home-tabs h4 {
     font-size: 18px;
@@ -202,16 +225,69 @@ a.c2:hover {
     color: #dfae37;
     line-height: 48px;
 }
-#home-tabs .list-items {
-    padding: 0;
+#home-tabs .list-items li {
+    padding-left: 30px;
+    position: relative;
 }
-#home-tabs .list-items i {
-    padding-right: 10px;
+#home-tabs .list-items li i {
+    left: 0;
+    position: absolute;
+    top: 3px;
+}
+#home-tabs h4 {
+    color: #999;
+}
+#home-tabs li.active h4 {
+    color: #e13834;
 }
 #home-tabs .fusion-tab-heading i {
+    width: 80px;
+    height: 80px;
     display: block;
-    font-size: 24px!important;
-    line-height: 40px!important;
+    margin: 0 auto;
+    background: url("../2019/02/icon-business-control.png") 0 0;
+}
+#home-tabs #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-drive-profit-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-drive-profit-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-cash-flow-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-cash-flow-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-business-control-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-business-control-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-connected-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-connected-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-mobile-access-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-mobile-access-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-cloud-deployment-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../2019/02/icon-cloud-deployment-2.png") 0 -80px;
+}
+#home-tabs .fusion-tab-heading i.fa-angle-down:before {
+    content: '';
+}
+#home-tabs-container {
+    background: #fff;
 }
 .home-tab-c1 {
     float: left;
@@ -268,6 +344,9 @@ a.c2:hover {
     max-width: 800px;
     margin: 0 auto;
 }
+#fusion-testimonials-1 a:hover, #fusion-testimonials-1 a.activeSlide {
+    background-color: #5a0700;
+}
 /*--Home Contact--*/
 #rs-quick-contact {
     padding: 200px 0!important;
@@ -278,7 +357,7 @@ a.c2:hover {
     border-radius: 15px;
     background: #fff;
     text-align: center;
-    max-width: 440px;
+    max-width: 680px;
     margin: 0 auto;
     width: 90%;
     padding: 40px 10px 20px;
@@ -296,6 +375,10 @@ a.c2:hover {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radiius: 5px;
+}
+.button-contact:hover {
+    background: #be1b17;
+    color: #fff;
 }
 /*========Theme CSS Updates========*/
 #side-header .fusion-logo, .fusion-header .fusion-logo {
@@ -318,7 +401,7 @@ a.c2:hover {
     background: none!important;
     border: none!important;
 }
-.fusion-main-menu ul{
+.fusion-main-menu ul {
     float: left;
 }
 .fusion-header-v2 .fusion-secondary-header {
