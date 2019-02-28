@@ -245,43 +245,43 @@ footer a.primary-link {
     height: 80px;
     display: block;
     margin: 0 auto;
-    background: url("../2019/02/icon-business-control.png") 0 0;
+    background: url("../Avada-child-theme/images/icon-business-control.png") 0 0;
 }
 #home-tabs #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-drive-profit-2.png") 0 0;
+    background: url("../Avada-child-theme/images/icon-drive-profit-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-drive-profit-2.png") 0 -80px;
+    background: url("../Avada-child-theme/images/icon-drive-profit-2.png") 0 -80px;
 }
 #home-tabs #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-cash-flow-2.png") 0 0;
+    background: url("../Avada-child-theme/images/icon-cash-flow-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-cash-flow-2.png") 0 -80px;
+    background: url("../Avada-child-theme/images/icon-cash-flow-2.png") 0 -80px;
 }
 #home-tabs #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-business-control-2.png") 0 0;
+    background: url("../Avada-child-theme/images/icon-business-control-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-business-control-2.png") 0 -80px;
+    background: url("../Avada-child-theme/images/icon-business-control-2.png") 0 -80px;
 }
 #home-tabs #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-connected-2.png") 0 0;
+    background: url("..Avada-child-theme/images/icon-connected-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-connected-2.png") 0 -80px;
+    background: url("../Avada-child-theme/images/icon-connected-2.png") 0 -80px;
 }
 #home-tabs #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-mobile-access-2.png") 0 0;
+    background: url("../Avada-child-theme/images/icon-mobile-access-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-mobile-access-2.png") 0 -80px;
+    background: url("../Avada-child-theme/images/icon-mobile-access-2.png") 0 -80px;
 }
 #home-tabs #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-cloud-deployment-2.png") 0 0;
+    background: url("../Avada-child-theme/images/icon-cloud-deployment-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../2019/02/icon-cloud-deployment-2.png") 0 -80px;
+    background: url("../Avada-child-theme/images/icon-cloud-deployment-2.png") 0 -80px;
 }
 #home-tabs .fusion-tab-heading i.fa-angle-down:before {
     content: '';
