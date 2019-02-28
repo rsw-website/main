@@ -42,7 +42,7 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 						?>
 						<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children fusion-dropdown-menu fusion-last-menu-item">
 					        <a href="javascript:void(0)" class="fusion-bar-highlight">
-				    	    	<i class="fa-user-circle fas" data-name="user-circle"></i>
+				    	    	<i class="fa fa-user"></i>
 				    	    	<span class="menu-text">
 				    	    		<?php echo $current_user->user_firstname; ?>
 			    	    		</span>
@@ -64,7 +64,7 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 							?>
 							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children fusion-dropdown-menu fusion-last-menu-item">
 							        <a href="/client-login" class="fusion-bar-highlight">
-						    	    	<i class="fa-user far" data-name="user"></i>
+						    	    	<i class="fa fa-user"></i>
 						    	    	<span class="menu-text">
 						    	    		Client Login
 					    	    		</span>
