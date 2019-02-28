@@ -29,7 +29,6 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 		<?php endif; ?>
 		<?php if ( $content_2 ) : ?>
 			<div class="fusion-alignright">
-				<?php echo $content_2; // WPCS: XSS ok. ?>
 				<nav class="fusion-secondary-menu" role="navigation" aria-label="Secondary Menu">
 					<ul class="fusion-menu">
 						<?php
@@ -75,7 +74,8 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 						}
 						?>
 					</ul>
-				</nav>	
+				</nav>
+				<?php echo $content_2; // WPCS: XSS ok. ?>	
 			</div>
 		<?php endif; ?>
 	</div>
