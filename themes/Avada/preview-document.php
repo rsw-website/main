@@ -15,12 +15,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php //get_header(); ?>
 <?php
-	$a =  base64_encode('123');
-	echo $a;
-	echo " - ".base64_decode($a);
+	if(isset($_GET['id'])){
+		$documentId = base64_decode($_GET['id']);
+		// echo wp_get_attachment_url($documentId);
+		$attchmentData = get_post($documentId);
+		// print_r($attchmentData);
+		$file = 'http://54.80.170.170/wp-content/uploads/2019/02/How_a_Service_Technician_Completes_a_Service_Order.pdf';
+		
+		$post_mime_type = 'application/pdf';
+		$fp = fopen($file, "r") ;
+
+		header("Cache-Control: maxage=1");
+		header("Pragma: public");
+		header("Content-type: ".$post_mime_type);
+		header("Content-Disposition: inline; filename=".$file."");
+		header("Content-Description: PHP Generated Data");
+		header("Content-Transfer-Encoding: binary");
+		header('Content-Length:' . filesize($file));
+		ob_clean();
+		flush();
+		while (!feof($fp)) {
+		   $buff = fread($fp, 1024);
+		   print $buff;
+		}
+		exit;
+	}
+	// $a =  base64_encode('123');
+	// echo $a;
+	// echo " - ".base64_decode($a);
 
 ?>
 
-<h1>Preview document</h1>
 
 
