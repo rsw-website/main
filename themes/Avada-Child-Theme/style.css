@@ -113,6 +113,10 @@ footer {
     position: relative;
     z-index: 3;
 }
+.fusion-footer-widget-area{
+    padding-top:15px;
+    padding-bottom:15px;
+}
 footer ul li {
     font-size: 14px;
     line-height: 24px;
@@ -186,7 +190,7 @@ footer a.primary-link {
     padding: 0 20px;
     border-right: 1px solid #fff;
 }
-.comp-motto li:last-child() {
+.comp-motto li.last {
     border-right: none!important;
     padding-right: 0!important;
 }
@@ -353,12 +357,14 @@ footer a.primary-link {
     left:-100px;
     width:70px;
     top:50%;
+    cursor:pointer;
 }
 #home-features-tab span#tab-arrow-right{
     position:absolute;
     right:-100px;
     width:70px;
     top:50%;
+    cursor:pointer;
 }
 /*--Home Testimonials--*/
 #testimonials {
@@ -371,7 +377,8 @@ footer a.primary-link {
     margin: 0 auto;
 }
 #fusion-testimonials-1 a:hover, #fusion-testimonials-1 a.activeSlide {
-    background-color: #5a0700;
+    background-color:#5a0700;
+    border:1px solid #5a0700;
 }
 /*--Home Contact--*/
 #rs-quick-contact {
