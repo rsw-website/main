@@ -125,7 +125,7 @@ function changeActiveTab(homeTabs, nextActiveItem){
 	jQuery(homeTabs).children('div.tab-content')
 	.find('.tab-pane').removeClass('active').removeClass('in');
 	jQuery(homeTabs).children('div.tab-content')
-	.find('div#'+newActiveItemId).addClass('active').addClass('in');
+	.find('div#'+newActiveItemId).addClass('in').addClass('active', 500);
 }
 
 function changeTabAfterInterval() {
