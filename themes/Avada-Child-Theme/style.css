@@ -9,10 +9,17 @@ Text Domain:  Avada
 */
 
 /*========General========*/
+body p{
+    font-size:18px;
+    line-height:28px;
+}
 .sub-header {
     font-size: 18px;
     font-weight: 400;
     color: #000;
+}
+ul li{
+    font-size:16px;
 }
 .list-items {
     list-style: none;
@@ -270,7 +277,7 @@ footer a.primary-link {
     background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 -80px;
 }
 #home-tabs #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("..Avada-child-theme/images/icon-connected-2.png") 0 0;
+    background: url("..Avada-Child-Theme/images/icon-connected-2.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
     background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 -80px;
@@ -338,6 +345,21 @@ footer a.primary-link {
     margin: 0 auto;
     text-align: center;
 }
+#home-features-tab{
+    position:relative;
+}
+#home-features-tab span#tab-arrow-left{
+    position:absolute;
+    left:-100px;
+    width:70px;
+    top:50%;
+}
+#home-features-tab span#tab-arrow-right{
+    position:absolute;
+    right:-100px;
+    width:70px;
+    top:50%;
+}
 /*--Home Testimonials--*/
 #testimonials {
     padding: 100px 0;
@@ -383,6 +405,35 @@ footer a.primary-link {
 .button-contact:hover {
     background: #be1b17;
     color: #fff;
+}
+/*======EULA======*/
+#eula-content .fusion-accordian .panel-heading .panel-title{
+    font-size:14px;
+}
+#eula-content .fusion-accordian .panel-heading .panel-title:hover{
+    color:#d14340;
+}
+.page-header{
+    padding:120px 0;
+}
+.page-header h2, .page-header p{
+    color:#fff;
+    margin:0;
+}
+.page-header h3 + .page-header p{
+    margin:0;
+}
+#eula-content h4.panel-title i.fa-fusion-box{
+    background:none;
+}
+#eula-content h4.panel-title i{
+    color:#000!important;
+}
+#eula-content h4.panel-title a{
+    color:#000!important;
+}
+#eula-content h4.panel-title a:hover{
+    color:#f00!important;
 }
 /*========Theme CSS Updates========*/
 #side-header .fusion-logo, .fusion-header .fusion-logo {
