@@ -149,7 +149,7 @@ function changeTabAfterInterval() {
 			.children('div.nav').find('ul.nav-tabs').find('li.active').next();
 		}
 		changeActiveTab(homeTabs, nextActiveItem);
-   }, 5000);
+   }, 30000);
 }
 
 function changeTabWithTimer(){
@@ -158,5 +158,7 @@ function changeTabWithTimer(){
 	timer = changeTabAfterInterval();
 }
 changeTabWithTimer();
-// changeTabAfterInterval();
-// setInterval(function(){ alert("Hello"); }, 3000);
+
+jQuery('div#home-tabs > div.nav > ul.nav-tabs li').on('click', function(e){
+	changeTabWithTimer();
+});
