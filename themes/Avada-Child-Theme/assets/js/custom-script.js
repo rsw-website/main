@@ -2,7 +2,7 @@ var timer;
 
 jQuery('form.woocommerce-form-login .woocommerce-Button')
 .on('click', function(e){
-	debugger;
+	// debugger;
 	var usernameCheck = true;
 	var passwordCheck = true;
 	var form = jQuery(this).parents('form.woocommerce-form-login');
@@ -28,7 +28,7 @@ jQuery('form.woocommerce-form-login .woocommerce-Button')
 
 jQuery('form.woocommerce-form-register .woocommerce-Button')
 .on('click', function(e){
-	debugger;
+	// debugger;
 	var firstnameCheck = true;
 	var lastnameCheck = true;
 	var emailCheck = true;
@@ -116,7 +116,7 @@ jQuery('.home-tabs-arrow').on('click', function(e){
 
 
 function changeActiveTab(homeTabs, nextActiveItem){
-	debugger;
+	// debugger;
 	jQuery(homeTabs).children('div.nav').find('ul.nav-tabs')
 	.find('li').removeClass('active');
 	jQuery(nextActiveItem).addClass('active');
@@ -129,7 +129,7 @@ function changeActiveTab(homeTabs, nextActiveItem){
 }
 
 function changeTabAfterInterval() {
-	debugger;
+	// debugger;
   	return setInterval(function(){ 
 	  	var homeTabs = jQuery('div#home-tabs'); 
 	  	var tabsLastIndex = jQuery('div#home-tabs')
