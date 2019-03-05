@@ -153,7 +153,7 @@ function changeTabAfterInterval() {
 }
 
 function changeTabWithTimer(){
-	cosole.log(timer);
+	console.log(timer);
 	if (timer) clearInterval(timer);
 	timer = changeTabAfterInterval();
 }
