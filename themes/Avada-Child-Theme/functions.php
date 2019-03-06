@@ -93,11 +93,11 @@ add_action( 'woocommerce_created_customer',
  * @return string
  */
 
-function custom_register_redirect( $redirect ) {
-    wp_redirect('/client-dashboard');
-}
-add_filter( 'woocommerce_registration_redirect',
- 'custom_register_redirect' );
+// function custom_register_redirect( $redirect ) {
+//     wp_redirect('/client-dashboard');
+// }
+// add_filter( 'woocommerce_registration_redirect',
+//  'custom_register_redirect' );
 
 /**
  * Redirect after login.
@@ -107,10 +107,10 @@ add_filter( 'woocommerce_registration_redirect',
  * @return string
  */
 
-function custom_login_redirect( $redirect ) {
-  wp_redirect('/client-dashboard');
-}
-add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
+// function custom_login_redirect( $redirect ) {
+//   wp_redirect('/client-dashboard');
+// }
+// add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
 
 /**
 * Create custom footer logo widgit.

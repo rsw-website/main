@@ -81,10 +81,22 @@ ul li{
 .com-block {
     padding: 40px 0!important;
 }
-#main {
-    padding-top: 0!important;
-    padding-bottom: 0!important;
+
+/*---Form---*/
+.com-form input{
+height:40px!important;
 }
+.woocommerce-LostPassword.lost_password{
+    margin:20px!important;
+}
+.g-recaptcha{
+    margin-bottom:20px;
+}
+#customer_login{
+    width:100%;
+    padding:30px;
+}
+
 /*========Header Contact Info========*/
 .fusion-contact-info {
     font-size: 16px;
@@ -114,8 +126,8 @@ footer {
     z-index: 3;
 }
 .fusion-footer-widget-area{
-    padding-top:15px;
-    padding-bottom:15px;
+    padding-top:15px!important;
+    padding-bottom:5px!important;
 }
 footer ul li {
     font-size: 14px;
@@ -157,6 +169,10 @@ footer a.primary-link {
     padding-right: 5px;
 }
 /*=========Home Page========*/
+body.home #main {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
 /*--Welcome Banner--*/
 #home-intro {
     margin: 0 auto;
@@ -471,4 +487,19 @@ footer a.primary-link {
 }
 .fusion-main-menu > ul > li > a {
     text-transform: none!important;
+}
+
+/*--------Login Form---*/
+.com-form input{
+height:40px!important;
+}
+.woocommerce-LostPassword.lost_password{
+    margin:20px!important;
+}
+.g-recaptcha{
+    margin-bottom:20px;
+}
+#customer_login{
+    width:100%;
+    padding:30px;
 }
