@@ -119,10 +119,10 @@ add_action( 'woocommerce_created_customer',
  * @return string
  */
 
-// function custom_login_redirect( $redirect ) {
-//   wp_redirect('/client-dashboard');
-// }
-// add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
+function custom_login_redirect( $redirect ) {
+  wp_redirect('/client-dashboard');
+}
+add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
 
 /**
 * Create custom footer logo widgit.
@@ -201,11 +201,3 @@ function user_autologout(){
         }
 }
 add_action('woocommerce_registration_redirect', 'user_autologout', 2);
-
-function ws_new_user_approve_registration_message(){
-  ?>
-
-        <p class="registration">Send in your registration application today!<br /> NOTE: Your account will be held for moderation and you will be unable to login until it is approved.</p>
-<?php
-}
-add_action('woocommerce_before_customer_login_form', 'ws_new_user_approve_registration_message', 2);
