@@ -192,7 +192,7 @@ function user_autologout(){
                 $approved_status = get_user_meta($user_id, 'pw_user_status', true);
                 die($approved_status);
                 //if the user hasn't been approved yet by WP Approve User plugin, destroy the cookie to kill the session and log them out
-        if ( $approved_status == 1 ){
+        if ( $approved_status == 'approved' ){
             return $redirect_url;
         }
                 else{
