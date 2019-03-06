@@ -196,7 +196,7 @@ function user_autologout(){
         }
                 else{
             wp_logout();
-                        return get_permalink( get_page_by_path( 'client-registration' ) );
+                        // return get_permalink( get_page_by_path( 'client-registration' ) );
                 }
         }
 }
@@ -204,7 +204,7 @@ add_action('woocommerce_registration_redirect', 'user_autologout', 2);
 
 function ws_new_user_approve_registration_message(){
         $not_approved_message = '<p class="registration">Send in your registration application today!<br /> NOTE: Your account will be held for moderation and you will be unable to login until it is approved.</p>';
-
+        print_r($_REQUEST['approved']);
         if( isset($_REQUEST['approved']) ){
                 $approved = $_REQUEST['approved'];
                 if ($approved == 'false')  echo '<p class="registration successful">Registration successful! You will be notified upon approval of your account.</p>';
