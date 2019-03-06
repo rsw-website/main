@@ -189,14 +189,15 @@ function user_autologout(){
        if ( is_user_logged_in() ) {
                 $current_user = wp_get_current_user();
                 $user_id = $current_user->ID;
-                $approved_status = get_user_meta($user_id, 'wp-approve-user', true);
+                $approved_status = get_user_meta($user_id, 'pw_user_status', true);
+                die($approved_status);
                 //if the user hasn't been approved yet by WP Approve User plugin, destroy the cookie to kill the session and log them out
         if ( $approved_status == 1 ){
             return $redirect_url;
         }
                 else{
             wp_logout();
-                        return get_permalink(woocommerce_get_page_id('myaccount')) . "?approved=false";
+                        return get_permalink( get_page_by_path( 'client-registration' ) );
                 }
         }
 }
