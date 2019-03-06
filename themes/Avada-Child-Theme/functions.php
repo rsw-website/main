@@ -171,3 +171,5 @@ function send_smtp_email( $phpmailer ) {
   $phpmailer->From       = 'sachdevaayush.sachdeva39@gmail.com';
   $phpmailer->FromName   = 'Reliable Softworks';
 }
+
+
