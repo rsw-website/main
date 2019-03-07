@@ -47,7 +47,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						User Registration successful.	
 					</div>
 
-					<p>Hi <?php $userDetails->first_name ?>, </p>
+					<p>Hi <?php echo $userDetails->first_name; ?>, </p>
 					<p>Your account has been registered successfully. You will not be able to login as your account is held under moderation for admin's approval.<br>
 					We will notify you with an email about your account status.	
 					</p>
