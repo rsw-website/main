@@ -107,7 +107,18 @@ add_action( 'woocommerce_created_customer',
  */
 
 function custom_register_redirect( $redirect ) {
-    wp_redirect('dashboard');
+    if ( is_user_logged_in() ) {
+      $current_user = wp_get_current_user();
+      $user_id = $current_user->ID;
+      $approved_status = get_user_meta($user_id, 'pw_user_status', true);
+      //if the user hasn't been approved yet by WP Approve User plugin, destroy the cookie to kill the session and log them out
+      if ( $approved_status == 'approved' ){
+          return $redirect_url;
+      } else{
+          wp_logout();
+          return get_permalink( get_page_by_path( 'client-registration' ) );
+      }
+    }
 }
 add_filter( 'woocommerce_registration_redirect',
  'custom_register_redirect' );
@@ -121,7 +132,7 @@ add_filter( 'woocommerce_registration_redirect',
  */
 
 function custom_login_redirect( $redirect ) {
-  wp_redirect('dashboard');
+  wp_redirect('client-dashboard');
 }
 add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
 
@@ -211,4 +222,22 @@ function save_extra_user_profile_fields( $user_id ) {
 if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
 
 update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
+}
+
+function add_custom_theme_scripts() {
+  wp_enqueue_script( 'custom-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array ( 'jquery' ), null, true);
+}
+add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
+
+add_action( 'phpmailer_init', 'send_smtp_email' );
+function send_smtp_email( $phpmailer ) {
+  $phpmailer->isSMTP();
+  $phpmailer->Host       = 'smtp.gmail.com';
+  $phpmailer->SMTPAuth   = true;
+  $phpmailer->Port       = '587';
+  $phpmailer->Username   = 'sachdevaayush.sachdeva39@gmail.com';
+  $phpmailer->Password   = '@yush1004';
+  $phpmailer->SMTPSecure = 'tls';
+  $phpmailer->From       = 'sachdevaayush.sachdeva39@gmail.com';
+  $phpmailer->FromName   = 'Reliable Softworks';
 }
