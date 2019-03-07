@@ -106,7 +106,7 @@ add_action( 'woocommerce_created_customer',
  * @return string
  */
 
-function custom_register_redirect( $redirect ) {
+function user_autologout() {
     if ( is_user_logged_in() ) {
       $current_user = wp_get_current_user();
       $user_id = $current_user->ID;
@@ -120,8 +120,7 @@ function custom_register_redirect( $redirect ) {
       }
     }
 }
-add_filter( 'woocommerce_registration_redirect',
- 'custom_register_redirect' );
+add_filter( 'woocommerce_registration_redirect', 'user_autologout' );
 
 /**
  * Redirect after login.
