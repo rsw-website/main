@@ -21,3 +21,16 @@ function add_custom_theme_scripts() {
   wp_enqueue_script( 'custom-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array ( 'jquery' ), null, true);
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
+
+add_action( 'phpmailer_init', 'send_smtp_email' );
+function send_smtp_email( $phpmailer ) {
+  $phpmailer->isSMTP();
+  $phpmailer->Host       = 'smtp.gmail.com';
+  $phpmailer->SMTPAuth   = true;
+  $phpmailer->Port       = '587';
+  $phpmailer->Username   = 'sachdevaayush.sachdeva39@gmail.com';
+  $phpmailer->Password   = '@yush1004';
+  $phpmailer->SMTPSecure = 'tls';
+  $phpmailer->From       = 'sachdevaayush.sachdeva39@gmail.com';
+  $phpmailer->FromName   = 'Reliable Softworks';
+}
