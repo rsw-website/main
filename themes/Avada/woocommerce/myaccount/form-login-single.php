@@ -60,7 +60,8 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 			</p>
             </div>
 			<div class="form-row new-signup">
-            <h4>Get Started Now! <a class="button btn-c4" href="/client-registration"> Register </a></h4>
+            <h4>Get Started Now!</h4>
+            <a class="button btn-c4" href="/client-registration"> Register </a>
             </div>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>

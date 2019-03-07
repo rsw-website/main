@@ -106,11 +106,11 @@ add_action( 'woocommerce_created_customer',
  * @return string
  */
 
-function custom_register_redirect( $redirect ) {
-    wp_redirect('dashboard');
-}
-add_filter( 'woocommerce_registration_redirect',
- 'custom_register_redirect' );
+// function custom_register_redirect( $redirect ) {
+//     wp_redirect('dashboard');
+// }
+// add_filter( 'woocommerce_registration_redirect',
+//  'custom_register_redirect' );
 
 /**
  * Redirect after login.
@@ -225,3 +225,20 @@ function send_smtp_email( $phpmailer ) {
   $phpmailer->From       = 'sachdevaayush.sachdeva39@gmail.com';
   $phpmailer->FromName   = 'Reliable Softworks';
 }
+
+function user_autologout(){
+       if ( is_user_logged_in() ) {
+                $current_user = wp_get_current_user();
+                $user_id = $current_user->ID;
+                $approved_status = get_user_meta($user_id, 'pw_user_status', true);
+                //if the user hasn't been approved yet by WP Approve User plugin, destroy the cookie to kill the session and log them out
+        if ( $approved_status == 'approved' ){
+            return $redirect_url;
+        }
+                else{
+            wp_logout();
+                        return get_permalink( get_page_by_path( 'client-registration' ) );
+                }
+        }
+}
+add_action('woocommerce_registration_redirect', 'user_autologout', 2);
