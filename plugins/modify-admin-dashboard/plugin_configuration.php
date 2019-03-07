@@ -114,6 +114,8 @@ function user_autologout(){
         return $redirect_url;
     } else{
         wp_logout();
+        $successUrl = add_query_arg( array( 'ref_id' => $user_id ), get_permalink( get_page_by_path( 'registration-successful' )) );
+        die($successUrl);
         return get_permalink( get_page_by_path( 'registration-successful' ));
     }
   }
