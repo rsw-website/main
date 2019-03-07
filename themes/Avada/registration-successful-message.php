@@ -26,6 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<div class="post-content">
 				<?php
 					echo get_permalink( get_page_by_path( 'registration-successful' ));
+					echo add_query_arg( array( 'ref_id' => '123' ), get_permalink( get_page_by_path( 'registration-successful' )) );
 				?>
 				<div class="woocommerce">
 					<div class="woocommerce-message" role="alert">
