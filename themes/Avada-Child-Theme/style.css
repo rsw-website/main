@@ -7,187 +7,507 @@ Template: Avada
 Version: 1.0.0
 Text Domain:  Avada
 */
-/*======Footer==*/
-.fusion-footer-copyright-area{
-    text-align:center;
-    color:#62666d;
-}
-/*=====General===*/
-.sub-header{
+
+/*========General========*/
+body p{
     font-size:18px;
-    font-weight:400;
+    line-height:28px;
 }
-.list-items{
-    list-style:none;
+.sub-header {
+    font-size: 18px;
+    font-weight: 400;
+    color: #000;
+}
+ul li{
     font-size:16px;
-    line-height:20px;
 }
-.list-items li{
-    margin:15px 0;
+.list-items {
+    list-style: none;
+    font-size: 16px;
+    line-height: 20px;
 }
-.txt-uc{
-    text-transform:uppercase;
+.list-items li {
+    margin: 15px 0;
 }
-.align-c{
-    margin:0 auto;
-    text-align:center;
+.txt-uc {
+    text-transform: uppercase;
 }
-.txt-c1{
-color:#5a0700;
+.align-c {
+    margin: 0 auto;
+    text-align: center;
+}
+.txt-c1 {
+    color: #5a0700;
+}
+.txt-c2 {
+    color: #e13834;
+}
+.txt-c3 {
+    color: #dfae37;
+}
+.btn-primary {
+    background: #e13834!important;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    width: auto;
+    padding: 6px 10px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    text-transform: none;
+}
+.btn-c1 {
+    background: #5a0700!important;
+}
+.btn-c1:hover {
+    background: #3b0905!important;
+}
+.btn-c2 {
+    background: #e13834!important;
+}
+.btn-c2:hover {
+    background: #be1b17!important;
+}
+.btn-c3 {
+    background: #dfae37!important;
+}
+.btn-c3:hover {
+    background: #cc981a!important;
+}
+.mb-0 {
+    margin-bottom: 0!important;
+}
+.com-block {
+    padding: 40px 0!important;
 }
 
-.txt-c2{
-color:#e13834;
+/*---Form---*/
+.com-form input{
+height:40px!important;
 }
-
-.txt-c3{
-color:#dfae37;
+.woocommerce-LostPassword.lost_password{
+    margin:20px!important;
 }
-.btn-primary{
-background:#e13834!important;
-color:#fff;
-font-size: 14px;
-text-align:center;
-width:auto;
-padding:6px 10px;
-border-radius:5px;
--webkit-border-radius:5px;
--moz-border-radius:5px;
-text-transform:none;
-}
-.btn-c1{
-    background:#5a0700!important;
-}
-.btn-c2{
-    background:#e13834!important;
-}
-.btn-c3{
-    background:#dfae37!important;
-}
-.mb-0{
-    margin-bottom:0!important;
-}
-#main{
-    padding-top:0!important;
-    padding-bottom:0!important;
-}
-/*=====Home Page===*/
-#home-intro{
-    margin:0 auto;
-    padding-top:100px;
-    padding-bottom:60px;
-    text-align:center;
-    width:80%;
-}
-#home-intro h1, #home-intro p{
-    color:#fff;
-}
-.home-intro{
-    font-size:20px;
+.g-recaptcha{
     margin-bottom:20px;
 }
-.mike-quote{
-    font-size:16px;
+#customer_login{
+    width:100%;
+    padding:30px;
 }
 
-#home-features{
-    margin-bottom:40px;
+/*========Header Contact Info========*/
+.fusion-contact-info {
+    font-size: 16px;
 }
-.home-features-box{
-    -webkit-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
--moz-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
-border-radius:5px;
--webkit-border-radius:5px;
--moz-border-radius:5px;
-padding-bottom:30px;
+.fusion-contact-info i {
+    padding-right: 5px;
 }
-.home-features-con{
-    padding:15px;
+.fusion-contact-info i.fa-phone {
+    padding-left: 20px;
 }
-.home-features-con h4{
-    margin:0 auto;
-    text-align:center;
+.fusion-contact-info i.fa-envelope {
+    margin-left: 15px;
 }
-
-#rs-quick-contact{
-    padding:200px 0!important;
+.fusion-social-links-header {
+    margin-top: 10px;
+    border-right: 1px solid #ccc;
+    padding-right: 20px;
+    padding-top: 2px;
 }
-.home-quick-contact{
-    border-radius:15px;
-    background:#fff;
-    text-align:center;
-    max-width:440px;
-    margin:0 auto;
-    width:90%;
-    padding:40px 10px 20px;
-    font-size:20px;
+nav.fusion-secondary-menu i.fa-user {
+    padding-right: 10px;
 }
-.button-contact{
-    background:#e13834;
-    color:#fff;
-    text-align:center;
-    font-size:16px;
-    padding:10px 0;
-    display:block;
-    width:280px;
-    margin:0 auto;
-    border-radius:5px;
-    -webkit-border-radius:5px;
-    -moz-border-radiius:5px;
-    
+/*========Footer========*/
+footer {
+    font-size: 14px;
+    position: relative;
+    z-index: 3;
 }
-/*==========Home Tabs====*/
-#home-tabs h3{
-    color:#fff;
+.fusion-footer-widget-area{
+    padding-top:15px!important;
+    padding-bottom:5px!important;
+}
+footer ul li {
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+}
+footer h4 {
+    text-transform: none;
+}
+#footer-logo p {
+    padding-top: 40px;
+}
+#footer-quote p {
+    font-size: 24px;
+    padding: 40px 0 40px 80px;
+    border-left: 1px solid #121416;
+}
+#text-2 {
+    font-size: 16px;
+}
+#text-3.fusion-footer-widget-column, #text-4.fusion-footer-widget-column, #text-5.fusion-footer-widget-column {
+    margin-bottom: 25px;
+}
+.fusion-footer-copyright-area {
+    text-align: center;
+    color: #62666d;
+}
+a.c2 {
+    color: #e13834;
+}
+a.c2:hover {
+    text-decoration: underline;
+}
+footer a.primary-link {
+    color: #e13834;
+}
+#text-2 i {
+    font-size: 14px;
+    padding-right: 5px;
+}
+/*=========Home Page========*/
+body.home #main {
+    padding-top: 0!important;
+    padding-bottom: 0!important;
+}
+/*--Welcome Banner--*/
+#home-intro {
+    margin: 0 auto;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    text-align: center;
+    width: 80%;
+}
+#home-intro h1, #home-intro p {
+    color: #fff;
+}
+.home-intro {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+#home-intro h1 {
+    margin-bottom: 0;
+}
+.comp-motto {
+    list-style: none;
+    color: #fff;
+    width: auto;
+    margin: 0 auto;
+    max-width: 740px;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 60px;
+}
+.comp-motto li {
+    display: inline-block;
+    padding: 0 20px;
+    border-right: 1px solid #fff;
+}
+.comp-motto li.last {
+    border-right: none!important;
+    padding-right: 0!important;
+}
+.home-quote {
+    background: rgba(0, 0, 0, 0.5);
+    max-width: 720px;
+    color: #fff;
+    padding: 20px;
+    margin: 100px auto 150px;
+    overflow: hidden;
+}
+.home-quote p {
+    margin-bottom: 0;
+}
+.mike-img {
+    float: left;
+    width: 90px;
+}
+.mike-quote {
+    float: left;
+    padding-left: 20px;
+    font-size: 24px;
+}
+.mike-quote span {
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+}
+/*--Home Tabs --*/
+#home-features-tab {
+    padding-top: 100px;
+}
+#home-tabs {
+    color: #fff;
+}
+#home-tabs .tab-pane {
+    padding-top: 30px;
+}
+#home-tabs h4 {
+    font-size: 18px;
+}
+#home-tabs h2 {
+    color: #dfae37;
+    line-height: 48px;
+}
+#home-tabs .list-items{
+    padding:0;
+    margin:0;
+}
+#home-tabs .list-items li {
+    padding-left: 30px;
+    position: relative;
+}
+#home-tabs .list-items li i {
+    left: 0;
+    position: absolute;
+    top: 3px;
+}
+#home-tabs h4 {
+    color: #999;
+}
+#home-tabs li.active h4 {
+    color: #e13834;
 }
 #home-tabs .fusion-tab-heading i {
-    display:block;
-    font-size:24px!important;
-    line-height:40px!important;
-    
+    width: 80px;
+    height: 80px;
+    display: block;
+    margin: 0 auto;
+    background: url("../Avada-Child-Theme/images/icon-business-control.png") 0 0;
 }
-.home-tab-c1{
-    float:left;
-    
+#home-tabs #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 0;
 }
-.home-tab-c2{
+#home-tabs li.active #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("..Avada-Child-Theme/images/icon-connected-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 -80px;
+}
+#home-tabs #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 0;
+}
+#home-tabs li.active #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 -80px;
+}
+#home-tabs .fusion-tab-heading i.fa-angle-down:before {
+    content: '';
+}
+#home-tabs-container {
+    background: #fff;
+}
+.home-tab-c1 {
     float: left;
-    max-width: 670px;
+    max-width: 625px;
+    padding-right: 20px;
 }
-.home-tab-c2 ul{
+.home-tab-c2 {
+    float: left;
+    margin-top: 140px;
+}
+.home-tab-c2 ul {
+    color: #fff;
+}
+.fusion-tabs.horizontal-tabs.clean .nav-tabs li.active a:after {
+    width: 0;
+    height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 30px solid #fff;
+    content: "";
+    position: absolute;
+    left: 33%;
+    bottom: -25px;
+}
+/*--Home Features--*/
+#home-features {
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 1;
+}
+.home-features-box {
+    -webkit-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
+    -moz-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
+    box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    padding-bottom: 30px;
+}
+.home-features-con {
+    padding: 15px;
+}
+.home-features-con h4 {
+    margin: 0 auto;
+    text-align: center;
+}
+#home-features-tab{
+    position:relative;
+}
+#home-features-tab span#tab-arrow-left{
+    position:absolute;
+    left:-100px;
+    width:70px;
+    top:50%;
+    cursor:pointer;
+}
+#home-features-tab span#tab-arrow-right{
+    position:absolute;
+    right:-100px;
+    width:70px;
+    top:50%;
+    cursor:pointer;
+}
+/*--Home Testimonials--*/
+#testimonials {
+    padding: 100px 0;
+    position: relative;
+    z-index: 999;
+}
+#testimonials blockquote {
+    max-width: 800px;
+    margin: 0 auto;
+}
+#fusion-testimonials-1 a:hover, #fusion-testimonials-1 a.activeSlide {
+    background-color:#5a0700;
+    border:1px solid #5a0700;
+}
+/*--Home Contact--*/
+#rs-quick-contact {
+    padding: 200px 0!important;
+    position: relative;
+    z-index: 2;
+}
+.home-quick-contact {
+    border-radius: 15px;
+    background: #fff;
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto;
+    width: 90%;
+    padding: 40px 10px 20px;
+    font-size: 20px;
+}
+.button-contact {
+    background: #e13834;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    padding: 10px 0;
+    display: block;
+    width: 280px;
+    margin: 0 auto;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radiius: 5px;
+}
+.button-contact:hover {
+    background: #be1b17;
+    color: #fff;
+}
+/*======EULA======*/
+#eula-content .fusion-accordian .panel-heading .panel-title{
+    font-size:14px;
+}
+#eula-content .fusion-accordian .panel-heading .panel-title:hover{
+    color:#d14340;
+}
+.page-header{
+    padding:120px 0;
+}
+.page-header h2, .page-header p{
     color:#fff;
+    margin:0;
+}
+.page-header h3 + .page-header p{
+    margin:0;
+}
+#eula-content h4.panel-title i.fa-fusion-box{
+    background:none;
+}
+#eula-content h4.panel-title i{
+    color:#000!important;
+}
+#eula-content h4.panel-title a{
+    color:#000!important;
+}
+#eula-content h4.panel-title a:hover{
+    color:#f00!important;
 }
 /*========Theme CSS Updates========*/
-#side-header .fusion-logo, .fusion-header .fusion-logo{
-margin-top:0!important;
-margin-bottom:0!important;
-padding:20px 0;
-height:auto!important;
+#side-header .fusion-logo, .fusion-header .fusion-logo {
+    margin-top: 0!important;
+    margin-bottom: 0!important;
+    padding: 20px 0;
+    height: auto!important;
 }
 .fusion-main-menu {
-    top:25px!important;
+    top: 25px!important;
 }
 .fusion-main-menu > ul > li {
-    padding-right:20px!important;
+    padding-right: 20px!important;
 }
-.fusion-main-menu > ul > li > a{
-    border:none!important;
-    text-transform:uppercase!important;
+.fusion-main-menu > ul > li > a {
+    border: none!important;
+    text-transform: uppercase!important;
 }
-.fusion-tabs.fusion-tabs-1 .tab-pane{
-    background:none!important;
-    border:none!important;
-    
+.fusion-tabs.fusion-tabs-1 .tab-pane {
+    background: none!important;
+    border: none!important;
+}
+.fusion-main-menu ul {
+    float: left;
+}
+.fusion-header-v2 .fusion-secondary-header {
+    border-top: none!important;
+}
+.fusion-main-menu > ul > li > a {
+    text-transform: none!important;
 }
 
-.fusion-main-menu ul{float:left;}
-
-#footer-logo p{
-padding-top:40px;
+/*--------Login Form---*/
+.com-form input{
+height:40px!important;
 }
-#footer-quote p{
-font-size:24px;
-padding:40px 0 40px 80px;
-border-left:1px solid #121416;
+.woocommerce-LostPassword.lost_password{
+    margin:20px!important;
+}
+.g-recaptcha{
+    margin-bottom:20px;
+}
+#customer_login{
+   width: 100%;
+    padding: 20px 30px 10px 30px;
+    overflow: hidden;
+    max-width: 480px;
+    margin: 0 auto;
+    border: 1px solid #f6f6f6;
+    border-radius: 5px;
+}
+.woocommerce #customer_login .login .button{
+    width:100%;
 }

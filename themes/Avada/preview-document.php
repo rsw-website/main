@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$documentId = base64_decode($_GET['id']);
 		// echo wp_get_attachment_url($documentId);
 		$attchmentData = get_post($documentId);
-		print_r($attchmentData);
 		$file = 'http://54.80.170.170/wp-content/uploads/2019/02/How_a_Service_Technician_Completes_a_Service_Order.pdf';
 		
 		$post_mime_type = 'application/pdf';

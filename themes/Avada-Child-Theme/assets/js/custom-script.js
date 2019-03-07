@@ -1,6 +1,8 @@
+var timer;
+
 jQuery('form.woocommerce-form-login .woocommerce-Button')
 .on('click', function(e){
-	debugger;
+	// debugger;
 	var usernameCheck = true;
 	var passwordCheck = true;
 	var form = jQuery(this).parents('form.woocommerce-form-login');
@@ -26,7 +28,7 @@ jQuery('form.woocommerce-form-login .woocommerce-Button')
 
 jQuery('form.woocommerce-form-register .woocommerce-Button')
 .on('click', function(e){
-	debugger;
+	// debugger;
 	var firstnameCheck = true;
 	var lastnameCheck = true;
 	var emailCheck = true;
@@ -66,4 +68,97 @@ jQuery('form.woocommerce-form-register .woocommerce-Button')
 		!passwordCheck){
 		e.preventDefault();
 	} 
+});
+
+
+jQuery('.home-tabs-arrow').on('click', function(e){
+	var activeTabIndex = jQuery(this).siblings('div#home-tabs')
+	.children('div.nav').find('ul.nav-tabs').find('li.active').index(); //2
+	var currentActive = jQuery(this).siblings('div#home-tabs')
+	.children('div.nav').find('ul.nav-tabs').find('li.active');
+	var homeTabs = jQuery(this).siblings('div#home-tabs');
+	var nextActiveItem = '';
+	var clickedArrow = jQuery(this).attr('id');
+	if(clickedArrow == 'tab-arrow-right'){
+		var tabsLastIndex = jQuery(this).siblings('div#home-tabs')
+		.children('div.nav').find('ul.nav-tabs').find('li')
+		.last().index();
+		if(tabsLastIndex === activeTabIndex){
+		// last index active
+		// move to index 0
+		var nextActiveItem = jQuery(this).siblings('div#home-tabs')
+		.children('div.nav').find('ul.nav-tabs').find('li').first();
+		} else{
+			// any index active
+			// select the next index
+			var nextActiveItem = jQuery(this).siblings('div#home-tabs')
+			.children('div.nav').find('ul.nav-tabs').find('li.active').next();
+		}
+	} else{
+		var tabsFirstIndex = jQuery(this).siblings('div#home-tabs')
+		.children('div.nav').find('ul.nav-tabs').find('li')
+		.first().index();
+		if(tabsFirstIndex === activeTabIndex){
+		// last index active
+		// move to index 0
+		var nextActiveItem = jQuery(this).siblings('div#home-tabs')
+		.children('div.nav').find('ul.nav-tabs').find('li').last();
+		} else{
+			// any index active
+			// select the next index
+			var nextActiveItem = jQuery(this).siblings('div#home-tabs')
+			.children('div.nav').find('ul.nav-tabs').find('li.active').prev();
+		}
+	} 
+	changeActiveTab(homeTabs, nextActiveItem);
+	changeTabWithTimer();
+});
+
+
+function changeActiveTab(homeTabs, nextActiveItem){
+	// debugger;
+	jQuery(homeTabs).children('div.nav').find('ul.nav-tabs')
+	.find('li').removeClass('active');
+	jQuery(nextActiveItem).addClass('active');
+	var newActiveItemId = jQuery(nextActiveItem).find('a.tab-link').attr('href');
+	newActiveItemId = newActiveItemId.replace('#', '');
+	jQuery(homeTabs).children('div.tab-content')
+	.find('.tab-pane').removeClass('active').removeClass('in');
+	jQuery(homeTabs).children('div.tab-content')
+	.find('div#'+newActiveItemId).addClass('in').addClass('active', 500);
+}
+
+function changeTabAfterInterval() {
+	// debugger;
+  	return setInterval(function(){ 
+	  	var homeTabs = jQuery('div#home-tabs'); 
+	  	var tabsLastIndex = jQuery('div#home-tabs')
+			.children('div.nav').find('ul.nav-tabs').find('li')
+			.last().index();
+		var activeTabIndex = jQuery('div#home-tabs')
+		.children('div.nav').find('ul.nav-tabs').find('li.active').index();
+		if(tabsLastIndex === activeTabIndex){
+		// last index active
+		// move to index 0
+		var nextActiveItem = jQuery('div#home-tabs')
+		.children('div.nav').find('ul.nav-tabs').find('li').first();
+		} else{
+			// any index active
+			// select the next index
+			var nextActiveItem = jQuery('div#home-tabs')
+			.children('div.nav').find('ul.nav-tabs').find('li.active').next();
+		}
+		changeActiveTab(homeTabs, nextActiveItem);
+   }, 30000);
+}
+
+function changeTabWithTimer(){
+	console.log(timer);
+	if (timer) clearInterval(timer);
+	timer = changeTabAfterInterval();
+}
+changeTabWithTimer();
+
+jQuery('div#home-tabs > div.nav > ul.nav-tabs li').on('click', function(e){
+	changeTabWithTimer();
 });

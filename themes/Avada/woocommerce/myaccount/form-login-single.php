@@ -25,7 +25,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <div class="u-columns col2-set" id="customer_login">
 
-	<div class="u-column1 col-1">
+	<div>
 
 <?php endif; ?>
 
@@ -49,16 +49,19 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 			<p class="form-row">
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
 				<button type="submit" class="woocommerce-Button button" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>"><?php esc_html_e( 'Log in', 'woocommerce' ); ?></button>
-				<label class="woocommerce-form__label woocommerce-form__label-for-checkbox inline">
+			
+			</p>
+            <div class="form-row">
+            	<label class="woocommerce-form__label woocommerce-form__label-for-checkbox inline">
 					<input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" id="rememberme" value="forever" /> <span><?php esc_html_e( 'Remember me', 'woocommerce' ); ?></span>
 				</label>
+                <p class="woocommerce-LostPassword lost_password">
+				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Forget password?', 'woocommerce' ); ?></a>
 			</p>
-			<p class="woocommerce-LostPassword lost_password">
-				<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php esc_html_e( 'Lost your password?', 'woocommerce' ); ?></a>
-			</p>
-			<p class="woocommerce-LostPassword lost_password">
-				<a href="/client-registration"> register </a>
-			</p>
+            </div>
+			<div class="form-row new-signup">
+            <h4>Get Started Now! - <a class="button" href="/client-registration"> Register </a></h4>
+            </div>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
 
