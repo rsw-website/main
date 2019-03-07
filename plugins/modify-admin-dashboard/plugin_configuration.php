@@ -114,7 +114,7 @@ function user_autologout(){
         return $redirect_url;
     } else{
         wp_logout();
-        return get_permalink( get_page_by_path( 'client-registration' ) );
+        return get_permalink( get_page_by_path( 'registration-successful' ));
     }
   }
 }
