@@ -11,6 +11,24 @@
 
 <?php
 
+// check for valid user Id
+if(isset($_GET['ref_id'])){
+	$userId = base64_decode($_GET['ref_id']);
+	$userDetails = get_userdata( $userId );
+	if($userDetails){
+		$approvedStatus = get_user_meta($userId, 'pw_user_status', true);
+		if($approvedStatus !== 'pending'){
+			wp_redirect('client-login');
+		}
+	} else{
+		wp_redirect('client-login');
+	} 
+} else{
+	wp_redirect('client-login');
+} 
+
+
+
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
@@ -24,16 +42,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
 			<?php avada_featured_images_for_pages(); ?>
 			<div class="post-content">
-				<?php
-					echo get_permalink( get_page_by_path( 'registration-successful' ));
-					echo add_query_arg( array( 'ref_id' => '123' ), get_permalink( get_page_by_path( 'registration-successful' )) );
-				?>
 				<div class="woocommerce">
 					<div class="woocommerce-message" role="alert">
 						User Registration successful.	
 					</div>
 
-					<p>Hi User, </p>
+					<p>Hi <?php $userDetails->first_name ?>, </p>
 					<p>Your account has been registered successfully. You will not be able to login as your account is held under moderation for admin's approval.<br>
 					We will notify you with an email about your account status.	
 					</p>
