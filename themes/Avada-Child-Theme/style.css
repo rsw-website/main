@@ -89,6 +89,7 @@ a:hover {
 }
 .btn-c4:hover {
     background: #e13834!important;
+    color:#fff!important;
 }
 .mb-0 {
     margin-bottom: 0!important;
@@ -528,7 +529,7 @@ body.home #main {
     height: 40px!important;
 }
 .woocommerce #customer_login .login .inline {
-    font-size: 18px;
+    font-size: 16px;
     padding-top: 15px;
     padding-bottom: 15px;
 }
@@ -536,7 +537,7 @@ body.home #main {
     width: 100%;
     background:#eee;
     padding: 10px 20px 25px;
-    border-top:none;
+    border-top:none!important;
 }
 .new-signup h4 {
     margin: 0;
@@ -554,4 +555,6 @@ body.home #main {
 .woocommerce #customer_login .login .lost_password{
     float:right!important;
     margin-top:15px;
+    text-decoration:underline;
+    font-size:16px;
 }

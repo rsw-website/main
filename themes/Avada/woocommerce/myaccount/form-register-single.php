@@ -29,7 +29,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 <?php if ( get_option( 'woocommerce_enable_myaccount_registration' ) === 'yes' ) : ?>
 
-	<div class="u-column2 col-2">
+	<div class="">
 
 		<h2><?php esc_html_e( 'Register', 'woocommerce' ); ?></h2>
 
