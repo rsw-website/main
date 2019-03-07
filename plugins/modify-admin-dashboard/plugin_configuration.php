@@ -113,8 +113,10 @@ function user_autologout(){
     if ( $approved_status == 'approved' ){
         return $redirect_url;
     } else{
-        wp_logout();
-        return get_permalink( get_page_by_path( 'client-registration' ) );
+        echo add_query_arg( array( 'ref_id' => $user_id ),
+         get_permalink( get_page_by_path( 'registration-successful' )) );
+        // wp_logout();
+        // return get_permalink( get_page_by_path( 'client-registration' ) );
     }
   }
 }
