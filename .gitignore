@@ -2,5 +2,7 @@
 /themes/twentynineteen
 /themes/twentyseventeen
 /themes/twentysixteen
-/plugins
+/plugins/*
+!/plugins/documents-management/
+!/plugins/modify-admin-dashboard/
 /languages
