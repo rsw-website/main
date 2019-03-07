@@ -212,3 +212,16 @@ if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
 
 update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
 }
+
+add_action( 'phpmailer_init', 'send_smtp_email' );
+function send_smtp_email( $phpmailer ) {
+  $phpmailer->isSMTP();
+  $phpmailer->Host       = 'smtp.gmail.com';
+  $phpmailer->SMTPAuth   = true;
+  $phpmailer->Port       = '587';
+  $phpmailer->Username   = 'sachdevaayush.sachdeva39@gmail.com';
+  $phpmailer->Password   = '@yush1004';
+  $phpmailer->SMTPSecure = 'tls';
+  $phpmailer->From       = 'sachdevaayush.sachdeva39@gmail.com';
+  $phpmailer->FromName   = 'Reliable Softworks';
+}

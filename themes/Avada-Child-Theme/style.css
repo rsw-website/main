@@ -9,17 +9,17 @@ Text Domain:  Avada
 */
 
 /*========General========*/
-body p{
-    font-size:18px;
-    line-height:28px;
+body p {
+    font-size: 18px;
+    line-height: 28px;
 }
 .sub-header {
     font-size: 18px;
     font-weight: 400;
     color: #000;
 }
-ul li{
-    font-size:16px;
+ul li {
+    font-size: 16px;
 }
 .list-items {
     list-style: none;
@@ -44,6 +44,15 @@ ul li{
 }
 .txt-c3 {
     color: #dfae37;
+}
+a:hover {
+    color: #e13834!important;
+}
+.button {
+    background: #e13834!important;
+}
+.button:hover {
+    background: #be1b17!important;
 }
 .btn-primary {
     background: #e13834!important;
@@ -75,28 +84,32 @@ ul li{
 .btn-c3:hover {
     background: #cc981a!important;
 }
+.btn-c4 {
+    background: #3d3b4f!important;
+}
+.btn-c4:hover {
+    background: #e13834!important;
+}
 .mb-0 {
     margin-bottom: 0!important;
 }
 .com-block {
     padding: 40px 0!important;
 }
-
 /*---Form---*/
-.com-form input{
-height:40px!important;
+.com-form input {
+    height: 40px!important;
 }
-.woocommerce-LostPassword.lost_password{
-    margin:20px!important;
+.woocommerce-LostPassword.lost_password {
+    margin: 20px!important;
 }
-.g-recaptcha{
-    margin-bottom:20px;
+.g-recaptcha {
+    margin-bottom: 20px;
 }
-#customer_login{
-    width:100%;
-    padding:30px;
+#customer_login {
+    width: 100%;
+    padding: 30px;
 }
-
 /*========Header Contact Info========*/
 .fusion-contact-info {
     font-size: 16px;
@@ -125,9 +138,9 @@ footer {
     position: relative;
     z-index: 3;
 }
-.fusion-footer-widget-area{
-    padding-top:15px!important;
-    padding-bottom:5px!important;
+.fusion-footer-widget-area {
+    padding-top: 15px!important;
+    padding-bottom: 5px!important;
 }
 footer ul li {
     font-size: 14px;
@@ -252,9 +265,9 @@ body.home #main {
     color: #dfae37;
     line-height: 48px;
 }
-#home-tabs .list-items{
-    padding:0;
-    margin:0;
+#home-tabs .list-items {
+    padding: 0;
+    margin: 0;
 }
 #home-tabs .list-items li {
     padding-left: 30px;
@@ -365,22 +378,22 @@ body.home #main {
     margin: 0 auto;
     text-align: center;
 }
-#home-features-tab{
-    position:relative;
+#home-features-tab {
+    position: relative;
 }
-#home-features-tab span#tab-arrow-left{
-    position:absolute;
-    left:-100px;
-    width:70px;
-    top:50%;
-    cursor:pointer;
+#home-features-tab span#tab-arrow-left {
+    position: absolute;
+    left: -100px;
+    width: 70px;
+    top: 50%;
+    cursor: pointer;
 }
-#home-features-tab span#tab-arrow-right{
-    position:absolute;
-    right:-100px;
-    width:70px;
-    top:50%;
-    cursor:pointer;
+#home-features-tab span#tab-arrow-right {
+    position: absolute;
+    right: -100px;
+    width: 70px;
+    top: 50%;
+    cursor: pointer;
 }
 /*--Home Testimonials--*/
 #testimonials {
@@ -393,8 +406,8 @@ body.home #main {
     margin: 0 auto;
 }
 #fusion-testimonials-1 a:hover, #fusion-testimonials-1 a.activeSlide {
-    background-color:#5a0700;
-    border:1px solid #5a0700;
+    background-color: #5a0700;
+    border: 1px solid #5a0700;
 }
 /*--Home Contact--*/
 #rs-quick-contact {
@@ -430,33 +443,33 @@ body.home #main {
     color: #fff;
 }
 /*======EULA======*/
-#eula-content .fusion-accordian .panel-heading .panel-title{
-    font-size:14px;
+#eula-content .fusion-accordian .panel-heading .panel-title {
+    font-size: 14px;
 }
-#eula-content .fusion-accordian .panel-heading .panel-title:hover{
-    color:#d14340;
+#eula-content .fusion-accordian .panel-heading .panel-title:hover {
+    color: #d14340;
 }
-.page-header{
-    padding:120px 0;
+.page-header {
+    padding: 120px 0;
 }
-.page-header h2, .page-header p{
-    color:#fff;
-    margin:0;
+.page-header h2, .page-header p {
+    color: #fff;
+    margin: 0;
 }
-.page-header h3 + .page-header p{
-    margin:0;
+.page-header h3 + .page-header p {
+    margin: 0;
 }
-#eula-content h4.panel-title i.fa-fusion-box{
-    background:none;
+#eula-content h4.panel-title i.fa-fusion-box {
+    background: none;
 }
-#eula-content h4.panel-title i{
-    color:#000!important;
+#eula-content h4.panel-title i {
+    color: #000!important;
 }
-#eula-content h4.panel-title a{
-    color:#000!important;
+#eula-content h4.panel-title a {
+    color: #000!important;
 }
-#eula-content h4.panel-title a:hover{
-    color:#f00!important;
+#eula-content h4.panel-title a:hover {
+    color: #f00!important;
 }
 /*========Theme CSS Updates========*/
 #side-header .fusion-logo, .fusion-header .fusion-logo {
@@ -488,26 +501,51 @@ body.home #main {
 .fusion-main-menu > ul > li > a {
     text-transform: none!important;
 }
-
 /*--------Login Form---*/
-.com-form input{
-height:40px!important;
+.com-form input {
+    height: 40px!important;
 }
-.woocommerce-LostPassword.lost_password{
-    margin:20px!important;
+.woocommerce-LostPassword.lost_password {
+    margin: 20px!important;
 }
-.g-recaptcha{
-    margin-bottom:20px;
+.g-recaptcha {
+    margin-bottom: 20px;
 }
-#customer_login{
-   width: 100%;
-    padding: 20px 30px 10px 30px;
+#customer_login {
+    width: 100%;
+    padding: 20px 30px 30px 30px;
     overflow: hidden;
     max-width: 480px;
     margin: 0 auto;
     border: 1px solid #f6f6f6;
     border-radius: 5px;
 }
-.woocommerce #customer_login .login .button{
-    width:100%;
+.woocommerce #customer_login .login .button {
+    width: 100%;
+}
+.woocommerce-form input {
+    height: 40px!important;
+}
+.woocommerce #customer_login .login .inline {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.new-signup {
+    width: 100%;
+    background: #eee;
+    padding: 10px 20px 5px;
+}
+.new-signup h4 {
+    margin: 0;
+    text-align: center;
+    display: block;
+}
+.new-signup a {
+    display: block;
+    margin-top: 10px;
+}
+.woocommerce #customer_login .login .form-row {
+    display: block;
+    margin: 0;
 }
