@@ -519,6 +519,7 @@ body.home #main {
     margin: 0 auto;
     border: 1px solid #f6f6f6;
     border-radius: 5px;
+    margin-bottom:30px;
 }
 .woocommerce #customer_login .login .button {
     width: 100%;
@@ -533,7 +534,7 @@ body.home #main {
 }
 .new-signup {
     width: 100%;
-    background: #eee;
+    background:#eee;
     padding: 10px 20px 5px;
 }
 .new-signup h4 {
@@ -542,10 +543,14 @@ body.home #main {
     display: block;
 }
 .new-signup a {
-    display: block;
+    display:block;
     margin-top: 10px;
 }
 .woocommerce #customer_login .login .form-row {
     display: block;
     margin: 0;
+}
+.woocommerce #customer_login .login .lost_password{
+    float:right;
+    margin-top:15px;
 }
