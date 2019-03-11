@@ -261,7 +261,7 @@ function custom_document_request_access($atts){
   ob_start();
   $currentUserId = get_current_user_id();
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
-  if($accessStatus === 0){
+  // if($accessStatus === 0){
     ?>
       <div class="document-request-text">
         <p>You do not have permission to access the documents added by the admin.</p>
@@ -269,7 +269,7 @@ function custom_document_request_access($atts){
         <div class="custom-loader lds-dual-ring hidden"></div>
       </div>
   <?php
-  }
+  // }
   $requestData = ob_get_clean();
   return $requestData;
 }
