@@ -27,12 +27,6 @@ global $woocommerce, $current_user;
 				?>
 			</span>
 		</div>
-		<div class="request-access-details">
-			<div class="document-request-text">
-		        <p>You do not have permission to access the documents added by the admin.<br/>
-		        Click on the below button to request access for all the documents.</p>
-		        <button class="document-request-access">Request Document Access</button>
-      		</div>
-		</div>
+		<?php echo do_shortcode( '[request-access-button showTitle = 0 ]' ); ?>
 	</div>
 </div>

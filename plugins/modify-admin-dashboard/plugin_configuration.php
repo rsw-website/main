@@ -222,4 +222,78 @@ if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
 update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
 }
 
+function my_account_menu_order() {
+  $menuOrder = array(
+    'edit-account'      => __( 'Account Details', 'woocommerce' ),
+    'my-document'          => __( 'My Documents', 'woocommerce' ),
+    'customer-logout'    => __( 'Logout', 'woocommerce' ),
+  );
+  return $menuOrder;
+ }
+ add_filter ( 'woocommerce_account_menu_items', 'my_account_menu_order' );
 
+ /*
+ * Step 2. Register Permalink Endpoint
+ */
+add_action('woocommerce_init', 'custom_add_endpoint');
+function custom_add_endpoint() {
+ 
+  // WP_Rewrite is my Achilles' heel, so please do not ask me for detailed explanation
+  add_rewrite_endpoint( 'my-document', EP_PAGES );
+}
+
+$endpoint = 'my-document';
+ 
+add_action( 'woocommerce_account_' . $endpoint .  '_endpoint', 'wk_endpoint_content' );
+ 
+function wk_endpoint_content() {
+    //content goes here
+  ?>
+  <h2 class="avada-woocommerce-myaccount-heading">
+        My Documents     
+  </h2>
+  <?php
+  echo do_shortcode( '[request-access-button showTitle = 1]' );
+}
+
+add_shortcode( 'request-access-button', 'custom_document_request_access' );
+function custom_document_request_access($atts){
+  ob_start();
+  $currentUserId = get_current_user_id();
+  $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
+  // if($accessStatus === 0){
+    ?>
+      <div class="document-request-text">
+        <p>You do not have permission to access the documents added by the admin.<br/>
+        Click on the below button to request access for all the documents.</p>
+        <button class="document-request-access">Request Document Access</button>
+        <div class="custom-loader lds-dual-ring hidden"></div>
+      </div>
+  <?php
+  // }
+  $requestData = ob_get_clean();
+  return $requestData;
+}
+
+
+function custom_ajax_request() {
+  // load our jquery file that sends the $.post request
+  wp_enqueue_script( "ajax-request", get_stylesheet_directory_uri() . '/assets/js/ajax-request.js', array ( 'jquery' ) );
+ 
+  // make the ajaxurl var available to the above script
+  wp_localize_script( 'ajax-request', 'custom_ajax_script', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );  
+}
+add_action('wp_print_scripts', 'custom_ajax_request');
+
+function submit_document_access_request() {
+  $currentUserId = get_current_user_id();
+  $newStatus = 3;
+  if($newStatus === intval(get_user_meta( $currentUserId, 'document_access', true ))){
+    return 0;
+  } else{
+    update_user_meta( $currentUserId, 'document_access', 3 );
+    // send mail
+    return 1;
+  }
+}
+add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');

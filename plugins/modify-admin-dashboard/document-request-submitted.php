@@ -1,0 +1,1 @@
+<p>Your request have been submitted succesfully. An email has been sent to admin for document request approval.</br>You will be notified about the status of your submitted requested.</p>

@@ -585,3 +585,31 @@ body.home #main {
     outline: none;
 }
 .user-email-field{display: block;}
+.lds-dual-ring {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 15px;
+}
+.lds-dual-ring:after {
+    content: " ";
+    display: block;
+    width: 34px;
+    height: 35px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 5px solid #a0ce4e;
+    border-color: #fff transparent #a0ce4e transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.hidden{display: none;}
+.document-request-text .error-text{
+    color: red;
+}
