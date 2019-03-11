@@ -261,7 +261,7 @@ function custom_document_request_access($atts){
   ob_start();
   $currentUserId = get_current_user_id();
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
-  // if($accessStatus === 0){
+  if($accessStatus === 0){
     ?>
       <div class="document-request-text">
         <p>You do not have permission to access the documents added by the admin.<br/>
@@ -270,7 +270,7 @@ function custom_document_request_access($atts){
         <div class="custom-loader lds-dual-ring hidden"></div>
       </div>
   <?php
-  // }
+  }
   $requestData = ob_get_clean();
   return $requestData;
 }
@@ -286,14 +286,16 @@ function custom_ajax_request() {
 add_action('wp_print_scripts', 'custom_ajax_request');
 
 function submit_document_access_request() {
-  $currentUserId = get_current_user_id();
+    $currentUserId = get_current_user_id();
   $newStatus = 3;
   if($newStatus === intval(get_user_meta( $currentUserId, 'document_access', true ))){
-    return 0;
+    echo 0;
   } else{
     update_user_meta( $currentUserId, 'document_access', 3 );
     // send mail
-    return 1;
+    echo 1;
   }
+  // echo "new status: ".$newStatus.' and old status: '.get_user_meta( $currentUserId, 'document_access', true )
+  die();
 }
 add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');

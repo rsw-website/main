@@ -558,6 +558,28 @@ body.home #main {
     text-decoration:underline;
     font-size:16px;
 }
+/*---UserDashboard--*/
+#user-dashboard .profile-details{
+padding-bottom:15px;
+border-bottom:1px solid #f2f2f2;
+}
+#user-dashboard .profile-details img{
+width:40px;
+height:40px;
+}
+#user-dashboard .avada-myaccount-user{
+border-top:none!important;
+}
+
+
+#user-dashboard .avada-myaccount-user .username .hello:before{
+content:'';
+}
+
+#user-dashboard .document-request-text {
+    text-align: center;
+    padding: 25px 0 10px 0;
+}
 
 .document-request-text{text-align: center;}
 .document-request-access{
