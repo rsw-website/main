@@ -265,7 +265,7 @@ function custom_document_request_access($atts){
     ?>
       <div class="document-request-text">
         <p>You do not have permission to access the documents added by the admin.</p>
-        <button class="document-request-access">Request Document Access</button>
+        <button class="document-request-access btn-c2">Request Document Access</button>
         <div class="custom-loader lds-dual-ring hidden"></div>
       </div>
   <?php

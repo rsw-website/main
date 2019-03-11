@@ -561,7 +561,6 @@ body.home #main {
 /*---UserDashboard--*/
 #user-dashboard .profile-details{
 padding-bottom:15px;
-border-bottom:1px solid #f2f2f2;
 }
 #user-dashboard .profile-details img{
 width:40px;
@@ -569,16 +568,28 @@ height:40px;
 }
 #user-dashboard .avada-myaccount-user{
 border-top:none!important;
+border-bottom:none!important;
+padding-bottom:20px;
 }
-
+#user-dashboard .avada-myaccount-user.username{
+    border-right:none!important;
+}
 
 #user-dashboard .avada-myaccount-user .username .hello:before{
 content:'';
 }
-
+#user-dashboard .avada-myaccount-user-column.message{
+    max-width:400px;
+}
 #user-dashboard .document-request-text {
-    text-align: center;
-    padding: 25px 0 10px 0;
+    text-align: left;
+    padding: 0;
+    max-width: 300px;
+    border-left: 1px solid #f1f1f1;
+    padding-left: 26px;
+}
+#user-dashboard .document-request-text p{
+    font-size:16px;
 }
 
 .document-request-text{text-align: center;}
