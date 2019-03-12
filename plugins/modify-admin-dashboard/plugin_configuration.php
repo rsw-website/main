@@ -230,9 +230,6 @@ function save_extra_user_profile_fields( $user_id ) {
     }
     $to = $userData->user_email;  
     $subject = '['.get_option('blogname').'] - Document Request '.$status;
-    $message = "Username: ".$userData->display_name." (".$userData->user_email.") has requested to access documents at ".get_option('blogname').".\n\n";
-    $message .= "To approve or deny the request go to \n";
-    $message .= get_edit_user_link( $currentUserId );
     $headers = custom_email_headers();
     if($_POST['document_access'] == 1 || $_POST['document_access'] == 2){
       wp_mail( $to, $subject, $message, $headers );
