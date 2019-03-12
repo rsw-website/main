@@ -10,7 +10,6 @@ function nua_default_approve_user_message() {
 	$message .= "{username}\r\n\r\n";
 	$message .= "{login_url}\r\n\r\n";
     $message .= __( 'To set or reset your password, visit the following address:', 'new-user-approve' ) . "\r\n\r\n";
-    $message .= "{reset_password_url}";
 
 	$message = apply_filters( 'new_user_approve_approve_user_message_default', $message );
 
@@ -67,7 +66,7 @@ function nua_default_notification_message() {
 	$message = __( '{username} ({user_email}) has requested a username at {sitename}', 'new-user-approve' ) . "\n\n";
 	$message .= "{site_url}\n\n";
 	$message .= __( 'To approve or deny this user access to {sitename} go to', 'new-user-approve' ) . "\n\n";
-	// $message .= "{admin_approve_url}\n\n";
+	$message .= "{admin_approve_url}\n\n";
 
 	$message = apply_filters( 'new_user_approve_notification_message_default', $message );
 
