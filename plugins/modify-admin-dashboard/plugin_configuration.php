@@ -286,11 +286,16 @@ function custom_ajax_request() {
 add_action('wp_print_scripts', 'custom_ajax_request');
 
 function submit_document_access_request() {
-    $headers = custom_email_headers();
-    wp_mail( 'ayush.sachdev8@gmail.com', 'test message', 'Hi, this is test', $headers );
-    die("ayush");
     $currentUserId = get_current_user_id();
-  $newStatus = 3;
+    $userData = get_userdata($currentUserId);
+    $newStatus = 3;
+    $to = get_option( 'admin_email' );  
+    $subject = '['.get_option('blogname').'] - Document Access Request';
+    $message = "Username: ".$userData->display_name." (".$userData->user_email.") has requested to access documents at ".get_option('blogname').".\n\n";
+    $message .= "To approve or deny the request go to \n";
+    $message .= get_edit_user_link( $currentUserId );
+    $headers = custom_email_headers();
+    wp_mail( $to, $subject, $message, $headers );
   if($newStatus === intval(get_user_meta( $currentUserId, 'document_access', true ))){
     echo 0;
   } else{
