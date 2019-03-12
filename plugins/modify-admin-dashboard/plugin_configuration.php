@@ -216,25 +216,29 @@ add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
 add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
 
 function save_extra_user_profile_fields( $user_id ) {
-  $userData = $get_userdata($user_id); 
+  $userData = get_userdata($user_id); 
   if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
   if(get_user_meta( $user_id, 'document_access', true) !== $_POST['document_access']){
     // send mail
-    update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
-    $to = $userData->user_email;  
-    $subject = '['.get_option('blogname').'] - Document Request '.$status;
-    $headers = custom_email_headers();
     if($_POST['document_access'] == 1){
       $status = 'Approved';
-      $message = "You have been approved to access documents on "
-      .get_option('blogname')."\n\n";
+      $message = "You have been approved to access documents on ".get_option('blogname')."\n\n";
       $message .= "To access the document, login to you your account and vist the dashboard page";
-      wp_mail( $to, $subject, $message, $headers );
     } elseif($_POST['document_access'] == 2){
       $status = 'Denied';
       $message = "You have been denied access to Reliable Softworks.\n";
+    }
+    die($message);
+    $to = $userData->user_email;  
+    $subject = '['.get_option('blogname').'] - Document Request '.$status;
+    $message = "Username: ".$userData->display_name." (".$userData->user_email.") has requested to access documents at ".get_option('blogname').".\n\n";
+    $message .= "To approve or deny the request go to \n";
+    $message .= get_edit_user_link( $currentUserId );
+    $headers = custom_email_headers();
+    if($_POST['document_access'] == 1 || $_POST['document_access'] == 2){
       wp_mail( $to, $subject, $message, $headers );
     }
+    update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
   }
 }
 
