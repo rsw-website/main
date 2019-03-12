@@ -222,11 +222,11 @@ function save_extra_user_profile_fields( $user_id ) {
     // send mail
     if($_POST['document_access'] == 1){
       $status = 'Approved';
-      $message = "You have been approved to access documents on ".get_option('blogname')."\n\n";
-      $message .= "To access the document, login to you your account and vist the dashboard page";
+      $message = "You have been approved to access documents on ".get_option('blogname').".\n\n";
+      $message .= "To access the document, login to you your account and vist the dashboard page.";
     } elseif($_POST['document_access'] == 2){
       $status = 'Denied';
-      $message = "You have been denied access to Reliable Softworks.\n";
+      $message = "You have been denied to access docuements on Reliable Softworks.\n";
     }
     $to = $userData->user_email;  
     $subject = '['.get_option('blogname').'] - Document Request '.$status;
