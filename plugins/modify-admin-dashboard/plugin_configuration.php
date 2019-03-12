@@ -228,7 +228,6 @@ function save_extra_user_profile_fields( $user_id ) {
       $status = 'Denied';
       $message = "You have been denied access to Reliable Softworks.\n";
     }
-    die($message);
     $to = $userData->user_email;  
     $subject = '['.get_option('blogname').'] - Document Request '.$status;
     $message = "Username: ".$userData->display_name." (".$userData->user_email.") has requested to access documents at ".get_option('blogname').".\n\n";
