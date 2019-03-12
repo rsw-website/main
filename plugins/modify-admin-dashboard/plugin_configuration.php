@@ -254,6 +254,7 @@ function wk_endpoint_content() {
   </h2>
   <?php
   echo do_shortcode( '[request-access-button showTitle = 1]' );
+  echo do_shortcode( '[list-staff]' );
 }
 
 add_shortcode( 'request-access-button', 'custom_document_request_access' );
@@ -285,6 +286,9 @@ function custom_ajax_request() {
 add_action('wp_print_scripts', 'custom_ajax_request');
 
 function submit_document_access_request() {
+    $headers = custom_email_headers();
+    wp_mail( 'ayush.sachdev8@gmail.com', 'test message', 'Hi, this is test', $headers );
+    die("ayush");
     $currentUserId = get_current_user_id();
   $newStatus = 3;
   if($newStatus === intval(get_user_meta( $currentUserId, 'document_access', true ))){
@@ -298,3 +302,153 @@ function submit_document_access_request() {
   die();
 }
 add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');
+
+
+function list_staff() {
+    global $wpdb; //This is used only if making any database queries
+    global $wp;
+    $argsArray = array();
+    if(get_query_var('paged', 1) && get_query_var('paged', 1) > 1){
+      $CurrentPage = get_query_var('paged', 1);
+    } else{
+      $CurrentPage = 1; 
+    }
+    if(isset($_GET['skey'])){
+      $search = $_GET['skey'];
+    } else{
+      $search = '';
+    }
+    if(get_query_var('order', 1) == 'ASC'){
+      $order = get_query_var('order', 1);
+      $newOrder = 'DESC';
+    } elseif(get_query_var('order', 1) == 'DESC'){
+      $order = get_query_var('order', 1);
+      $newOrder = 'ASC';
+    } else{
+      $order = '';
+      $newOrder = 'ASC';
+    }
+    if(get_query_var('orderby', 1) == 'post_title'){
+      $orderBy = get_query_var('orderby', 1);
+      $titleOrder = $newOrder;
+      $dateOrder = 'ASC';
+
+    } elseif(get_query_var('orderby', 1) == 'post_modified'){
+      $orderBy = get_query_var('orderby', 1);
+      $dateOrder = $newOrder;
+      $titleOrder = 'ASC';
+    } else{
+      $orderBy = '';
+      $dateOrder = 'ASC';
+      $titleOrder = 'ASC';
+    }
+
+
+    $limit = 10;
+    $startFrom = ($CurrentPage-1) * $limit; 
+    $query = "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_title LIKE '%".$search."%'";
+    if($order && $orderBy){
+      $argsArray = array('orderby' => $orderBy, 'order' => $order);
+      $query = $query . " ORDER BY $orderBy $order";
+    }
+    $query = $query . " LIMIT $startFrom, $limit";
+    // print_r($query);
+
+  $tableListData = $wpdb->get_results($query); 
+  ?>
+      <form action="" method="get">
+        <?php if($orderBy && $order): ?>
+            <input type="hidden" name="orderby" value="<?php echo $orderBy; ?>" />
+            <input type="hidden" name="order" value="<?php echo $order; ?>" />
+          <?php endif; ?>
+        <input type="text" name="skey" id="search" value="<?php the_search_query(); ?>" />
+      </form>
+      <table class="table"> 
+        <thead> 
+        <tr> 
+          <th>Title <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_title', 'order' => $newOrder), $wp->request)); ?>"><?php echo $titleOrder; ?></a></th> 
+          <th>URL</th> 
+          <th>Modified Date <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_modified', 'order' => $newOrder), $wp->request)); ?>""><?php echo $dateOrder; ?></a></th> 
+        </tr> 
+        </thead> 
+        <tbody> 
+        <?php   
+        foreach ($tableListData as $key => $tableData) {
+        ?>   
+        <tr>   
+          <td><?php echo $tableData->post_title; ?></td>   
+          <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>"><?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?></a></td> 
+          <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td> 
+        </tr>   
+        <?php   
+        }
+        ?>   
+        </tbody> 
+      </table> 
+       <ul class="pagination"> 
+      <?php   
+        $tableListCount = $wpdb->get_results
+        ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_title LIKE '%".$search."%'" );   
+          $totalRecords = count($tableListCount);
+          if($totalRecords > $limit){
+            // Number of pages required. 
+            $totalPages = ceil($totalRecords / $limit);
+            if($CurrentPage == 1){
+              $firstLink = 'javascript:void(0)';
+              $firstClass = 'disabled';
+
+              $previousLink = 'javascript:void(0)';
+              $previousClass = 'disabled';
+            } else{
+              $firstLink = home_url(add_query_arg($argsArray, $wp->request));
+              $firstClass = '';
+
+              $argsArray['paged'] = $CurrentPage - 1;
+              $previousLink = home_url(add_query_arg($argsArray, $wp->request));
+              $previousClass = '';
+            }
+
+            if($CurrentPage == $totalPages){
+              $lastLink = 'javascript:void(0)';
+              $lastClass = 'disabled';
+
+              $nextLink = 'javascript:void(0)';
+              $nextClass = 'disabled';
+            } else{
+              $argsArray['paged'] = $totalPages;
+              $lastLink = home_url(add_query_arg($argsArray, $wp->request));
+              $lastClass = '';
+
+              $argsArray['paged'] = $CurrentPage + 1;
+              $nextLink = home_url(add_query_arg($argsArray, $wp->request));
+              $nextClass = '';
+            }
+            ?>
+            <li class="<?php echo $firstClass; ?>">
+              <a href="<?php echo $firstLink; ?>">First << </a>
+            </li>
+            <li class="<?php echo $previousClass; ?>">
+              <a href="<?php echo $previousLink; ?>">Previous < </a>
+            </li>
+            <li class="<?php echo $nextClass; ?>">
+              <a href="<?php echo $nextLink; ?>">Next > </a>
+            </li>
+            <li class="<?php echo $lastClass; ?>">
+              <a href="<?php echo $lastLink; ?>">Last >> </a>
+            </li>
+          <?php
+          }
+
+
+ 
+}
+
+function list_staff_obj($atts, $content=null) {
+    ob_start();
+    list_staff($atts, $content=null);
+    $output=ob_get_contents();
+    ob_end_clean();
+    return $output;
+}
+
+add_shortcode( 'list-staff', 'list_staff_obj' );

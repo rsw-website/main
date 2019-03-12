@@ -13,15 +13,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<?php //get_header(); ?>
 <?php
 	if(isset($_GET['id'])){
 		$documentId = base64_decode($_GET['id']);
-		// echo wp_get_attachment_url($documentId);
 		$attchmentData = get_post($documentId);
-		$file = 'http://54.80.170.170/wp-content/uploads/2019/02/How_a_Service_Technician_Completes_a_Service_Order.pdf';
-		
-		$post_mime_type = 'application/pdf';
+		$file = $attchmentData->guid;
+		$relativePath = str_replace('http://localhost/reliablesoftworks', '/var/www/html/reliablesoftworks', $file);
+		print_r($relativePath); 
+		$post_mime_type = $attchmentData->post_mime_type;
 		$fp = fopen($file, "r") ;
 
 		header("Cache-Control: maxage=1");
@@ -30,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		header("Content-Disposition: inline; filename=".$file."");
 		header("Content-Description: PHP Generated Data");
 		header("Content-Transfer-Encoding: binary");
-		header('Content-Length:' . filesize($file));
+		header('Content-Length:' . filesize($relativePath));
 		ob_clean();
 		flush();
 		while (!feof($fp)) {
@@ -39,9 +38,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 		}
 		exit;
 	}
-	// $a =  base64_encode('123');
-	// echo $a;
-	// echo " - ".base64_decode($a);
 
 ?>
 

@@ -48,8 +48,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 
 					<p>Hi <?php echo $userDetails->first_name; ?>, </p>
-					<p>Your account has been registered successfully. You will not be able to login as your account is held under moderation for admin's approval.<br>
-					We will notify you with an email about your account status.	
+					<p>An email has been sent to the site administrator. The administrator will review the information that has been submitted and either approve or deny your request.<br>
+					You will receive an email with instructions on what you will need to do next. Thanks for your patience.	
 					</p>
 				</div>
 			</div>
