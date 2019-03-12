@@ -203,7 +203,7 @@ add_action( 'edit_user_profile', 'extra_user_profile_fields' );
 
 function extra_user_profile_fields( $user ) { 
   $documentAccess = intval(get_user_meta( $user->ID, 'document_access', true )); ?>
-<h3><?php _e("Document Access Permission", "blank"); ?></h3>
+<h3 id="document-access-request"><?php _e("Document Access Permission", "blank"); ?></h3>
   <select name="document_access">
   <option value="0" <?php echo $documentAccess === 0 ? 'selected' : '' ?> ><span aria-hidden="true">—</span></option>
   <option value="1" <?php echo $documentAccess === 1 ? 'selected' : '' ?>>Grant</option>
@@ -216,10 +216,26 @@ add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
 add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
 
 function save_extra_user_profile_fields( $user_id ) {
-
-if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
-
-update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
+  $userData = $get_userdata($user_id); 
+  if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
+  if(get_user_meta( $user_id, 'document_access', true) !== $_POST['document_access']){
+    // send mail
+    update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
+    $to = $userData->user_email;  
+    $subject = '['.get_option('blogname').'] - Document Request '.$status;
+    $headers = custom_email_headers();
+    if($_POST['document_access'] == 1){
+      $status = 'Approved';
+      $message = "You have been approved to access documents on "
+      .get_option('blogname')."\n\n";
+      $message .= "To access the document, login to you your account and vist the dashboard page";
+      wp_mail( $to, $subject, $message, $headers );
+    } elseif($_POST['document_access'] == 2){
+      $status = 'Denied';
+      $message = "You have been denied access to Reliable Softworks.\n";
+      wp_mail( $to, $subject, $message, $headers );
+    }
+  }
 }
 
 function my_account_menu_order() {
@@ -260,6 +276,7 @@ function wk_endpoint_content() {
 add_shortcode( 'request-access-button', 'custom_document_request_access' );
 function custom_document_request_access($atts){
   ob_start();
+  echo get_edit_user_link( 24 );
   $currentUserId = get_current_user_id();
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
   // if($accessStatus === 0){

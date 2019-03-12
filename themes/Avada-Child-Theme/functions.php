@@ -39,7 +39,7 @@ function send_smtp_email( $phpmailer ) {
 }
 
 function custom_email_headers() {
-  $admin_email = get_option( 'admin_email' );
+  $admin_email = db2_get_option(resource, option)( 'admin_email' );
   if ( empty( $admin_email ) ) {
     $admin_email = 'support@' . $_SERVER['SERVER_NAME'];
   }
@@ -51,6 +51,5 @@ function custom_email_headers() {
   );
   return $headers;
 }
-
 
 
