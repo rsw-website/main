@@ -276,7 +276,6 @@ function wk_endpoint_content() {
 add_shortcode( 'request-access-button', 'custom_document_request_access' );
 function custom_document_request_access($atts){
   ob_start();
-  echo get_edit_user_link( 24 );
   $currentUserId = get_current_user_id();
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
   // if($accessStatus === 0){
