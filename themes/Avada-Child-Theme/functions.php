@@ -56,13 +56,14 @@ function custom_email_headers() {
 * Modify the notification message
 * $content the notification message
 */
-function custom_notification_message($userId) {
-    $message = __( 'You have been approved to access {sitename}', 'new-user-approve' ) . "\r\n\r\n";
-  $message .= "{username}\r\n\r\n";
-  $message .= "{login_url}\r\n\r\n";
+function custom_notification_message($user_id) {
+  $user = new WP_User( $user_id );
+  $user_email = stripslashes( $user->data->user_email );
+    $message = __( 'You have been approved to access '.get_option('blogname'), 'new-user-approve' ) . "\r\n\r\n";
+  $message .= $user_email."\r\n\r\n";
+  $message .= $user_email."\r\n\r\n";
     $message .= __( 'To set or reset your password, visit the following address:', 'new-user-approve' ) . "\r\n\r\n";
     $message .= "new url here : ";
-    $message .= print_r($userId);
 
   $message = apply_filters( 'new_user_approve_approve_user_message_default', $message );
 
