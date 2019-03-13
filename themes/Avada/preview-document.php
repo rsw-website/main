@@ -19,8 +19,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$attchmentData = get_post($documentId);
 		$file = $attchmentData->guid;
 		$homeUrl = get_home_url();
-		$relativePath = str_replace($homeUrl, '/var/www/html/reliablesoftworks', $file);
-		print_r($relativePath); 
+		$rootPath = str_replace('/wp-content/themes', '', get_theme_root());
+		$relativePath = str_replace($homeUrl, $rootPath, $file);
 		$post_mime_type = $attchmentData->post_mime_type;
 		$fp = fopen($file, "r") ;
 
