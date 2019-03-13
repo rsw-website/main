@@ -487,8 +487,8 @@ function list_staff_obj($atts, $content=null) {
     ob_start();
     $currentUserId = get_current_user_id();
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
-  print_r(is_admin());
-  if($accessStatus === 1 || is_admin()){
+  $user=wp_get_current_user();
+  if($accessStatus === 1 || in_array("administrator", $user->roles)){
     list_staff($atts, $content=null);
     $output=ob_get_contents();
     ob_end_clean();
