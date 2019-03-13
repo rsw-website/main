@@ -130,7 +130,7 @@ add_action('woocommerce_registration_redirect', 'user_autologout', 2);
  */
 
 function custom_login_redirect( $redirect ) {
-  wp_redirect('client-dashboard');
+  wp_redirect(get_permalink( get_page_by_path( 'client-dashboard' ) ));
 }
 add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
 
@@ -278,15 +278,15 @@ function custom_document_request_access($atts){
   ob_start();
   $currentUserId = get_current_user_id();
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
-  // if($accessStatus === 0){
+  if($accessStatus === 0){
     ?>
       <div class="document-request-text">
         <p>You do not have permission to access the documents added by the admin.</p>
-        <button class="document-request-access btn-c2">Request Document Access</button>
         <div class="custom-loader lds-dual-ring hidden"></div>
+        <button class="document-request-access btn-c2">Request Document Access</button>
       </div>
   <?php
-  // }
+  }
   $requestData = ob_get_clean();
   return $requestData;
 }
@@ -319,7 +319,6 @@ function submit_document_access_request() {
     // send mail
     echo 1;
   }
-  // echo "new status: ".$newStatus.' and old status: '.get_user_meta( $currentUserId, 'document_access', true )
   die();
 }
 add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');
@@ -351,45 +350,65 @@ function list_staff() {
     }
     if(get_query_var('orderby', 1) == 'post_title'){
       $orderBy = get_query_var('orderby', 1);
-      $titleOrder = $newOrder;
-      $dateOrder = 'ASC';
+      if($newOrder == 'ASC'){
+        $titleOrder = 'fa-sort-down fas';
+      } elseif ($newOrder == 'DESC') {
+        $titleOrder = 'fa-sort-up fas';
+      } else{
+        $titleOrder = 'fa-sort fas';
+      }
+      // $titleOrder = $newOrder;
+      $dateOrder = 'fa-sort fas';
 
     } elseif(get_query_var('orderby', 1) == 'post_modified'){
       $orderBy = get_query_var('orderby', 1);
-      $dateOrder = $newOrder;
-      $titleOrder = 'ASC';
+      if($newOrder == 'ASC'){
+        $dateOrder = 'fa-sort-down fas';
+      } elseif ($newOrder == 'DESC') {
+        $dateOrder = 'fa-sort-up fas';
+      } else{
+        $dateOrder = 'fa-sort fas';
+      }
+      // $dateOrder = $newOrder;
+      $titleOrder = 'fa-sort fas';
     } else{
       $orderBy = '';
-      $dateOrder = 'ASC';
-      $titleOrder = 'ASC';
+      $dateOrder = 'fa-sort fas';
+      $titleOrder = 'fa-sort fas';
     }
 
 
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $query = "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_title LIKE '%".$search."%'";
+    $query = "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND post_title LIKE '%".$search."%'";
     if($order && $orderBy){
       $argsArray = array('orderby' => $orderBy, 'order' => $order);
       $query = $query . " ORDER BY $orderBy $order";
     }
     $query = $query . " LIMIT $startFrom, $limit";
-    // print_r($query);
 
   $tableListData = $wpdb->get_results($query); 
   ?>
-      <form action="" method="get">
+      <form action="" method="get" id="dashboard-document-search">
         <?php if($orderBy && $order): ?>
             <input type="hidden" name="orderby" value="<?php echo $orderBy; ?>" />
             <input type="hidden" name="order" value="<?php echo $order; ?>" />
           <?php endif; ?>
-        <input type="text" name="skey" id="search" value="<?php the_search_query(); ?>" />
+        <input type="text" name="skey" id="search" placeholder="Search" value="<?php echo $search; ?>" />
+        <span class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
       </form>
-      <table class="table"> 
+      <table class="table" id="document-list-table"> 
         <thead> 
         <tr> 
-          <th>Title <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_title', 'order' => $newOrder), $wp->request)); ?>"><?php echo $titleOrder; ?></a></th> 
+          <th> 
+            <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_title', 'order' => $newOrder), $wp->request)); ?>">
+              Title <i class="fa <?php echo $titleOrder; ?>" aria-hidden="true"></i>
+              </a>
+            </th> 
           <th>URL</th> 
-          <th>Modified Date <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_modified', 'order' => $newOrder), $wp->request)); ?>""><?php echo $dateOrder; ?></a></th> 
+          <th><a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_modified', 'order' => $newOrder), $wp->request)); ?>"">
+            Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
+            </a></th> 
         </tr> 
         </thead> 
         <tbody> 
@@ -406,10 +425,10 @@ function list_staff() {
         ?>   
         </tbody> 
       </table> 
-       <ul class="pagination"> 
+       <ul class="custom-pagination"> 
       <?php   
         $tableListCount = $wpdb->get_results
-        ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_title LIKE '%".$search."%'" );   
+        ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND post_title LIKE '%".$search."%'" );   
           $totalRecords = count($tableListCount);
           if($totalRecords > $limit){
             // Number of pages required. 
@@ -446,16 +465,16 @@ function list_staff() {
             }
             ?>
             <li class="<?php echo $firstClass; ?>">
-              <a href="<?php echo $firstLink; ?>">First << </a>
+              <a href="<?php echo $firstLink; ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i> First</a>
             </li>
             <li class="<?php echo $previousClass; ?>">
-              <a href="<?php echo $previousLink; ?>">Previous < </a>
+              <a href="<?php echo $previousLink; ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a>
             </li>
             <li class="<?php echo $nextClass; ?>">
-              <a href="<?php echo $nextLink; ?>">Next > </a>
+              <a href="<?php echo $nextLink; ?>">Next <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
             </li>
             <li class="<?php echo $lastClass; ?>">
-              <a href="<?php echo $lastLink; ?>">Last >> </a>
+              <a href="<?php echo $lastLink; ?>">Last <i class="fa fa-angle-double-right" aria-hidden="true"></i> </a>
             </li>
           <?php
           }
@@ -466,10 +485,27 @@ function list_staff() {
 
 function list_staff_obj($atts, $content=null) {
     ob_start();
+    $currentUserId = get_current_user_id();
+  $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
+  print_r(is_admin());
+  if($accessStatus === 1 || is_admin()){
     list_staff($atts, $content=null);
     $output=ob_get_contents();
     ob_end_clean();
     return $output;
+  } else if($accessStatus === 2){
+    ?>
+    <p>Your document access request has been denied by administrator.<br>
+    If you further want to access the documents, then write us at : <a href="mailto:support@reliablesoftworks.com">support@reliablesoftworks.com</a> 
+    </p>
+    <?php
+  } else if($accessStatus === 3){
+    ?>
+    <p>Your document access request has been submitted to administrator. The administrator can either approve or deny your request.<br>
+    You will receive an email with instructions on what you will need to do next. Thanks for your patience. 
+    </p>
+    <?php
+  }
 }
 
 add_shortcode( 'list-staff', 'list_staff_obj' );

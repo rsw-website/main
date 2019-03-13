@@ -129,27 +129,28 @@ function changeActiveTab(homeTabs, nextActiveItem){
 }
 
 function changeTabAfterInterval() {
-	// debugger;
   	return setInterval(function(){ 
-	  	var homeTabs = jQuery('div#home-tabs'); 
-	  	var tabsLastIndex = jQuery('div#home-tabs')
-			.children('div.nav').find('ul.nav-tabs').find('li')
-			.last().index();
-		var activeTabIndex = jQuery('div#home-tabs')
-		.children('div.nav').find('ul.nav-tabs').find('li.active').index();
-		if(tabsLastIndex === activeTabIndex){
-		// last index active
-		// move to index 0
-		var nextActiveItem = jQuery('div#home-tabs')
-		.children('div.nav').find('ul.nav-tabs').find('li').first();
-		} else{
-			// any index active
-			// select the next index
+	  	var homeTabs = jQuery('body.home div#home-tabs'); 
+	  	if(homeTabs.length){
+		  	var tabsLastIndex = jQuery('div#home-tabs')
+				.children('div.nav').find('ul.nav-tabs').find('li')
+				.last().index();
+			var activeTabIndex = jQuery('div#home-tabs')
+			.children('div.nav').find('ul.nav-tabs').find('li.active').index();
+			if(tabsLastIndex === activeTabIndex){
+			// last index active
+			// move to index 0
 			var nextActiveItem = jQuery('div#home-tabs')
-			.children('div.nav').find('ul.nav-tabs').find('li.active').next();
-		}
-		changeActiveTab(homeTabs, nextActiveItem);
-   }, 30000);
+			.children('div.nav').find('ul.nav-tabs').find('li').first();
+			} else{
+				// any index active
+				// select the next index
+				var nextActiveItem = jQuery('div#home-tabs')
+				.children('div.nav').find('ul.nav-tabs').find('li.active').next();
+			}
+			changeActiveTab(homeTabs, nextActiveItem);
+	  	}
+   }, 10000);
 }
 
 function changeTabWithTimer(){

@@ -1,6 +1,6 @@
 jQuery(document).ready( function($) {
 	$(".document-request-access").click( function() {
-		$('.document-request-text').find('p.error-text').remove()
+		$('.document-request-text').find('p.error-text').remove();
 		var documentRequest = $(this);
 		$(documentRequest).siblings('.custom-loader').removeClass('hidden');
 		debugger;
@@ -20,6 +20,7 @@ jQuery(document).ready( function($) {
 	 			// 
 	 		} else{
 	 			// show error text 
+	 			$('.document-request-text').find('p.error-text').remove();
 		 		$('.document-request-text')
 		 			.append(
 		 				'<p class="error-text">Unable to submit the request. Please try again!</p>'
