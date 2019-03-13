@@ -428,14 +428,17 @@ body.home #main {
     z-index: 2;
 }
 .home-quick-contact {
-    border-radius: 15px;
-    background: #fff;
+    /*border-radius: 15px;
+    background: #fff;*/
     text-align: center;
     max-width: 680px;
     margin: 0 auto;
     width: 90%;
-    padding: 40px 10px 20px;
+    padding: 10px 10px 10px;
     font-size: 20px;
+}
+.home-quick-contact h4{
+    color:#000;
 }
 .button-contact {
     background: #e13834;
@@ -452,7 +455,7 @@ body.home #main {
 }
 .button-contact:hover {
     background: #be1b17;
-    color: #fff;
+    color: #fff!important;
 }
 /*======EULA======*/
 #eula-content .fusion-accordian .panel-heading .panel-title {
@@ -687,8 +690,6 @@ ul.custom-pagination li {
     padding-right: 15px;
     font-size: 17px;
 }
-
-
 #document-list-table .fa{
     vertical-align: baseline;
 }
@@ -698,4 +699,10 @@ ul.custom-pagination li {
 #document-list-table a:hover .fa-sort-up:before{
     content: "\f0dd" !important;
 }
-
+.woocommerce-MyAccount-navigation ul li.is-active a:after,
+ .woocommerce-side-nav li.is-active a:after {
+    content: '' !important;
+}
+.woocommerce-MyAccount-navigation ul li.is-active a{
+    color: #e13834!important;
+}
