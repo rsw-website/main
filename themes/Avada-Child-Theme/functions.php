@@ -57,8 +57,8 @@ function custom_email_headers() {
 * $content the notification message
 */
 function custom_notification_message($user_id) {
-  $user = new WP_User( $user_id );
-  $user_email = stripslashes( $user->data->user_email );
+  $userData = get_userdata($user_id);
+  $user_email = stripslashes( $userData->user_email );
     $message = __( 'You have been approved to access '.get_option('blogname'), 'new-user-approve' ) . "\r\n\r\n";
   $message .= $user_email."\r\n\r\n";
   $message .= $user_email."\r\n\r\n";
