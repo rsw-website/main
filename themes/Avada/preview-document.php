@@ -18,7 +18,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 		$documentId = base64_decode($_GET['id']);
 		$attchmentData = get_post($documentId);
 		$file = $attchmentData->guid;
-		$relativePath = str_replace('http://localhost/reliablesoftworks', '/var/www/html/reliablesoftworks', $file);
+		$homeUrl = get_home_url();
+		$relativePath = str_replace($homeUrl, '/var/www/html/reliablesoftworks', $file);
 		print_r($relativePath); 
 		$post_mime_type = $attchmentData->post_mime_type;
 		$fp = fopen($file, "r") ;

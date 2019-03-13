@@ -128,8 +128,8 @@ function column_post_title($item){
   function column_guid($item){
         
         //Return the title contents
-        return sprintf('<a target="_blank" href="http://localhost/reliablesoftworks/preview-document/?id=%1$s">http://localhost/reliablesoftworks/preview-document/?id=%1$s</a> <span style="color:silver"></span>%3$s',
-            /*$1%s*/ base64_encode($item['ID']),
+        return sprintf('<a target="_blank" href="%1$s">%1$s</a> <span style="color:silver"></span>%3$s',
+            /*$1%s*/ add_query_arg(array('id' => base64_encode($item['ID'])), get_permalink( get_page_by_path( 'preview-document' ))),
             /*$2%s*/ $item['ID'],
             /*$3%s*/ $this->row_actions($actions)
         );
