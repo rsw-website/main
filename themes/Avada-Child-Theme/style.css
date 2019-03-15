@@ -541,6 +541,18 @@ h3.main-heading {
 .fusion-main-menu > ul > li > a {
     text-transform: none!important;
 }
+.fusion-icon-facebook:before {
+    color: #395491!important;
+}
+.fusion-icon-twitter:before {
+    color: #1c9cea!important;
+}
+.fusion-icon-youtube:before {
+    color: #ee1b0d!important;
+}
+.fusion-social-networks a:hover{
+ font-size:20px;
+}
 /*--------Login Form---*/
 .com-form input {
     height: 40px!important;
