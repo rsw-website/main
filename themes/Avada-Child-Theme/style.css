@@ -120,6 +120,10 @@ h2.main-title{
     background: #f00; 
     margin: 10px auto 40px auto;
 }
+.txt-center{
+    text-align:center;
+    margin:0 auto;
+}
 /*---Form---*/
 .com-form input {
     height: 40px!important;
