@@ -486,6 +486,7 @@ function list_staff() {
 function list_staff_obj($atts, $content=null) {
     ob_start();
     $currentUserId = get_current_user_id();
+    echo get_edit_user_link( $currentUserId );
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
   $user=wp_get_current_user();
   if($accessStatus === 1 || in_array("administrator", $user->roles)){

@@ -1,4 +1,4 @@
-/*
+    /*
 Theme Name: Avada Child
 Description: Child theme for Avada theme
 Author: ThemeFusion
@@ -13,6 +13,10 @@ body p {
     font-size: 18px;
     line-height: 28px;
 }
+#main{
+    padding:0!important;
+}
+
 .sub-header {
     font-size: 18px;
     font-weight: 400;
@@ -407,6 +411,7 @@ body.home #main {
     top: 50%;
     cursor: pointer;
 }
+
 /*--Home Testimonials--*/
 #testimonials {
     padding: 100px 0;
@@ -456,6 +461,11 @@ body.home #main {
 .button-contact:hover {
     background: #be1b17;
     color: #fff!important;
+}
+/*==========EULA========*/
+h3.feature-heading {
+    text-align: center;
+    margin-bottom: 10px;
 }
 /*======EULA======*/
 #eula-content .fusion-accordian .panel-heading .panel-title {
@@ -705,4 +715,25 @@ ul.custom-pagination li {
 }
 .woocommerce-MyAccount-navigation ul li.is-active a{
     color: #e13834!important;
+}
+
+
+
+.woocommerce-form input{
+    height:40px!important;
+}
+.woocommerce #customer_login .login .inline{
+font-size:18px;
+padding-top:15px;
+padding-bottom:15px;
+}
+
+.new-signup{
+    border-top: 1px solid #ccc;
+    width: 100%;
+}
+
+.woocommerce #customer_login .login .form-row{
+display:block;
+margin:0;
 }
