@@ -806,6 +806,9 @@ margin:0;
 .demo-request-section .form-row{
     display: block !important;
 }
+.demo-request-section .form-row input.wpcf7-submit{
+    float: right;
+}
 .actions ul {
     display: flex;
     justify-content: space-between;
@@ -828,6 +831,10 @@ div.actions .wpcf7-submit{
 }
 .select-form{
     height: 40px !important;
+}
+.notation-heading{
+    text-align: center;
+    margin: 20px !important;
 }
 /*Media quesries*/
 @media only screen and (max-width: 767px) {
