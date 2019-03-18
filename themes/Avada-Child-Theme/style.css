@@ -806,24 +806,10 @@ margin:0;
 .demo-request-section .form-row{
     display: block !important;
 }
-.demo-request-section .form-row input.wpcf7-submit{
+.form-row input.wpcf7-submit{
     float: right;
 }
-.actions ul {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 42px;
-    list-style-type: none;
-}
-.actions li[aria-disabled=true]:before {
-    content: "Your must fill all the requireds fields, to be able to continue";
-}
-.fusion-body .wpcf7-form .fusion-slider-loading{
-    margin: 8px 0 0 -44px;
-}
-div.actions .wpcf7-submit{
-    float: right;
-}
+
 .form-col .select-arrow{
     height: 40px;
     width: 27px;
