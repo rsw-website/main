@@ -13,10 +13,9 @@ body p {
     font-size: 18px;
     line-height: 28px;
 }
-#main{
-    padding:0!important;
+#main {
+    padding: 0!important;
 }
-
 .sub-header {
     font-size: 18px;
     font-weight: 400;
@@ -110,19 +109,19 @@ a:hover {
 .com-block {
     padding: 40px 0!important;
 }
-h2.main-title{
-    color:#fff!important;
-    padding:100px 0 50px 0;
+h2.main-title {
+    color: #fff!important;
+    padding: 100px 0 50px 0;
 }
-.hor-bar{
-    width: 75px; 
-    height: 2px; 
-    background: #f00; 
+.hor-bar {
+    width: 75px;
+    height: 2px;
+    background: #f00;
     margin: 10px auto 40px auto;
 }
-.txt-center{
-    text-align:center;
-    margin:0 auto;
+.txt-center {
+    text-align: center;
+    margin: 0 auto;
 }
 /*---Form---*/
 .com-form input {
@@ -161,11 +160,11 @@ nav.fusion-secondary-menu i.fa-user {
     padding-right: 10px;
 }
 /*========Footer========*/
-#partner-logo-widgit{
-    margin-top:60px;
+#partner-logo-widgit {
+    margin-top: 60px;
 }
-body.home #partner-logo-widgit{
-    margin-top:0;
+body.home #partner-logo-widgit {
+    margin-top: 0;
 }
 footer {
     font-size: 14px;
@@ -176,8 +175,8 @@ footer {
     padding-top: 15px!important;
     padding-bottom: 5px!important;
 }
-footer ul{
-    margin-bottom:20px;
+footer ul {
+    margin-bottom: 30px!important;
 }
 footer ul li {
     font-size: 14px;
@@ -309,7 +308,7 @@ body.home #main {
 #home-tabs .list-items li {
     padding-left: 30px;
     position: relative;
-    margin:15px 0;
+    margin: 15px 0;
 }
 #home-tabs .list-items li i {
     left: 0;
@@ -415,7 +414,7 @@ body.home #main {
 .home-features-con h4 {
     margin: 0 auto 20px auto;
     text-align: center;
-    font-size:18px;
+    font-size: 18px;
 }
 #home-features-tab {
     position: relative;
@@ -434,12 +433,16 @@ body.home #main {
     top: 50%;
     cursor: pointer;
 }
-
 /*--Home Testimonials--*/
 #testimonials {
     padding: 100px 0;
     position: relative;
     z-index: 999;
+}
+#testimonial .quote-img {
+    display: block;
+    margin: 50px auto;
+    text-align: center;
 }
 #testimonials blockquote {
     max-width: 800px;
@@ -465,8 +468,8 @@ body.home #main {
     padding: 10px 10px 10px;
     font-size: 20px;
 }
-.home-quick-contact h4{
-    color:#000;
+.home-quick-contact h4 {
+    color: #000;
 }
 .button-contact {
     background: #e13834;
@@ -489,29 +492,29 @@ body.home #main {
 h3.main-heading {
     text-align: center;
     margin-bottom: 10px;
-    margin-top:80px;
+    margin-top: 80px;
 }
-.main-features .list-items li{
-color:#333333;
-font-weight:400;
-font-size:18px;
-border-bottom:1px solid #f6f6f6;
-padding-bottom:10px;
-line-height:24px;
+.main-features .list-items li {
+    color: #333333;
+    font-weight: 400;
+    font-size: 18px;
+    border-bottom: 1px solid #f6f6f6;
+    padding-bottom: 10px;
+    line-height: 24px;
 }
 .main-features .list-items li i {
-    color:#f00;
-    top:6px;
-    font-size:16px;
+    color: #f00;
+    top: 6px;
+    font-size: 16px;
 }
-.sub-list{
-    margin:15px 0 0 15px;
-    padding:0;
+.sub-list {
+    margin: 15px 0 0 15px;
+    padding: 0;
 }
-.sub-list li{
-    font-size:14px;
-    border-bottom:none;
-    padding:0;
+.sub-list li {
+    font-size: 14px;
+    border-bottom: none;
+    padding: 0;
 }
 /*======EULA======*/
 #eula-content .fusion-accordian .panel-heading .panel-title {
@@ -581,8 +584,8 @@ line-height:24px;
 .fusion-icon-youtube:before {
     color: #ee1b0d!important;
 }
-.fusion-social-networks a:hover{
- font-size:20px;
+.fusion-social-networks a:hover {
+    font-size: 20px;
 }
 /*--------Login Form---*/
 .com-form input {
@@ -758,42 +761,36 @@ ul.custom-pagination li {
     padding-right: 15px;
     font-size: 17px;
 }
-#document-list-table .fa{
+#document-list-table .fa {
     vertical-align: baseline;
 }
-#document-list-table a:hover .fa-sort-down:before{
+#document-list-table a:hover .fa-sort-down:before {
     content: "\f0de" !important;
 }
-#document-list-table a:hover .fa-sort-up:before{
+#document-list-table a:hover .fa-sort-up:before {
     content: "\f0dd" !important;
 }
-.woocommerce-MyAccount-navigation ul li.is-active a:after,
- .woocommerce-side-nav li.is-active a:after {
+.woocommerce-MyAccount-navigation ul li.is-active a:after,  .woocommerce-side-nav li.is-active a:after {
     content: '' !important;
 }
-.woocommerce-MyAccount-navigation ul li.is-active a{
+.woocommerce-MyAccount-navigation ul li.is-active a {
     color: #e13834!important;
 }
-
-
-
-.woocommerce-form input{
-    height:40px!important;
+.woocommerce-form input {
+    height: 40px!important;
 }
-.woocommerce #customer_login .login .inline{
-font-size:18px;
-padding-top:15px;
-padding-bottom:15px;
+.woocommerce #customer_login .login .inline {
+    font-size: 18px;
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
-
-.new-signup{
+.new-signup {
     border-top: 1px solid #ccc;
     width: 100%;
 }
-
-.woocommerce #customer_login .login .form-row{
-display:block;
-margin:0;
+.woocommerce #customer_login .login .form-row {
+    display: block;
+    margin: 0;
 }
 
 /*contact form css*/
