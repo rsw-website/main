@@ -846,6 +846,10 @@ ul.custom-pagination li {
 .demo-request-section .custom-form-row input.wpcf7-submit{
     float: right;
 }
+.notation-heading{
+    text-align: center;
+    margin: 20px !important;
+}
 /*Media quesries*/
 @media only screen and (max-width: 767px) {
     .custom-form-row {
