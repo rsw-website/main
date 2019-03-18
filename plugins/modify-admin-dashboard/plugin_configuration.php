@@ -170,6 +170,24 @@ function custom_footer_quote() {
 }
 add_action( 'widgets_init', 'custom_footer_quote' );
 
+/**
+* Create partner logo footer widgit.
+*
+* @return void
+*/
+
+function custom_partner_logo_widgit() {
+  register_sidebar( array(
+    'name'          => 'Partner Logo',
+    'id'            => 'partner_logo_widgit',
+    'before_widget' => '<section class="fusion-footer-widget-column widget widget_text">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h4 class="widget-title">',
+    'after_title'   => '</h4>',
+  ) );
+}
+add_action( 'widgets_init', 'custom_partner_logo_widgit' );
+
 function new_modify_user_table( $column ) {
     $column['document_access'] = 'Access';
     return $column;
