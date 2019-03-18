@@ -764,3 +764,79 @@ padding-bottom:15px;
 display:block;
 margin:0;
 }
+
+/*contact form css*/
+.form-row {
+    display: flex;
+    margin-bottom: 25px;
+}
+.form-row .form-col {
+    width: 50%;
+    margin-right: 40px;
+}
+.form-col label {
+    color: #333;
+    margin-bottom: 7px;
+    display: block;
+    font-size: 19px;
+}
+.form-holder {
+    position: relative;
+}
+.form-control {
+    height: 42px !important;
+    border: 1px solid #ccc !important;
+    width: 100% !important;
+    background: 0 0 !important;
+    font-size: 15px !important;
+    padding-left: 46px !important;
+    color: #999 !important;
+    font-family: poppins-medium !important;
+}
+.form-row p{
+    margin: 0px;
+    display: none;
+}
+.form-row .form-col:last-child {
+    margin-right: 0;
+}
+.form-row .form-area{
+    width: 100%;
+}
+
+.actions ul {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 42px;
+    list-style-type: none;
+}
+.actions li[aria-disabled=true]:before {
+    content: "Your must fill all the requireds fields, to be able to continue";
+}
+.fusion-body .wpcf7-form .fusion-slider-loading{
+    margin: 8px 0 0 -44px;
+}
+div.actions .wpcf7-submit{
+    float: right;
+}
+.form-col .select-arrow{
+    height: 40px;
+    width: 27px;
+    line-height: 42px;
+}
+.select-form{
+    height: 40px !important;
+}
+/*Media quesries*/
+@media only screen and (max-width: 767px) {
+    .form-row {
+        display: block;
+        width: 95%;
+        margin: 0 auto;
+    }   
+    .form-row .form-col {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 25px;
+    }
+}
