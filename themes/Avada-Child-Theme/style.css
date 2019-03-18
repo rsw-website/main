@@ -774,7 +774,7 @@ margin:0;
     width: 50%;
     margin-right: 40px;
 }
-.form-col label {
+.form-row label {
     color: #333;
     margin-bottom: 7px;
     display: block;
@@ -803,7 +803,9 @@ margin:0;
 .form-row .form-area{
     width: 100%;
 }
-
+.demo-request-section .form-row{
+    display: block !important;
+}
 .actions ul {
     display: flex;
     justify-content: space-between;
