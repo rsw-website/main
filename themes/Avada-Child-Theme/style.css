@@ -805,7 +805,7 @@ margin:0;
     width: 50%;
     margin-right: 40px;
 }
-.custom-form-col label {
+.custom-form-row label {
     color: #333;
     margin-bottom: 7px;
     display: block;
