@@ -160,9 +160,9 @@ nav.fusion-secondary-menu i.fa-user {
     padding-right: 10px;
 }
 /*========Footer========*/
-#partner-logo-widgit {
+/*#partner-logo-widgit {
     margin-top: 60px;
-}
+}*/
 body.home #partner-logo-widgit {
     margin-top: 0;
 }
@@ -840,17 +840,15 @@ ul.custom-pagination li {
 .select-form{
     height: 40px !important;
 }
-.demo-request-section .custom-form-row{
-    display: block !important;
-}
-.demo-request-section .custom-form-row input.wpcf7-submit{
-    float: right;
-}
 .notation-heading{
     text-align: center;
     margin: 20px !important;
 }
-/*Media quesries*/
+.button-row{
+    display: block;
+    text-align: right;
+}
+/*Media queries*/
 @media only screen and (max-width: 767px) {
     .custom-form-row {
         display: block;
