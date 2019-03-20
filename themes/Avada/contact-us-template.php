@@ -19,11 +19,11 @@ get_header();
  */
 $avada_contact = new Avada_Contact();
 ?>
-<section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
+<section id="content" class="full-width">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>
-			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
+			<?php //echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
 			<?php avada_featured_images_for_pages(); ?>
 			<div class="post-content contact-form-details">
 				<?php the_content(); ?>
