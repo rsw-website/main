@@ -1,63 +1,64 @@
 <?php
 /**
  * Template Name: Contact Us Template
- * A simple template for blank pages.
+ * This template file is used for contact pages.
  *
  * @package Avada
  * @subpackage Templates
  */
 
-?>
-
-<?php
-
 // Do not allow directly accessing this file.
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
+
+get_header();
+
+/**
+ * Instantiate the Avada_Contact class.
+ */
+$avada_contact = new Avada_Contact();
 ?>
-<?php get_header(); ?>
-<section id="content" class="full-width">
+<section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>
 			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
 			<?php avada_featured_images_for_pages(); ?>
-			<div class="post-content">
+			<div class="post-content contact-form-details">
 				<?php the_content(); ?>
-				<div class="contact-form-details">
-					<?php if ( ! Avada()->settings->get( 'email_address' ) ) : // Email address not set. ?>
-						<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
-							<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html__( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ) . '[/fusion_alert]' ); ?>
-						<?php else : ?>
-							<h3 style="color:#b94a48;"><?php esc_html_e( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ); ?></h3>
-						<?php endif; ?>
-						<br />
-					<?php endif; ?>
 
-					<?php if ( $avada_contact->has_error ) : // If errors are found. ?>
-						<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
-							<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html( $avada_contact->error_message ) . '[/fusion_alert]' ); ?>
-						<?php else : ?>
-							<h3 style="color:#b94a48;"><?php echo esc_html( $avada_contact->error_message ); ?></h3>
-						<?php endif; ?>
-						<br />
+				<?php if ( ! Avada()->settings->get( 'email_address' ) ) : // Email address not set. ?>
+					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
+						<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html__( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ) . '[/fusion_alert]' ); ?>
+					<?php else : ?>
+						<h3 style="color:#b94a48;"><?php esc_html_e( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ); ?></h3>
 					<?php endif; ?>
+					<br />
+				<?php endif; ?>
 
-					<?php if ( $avada_contact->email_sent && Avada()->settings->get( 'email_address' ) ) : // If email is sent. ?>
-						<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
-							<?php /* translators: The name from the contact form. */ ?>
-							<?php echo do_shortcode( '[fusion_alert type="success"]' . sprintf( __( 'Thank you %s for using our contact form! Your email was successfully sent!', 'Avada' ), '<strong>' . $avada_contact->name . '</strong>' ) . '[/fusion_alert]' ); ?>
-						<?php else : ?>
-							<?php /* translators: The name from the contact form. */ ?>
-							<h3 style="color:#468847;"><?php printf( esc_html__( 'Thank you %s for using our contact form! Your email was successfully sent!', 'Avada' ), '<strong>' . esc_html( $avada_contact->name ) . '</strong>' ); ?></h3>
-						<?php endif; ?>
-						<br />
+				<?php if ( $avada_contact->has_error ) : // If errors are found. ?>
+					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
+						<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html( $avada_contact->error_message ) . '[/fusion_alert]' ); ?>
+					<?php else : ?>
+						<h3 style="color:#b94a48;"><?php echo esc_html( $avada_contact->error_message ); ?></h3>
 					<?php endif; ?>
-				</div>
+					<br />
+				<?php endif; ?>
+
+				<?php if ( $avada_contact->email_sent && Avada()->settings->get( 'email_address' ) ) : // If email is sent. ?>
+					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
+						<?php /* translators: The name from the contact form. */ ?>
+						<?php echo do_shortcode( '[fusion_alert type="success"]' . sprintf( __( 'Thank you %s for using our contact form! Your email was successfully sent!', 'Avada' ), '<strong>' . $avada_contact->name . '</strong>' ) . '[/fusion_alert]' ); ?>
+					<?php else : ?>
+						<?php /* translators: The name from the contact form. */ ?>
+						<h3 style="color:#468847;"><?php printf( esc_html__( 'Thank you %s for using our contact form! Your email was successfully sent!', 'Avada' ), '<strong>' . esc_html( $avada_contact->name ) . '</strong>' ); ?></h3>
+					<?php endif; ?>
+					<br />
+				<?php endif; ?>
 			</div>
-			<div class="contact-form-details">
-				<form action="" method="post" class="avada-contact-form">
+
+			<form action="" method="post" class="avada-contact-form contact-form-details">
 					<?php if ( 'above' === Avada()->settings->get( 'contact_comment_position' ) ) : ?>
 					<?php endif; ?>
 					<div class="custom-form-row">
@@ -145,8 +146,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						
 					</div>
 				</form>
-			</div>
-			<?php if ( is_active_sidebar( 'testimonial_widgit' ) ) : ?>
+				<?php if ( is_active_sidebar( 'testimonial_widgit' ) ) : ?>
 				<div class="fusion-row testimonial-widgit">
 					<div class="fusion-columns fusion-columns-1 fusion-widget-area">
 						<div class="fusion-column col-lg-12 col-md-12 col-sm-12">
@@ -160,6 +160,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		</div>
 	<?php endwhile; ?>
 </section>
+<?php do_action( 'avada_after_content' ); ?>
 <?php
 get_footer();
 
