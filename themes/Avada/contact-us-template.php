@@ -64,26 +64,58 @@ $avada_contact = new Avada_Contact();
 
 			<form action="" method="post" class="avada-contact-form">
 				<?php if ( 'above' === Avada()->settings->get( 'contact_comment_position' ) ) : ?>
-					<div id="comment-textarea">
-						<textarea name="msg" id="comment" cols="39" rows="4" tabindex="4" class="textarea-comment" placeholder="<?php esc_attr_e( 'Message', 'Avada' ); ?>" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
-					</div>
 				<?php endif; ?>
-				<div class="form-row">
-					<div class="form-col">
+				<div class="custom-form-row">
+					<div class="custom-form-col">
 						<label>Name<span class="required">*</span></label>
-						<div class="form-holder">
+						<div class="custom-form-holder">
+							<input type="text" name="contact_name" id="author" value="<?php echo esc_attr( $avada_contact->name ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Name (required)', 'Avada' ); ?>" class="custom-form-control input-name">
+						</div>
+					</div>
+					<div class="custom-form-col">
+						<label>Email<span class="required">*</span></label>
+						<div class="custom-form-holder">
+							<input type="email" name="email" id="email" value="<?php echo esc_attr( $avada_contact->email ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Email (required)', 'Avada' ); ?>" class="custom-form-control input-email">
 						</div>
 					</div>
 				</div>
+				<div class="custom-form-row">
+					<div class="custom-form-col">
+						<label>Phone<span class="required">*</span></label>
+						<div class="custom-form-holder">
+							<input type="text" name="url" id="url" value="<?php echo esc_attr( $avada_contact->phone ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+						</div>
+					</div>
+					<div class="custom-form-col">
+						<label>Company<span class="required">*</span></label>
+						<div class="custom-form-holder">
+							<input type="text" name="url" id="url" value="<?php echo esc_attr( $avada_contact->phone ); ?>" aria-label="<?php esc_attr_e( 'Company', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+						</div>
+					</div>
+				</div>
+				<div class="custom-form-row">
+					<div class="custom-form-col custom-form-area">
+						<label>Message</label>
+						<textarea name="msg" id="comment" cols="39" rows="4" class="textarea-comment" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
+					</div>
+				</div>
+				<div class="custom-form-row">
+					<div class="custom-form-col">
+						
+					</div>
+					<div class="custom-form-col">
+						
+					</div>
+				</div>
 				<div id="comment-input">
-					<input type="text" name="contact_name" id="author" value="<?php echo esc_attr( $avada_contact->name ); ?>" placeholder="<?php esc_attr_e( 'Name (required)', 'Avada' ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Name (required)', 'Avada' ); ?>" class="input-name">
-					<input type="email" name="email" id="email" value="<?php echo esc_attr( $avada_contact->email ); ?>" placeholder="<?php esc_attr_e( 'Email (required)', 'Avada' ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Email (required)', 'Avada' ); ?>" class="input-email">
-					<input type="text" name="url" id="url" value="<?php echo esc_attr( $avada_contact->phone ); ?>" placeholder="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="input-website">
+					
+					
+					
 				</div>
 
 				<?php if ( 'above' !== Avada()->settings->get( 'contact_comment_position' ) ) : ?>
 					<div id="comment-textarea" class="fusion-contact-comment-below">
-						<textarea name="msg" id="comment" cols="39" rows="4" class="textarea-comment" placeholder="<?php esc_attr_e( 'Message', 'Avada' ); ?>" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
+						
 					</div>
 				<?php endif; ?>
 
@@ -116,9 +148,7 @@ $avada_contact = new Avada_Contact();
 					$button_size  = $fusion_settings->get( 'button_size' );
 					$button_type  = $fusion_settings->get( 'button_type' );
 					?>
-					<?php if ( 'v3' === Avada()->settings->get( 'recaptcha_version' ) ) : ?>
-						<input type="hidden" name="fusion-recaptcha-response" id="fusion-recaptcha-response" value="">
-					<?php endif; ?>
+					
 
 					<input name="submit" type="submit" id="submit" value="<?php esc_html_e( 'Submit Form', 'Avada' ); ?>" class="comment-submit fusion-button fusion-button-default fusion-button-default-size fusion-button-<?php echo esc_attr( strtolower( $button_size ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_shape ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_type ) ); ?>">
 				</div>
