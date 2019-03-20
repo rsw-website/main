@@ -17,13 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <?php get_header(); ?>
-<?php
-/**
- * Instantiate the Avada_Contact class.
- */
-$avada_contact = new Avada_Contact();
-?>
-<section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
+<section id="content" class="full-width">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
@@ -61,7 +55,6 @@ $avada_contact = new Avada_Contact();
 					<br />
 				<?php endif; ?>
 			</div>
-
 			<form action="" method="post" class="avada-contact-form">
 				<?php if ( 'above' === Avada()->settings->get( 'contact_comment_position' ) ) : ?>
 				<?php endif; ?>
@@ -153,7 +146,6 @@ $avada_contact = new Avada_Contact();
 		</div>
 	<?php endwhile; ?>
 </section>
-<?php do_action( 'avada_after_content' ); ?>
 <?php
 get_footer();
 
