@@ -865,6 +865,11 @@ ul.custom-pagination li {
     height: 100px;
 }
 .page-template-contact-us-template #main > .fusion-row{max-width: 100% !important;}
+.contact-form-details{
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
 /*Media queries*/
 @media screen and (max-width:800px) {
 .fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu{
