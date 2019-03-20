@@ -123,6 +123,9 @@ h2.main-title {
     text-align: center;
     margin: 0 auto;
 }
+.hide{
+    display:none!important;
+}
 /*---Form---*/
 .com-form input {
     height: 40px!important;
@@ -439,10 +442,14 @@ body.home #main {
     position: relative;
     z-index: 999;
 }
+#testimonial h2, #testimonial p.sub-header{
+    color:#fff;
+}
 #testimonial .quote-img {
     display: block;
     margin: 50px auto;
     text-align: center;
+    width:94px;
 }
 #testimonials blockquote {
     max-width: 800px;
@@ -451,6 +458,14 @@ body.home #main {
 #fusion-testimonials-1 a:hover, #fusion-testimonials-1 a.activeSlide {
     background-color: #5a0700;
     border: 1px solid #5a0700;
+}
+#testimonial blockquote{
+    border-radius:30px;
+}
+#testimonial .fusion-testimonials .review blockquote q{
+    background:#fff;
+    color:#000;
+    border-radius:5px;
 }
 /*--Home Contact--*/
 #rs-quick-contact {
@@ -817,7 +832,6 @@ ul.custom-pagination li {
     width: 100% !important;
     background: 0 0 !important;
     font-size: 15px !important;
-    padding-left: 46px !important;
     color: #999 !important;
     font-family: poppins-medium !important;
 }
