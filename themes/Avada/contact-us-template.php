@@ -20,6 +20,35 @@ get_header(); ?>
 			<?php avada_featured_images_for_pages(); ?>
 			<div class="post-content">
 				<?php the_content(); ?>
+
+				<?php if ( ! Avada()->settings->get( 'email_address' ) ) : // Email address not set. ?>
+					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
+						<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html__( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ) . '[/fusion_alert]' ); ?>
+					<?php else : ?>
+						<h3 style="color:#b94a48;"><?php esc_html_e( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ); ?></h3>
+					<?php endif; ?>
+					<br />
+				<?php endif; ?>
+
+				<?php if ( $avada_contact->has_error ) : // If errors are found. ?>
+					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
+						<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html( $avada_contact->error_message ) . '[/fusion_alert]' ); ?>
+					<?php else : ?>
+						<h3 style="color:#b94a48;"><?php echo esc_html( $avada_contact->error_message ); ?></h3>
+					<?php endif; ?>
+					<br />
+				<?php endif; ?>
+
+				<?php if ( $avada_contact->email_sent && Avada()->settings->get( 'email_address' ) ) : // If email is sent. ?>
+					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
+						<?php /* translators: The name from the contact form. */ ?>
+						<?php echo do_shortcode( '[fusion_alert type="success"]' . sprintf( __( 'Thank you %s for using our contact form! Your email was successfully sent!', 'Avada' ), '<strong>' . $avada_contact->name . '</strong>' ) . '[/fusion_alert]' ); ?>
+					<?php else : ?>
+						<?php /* translators: The name from the contact form. */ ?>
+						<h3 style="color:#468847;"><?php printf( esc_html__( 'Thank you %s for using our contact form! Your email was successfully sent!', 'Avada' ), '<strong>' . esc_html( $avada_contact->name ) . '</strong>' ); ?></h3>
+					<?php endif; ?>
+					<br />
+				<?php endif; ?>
 			</div>
 			<form action="" method="post" class="avada-contact-form contact-form-details">
 					<?php if ( 'above' === Avada()->settings->get( 'contact_comment_position' ) ) : ?>
@@ -109,6 +138,17 @@ get_header(); ?>
 						
 					</div>
 				</form>
+				<?php if ( is_active_sidebar( 'testimonial_widgit' ) ) : ?>
+					<div class="fusion-row testimonial-widgit">
+						<div class="fusion-columns fusion-columns-1 fusion-widget-area">
+							<div class="fusion-column col-lg-12 col-md-12 col-sm-12">
+								<div id="partner-logo-widgit" class="primary-sidebar widget-area" role="complementary">
+									<?php dynamic_sidebar( 'testimonial_widgit' ); ?>
+								</div><!-- #primary-sidebar -->
+							</div>
+						</div>
+					</div>
+				<?php endif; ?>
 		</div>
 	<?php endwhile; ?>
 </section>
