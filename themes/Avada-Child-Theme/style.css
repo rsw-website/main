@@ -442,10 +442,10 @@ body.home #main {
     position: relative;
     z-index: 999;
 }
-#testimonial h2, #testimonial p.sub-header{
+#testimonials h2, #testimonials p.sub-header{
     color:#fff;
 }
-#testimonial .quote-img {
+#testimonials .quote-img {
     display: block;
     margin: 50px auto;
     text-align: center;
@@ -459,10 +459,10 @@ body.home #main {
     background-color: #5a0700;
     border: 1px solid #5a0700;
 }
-#testimonial blockquote{
+#testimonials blockquote{
     border-radius:30px;
 }
-#testimonial .fusion-testimonials .review blockquote q{
+#testimonials .fusion-testimonials .review blockquote q{
     background:#fff;
     color:#000;
     border-radius:5px;
