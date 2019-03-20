@@ -864,6 +864,23 @@ ul.custom-pagination li {
 }
 /*Media queries*/
 @media only screen and (max-width: 767px) {
+    .fusion-header{
+        background:#000;
+    }
+    #main .fullwidth-box .fusion-row {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.home-tab-c1{
+    padding-left:20px;
+}
+.home-tab-c2 {
+    padding:0 20px;
+    margin-top:40px;
+}
+.home-tab-c2 img {
+    width:100%;
+}
     .custom-form-row {
         display: block;
         width: 95%;
