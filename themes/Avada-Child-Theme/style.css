@@ -933,4 +933,34 @@ nav.fusion-secondary-menu {
     float: left!important;
     margin-left: 20px;
 }
+.comp-motto{
+    margin-top:0;
+    padding:0
+}
+.comp-motto li {
+    display: block;
+    padding: 5px 20px 20px 20px;
+    border-right:none;
+    margin: 15px auto;
+    text-align: center;
+    border-bottom: 1px solid #a8231f;
+    max-width: 240px;
+}
+p.mike-img{
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+}
+p.mike-img img{
+        width: 80px;
+    display: block;
+    margin: 0 auto 15px auto;
+}
+.home-quote p {
+    margin-bottom: 0;
+    margin: 10px auto;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
 }
