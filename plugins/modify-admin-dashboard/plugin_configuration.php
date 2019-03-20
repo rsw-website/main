@@ -188,6 +188,24 @@ function custom_partner_logo_widgit() {
 }
 add_action( 'widgets_init', 'custom_partner_logo_widgit' );
 
+/**
+* Create partner logo footer widgit.
+*
+* @return void
+*/
+
+function custom_partner_logo_widgit() {
+  register_sidebar( array(
+    'name'          => 'Testimonial Widgit',
+    'id'            => 'testimonial_widgit',
+    'before_widget' => '<section class="fusion-footer-widget-column widget widget_text">',
+    'after_widget'  => '</section>',
+    'before_title'  => '<h4 class="widget-title">',
+    'after_title'   => '</h4>',
+  ) );
+}
+add_action( 'widgets_init', 'testimonial_widgit' );
+
 function new_modify_user_table( $column ) {
     $column['document_access'] = 'Access';
     return $column;
