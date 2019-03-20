@@ -96,16 +96,25 @@ $avada_contact = new Avada_Contact();
 				<div class="custom-form-row">
 					<div class="custom-form-col custom-form-area">
 						<label>Message</label>
-						<textarea name="msg" id="comment" cols="39" rows="4" class="textarea-comment" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
+						<textarea name="msg" id="comment" cols="39" rows="4" class="" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
 					</div>
 				</div>
-				<div class="custom-form-row">
-					<div class="custom-form-col">
-						
-					</div>
-					<div class="custom-form-col">
-						
-					</div>
+				<div class="custom-form-row button-row">
+					<?php
+					global $fusion_settings;
+					if ( ! $fusion_settings ) {
+						$fusion_settings = Fusion_Settings::get_instance();
+					}
+
+					$button_shape = $fusion_settings->get( 'button_shape' );
+					$button_size  = $fusion_settings->get( 'button_size' );
+					$button_type  = $fusion_settings->get( 'button_type' );
+					?>
+					<?php if ( 'v3' === Avada()->settings->get( 'recaptcha_version' ) ) : ?>
+						<input type="hidden" name="fusion-recaptcha-response" id="fusion-recaptcha-response" value="">
+					<?php endif; ?>
+
+					<input name="submit" type="submit" id="submit" value="<?php esc_html_e( 'Submit', 'Avada' ); ?>" class="btn-c2 comment-submit fusion-button fusion-button-default fusion-button-default-size fusion-button-<?php echo esc_attr( strtolower( $button_size ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_shape ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_type ) ); ?>">
 				</div>
 				<div id="comment-input">
 					
@@ -138,19 +147,7 @@ $avada_contact = new Avada_Contact();
 				<?php endif; ?>
 
 				<div id="comment-submit-container">
-					<?php
-					global $fusion_settings;
-					if ( ! $fusion_settings ) {
-						$fusion_settings = Fusion_Settings::get_instance();
-					}
-
-					$button_shape = $fusion_settings->get( 'button_shape' );
-					$button_size  = $fusion_settings->get( 'button_size' );
-					$button_type  = $fusion_settings->get( 'button_type' );
-					?>
 					
-
-					<input name="submit" type="submit" id="submit" value="<?php esc_html_e( 'Submit Form', 'Avada' ); ?>" class="comment-submit fusion-button fusion-button-default fusion-button-default-size fusion-button-<?php echo esc_attr( strtolower( $button_size ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_shape ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_type ) ); ?>">
 				</div>
 			</form>
 		</div>
