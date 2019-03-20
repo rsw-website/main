@@ -189,10 +189,10 @@ footer ul li {
 footer h4 {
     text-transform: none;
 }
-#footer-logo p {
-    padding-top: 40px;
+#footer-logo {
+    padding-top: 45px;
 }
-#footer-quote p {
+#footer-quote p, .comp-moto{
     font-size: 24px;
     padding: 40px 0 40px 80px;
     border-left: 1px solid #121416;
@@ -860,7 +860,7 @@ ul.custom-pagination li {
     display: block;
     text-align: right;
 }
-.custom-form-area textarea{
+.custom-form-area textarea {
     width: 100%;
     height: 100px;
 }
@@ -872,8 +872,8 @@ ul.custom-pagination li {
 
 /*Media queries*/
 @media screen and (max-width:800px) {
-.fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu{
-    background-color:#000!important;
+.fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu {
+    background-color: #000!important;
 }
 }
 @media screen and (max-width:767px) {
@@ -904,13 +904,13 @@ ul.custom-pagination li {
 .partner-logo {
     max-height: 400px;
 }
-#testimonials blockquote{
-    margin-left:30px;
-    margin-right:30px;
+#testimonials blockquote {
+    margin-left: 30px;
+    margin-right: 30px;
 }
-.fusion-mobile-menu-icons{
-    position:relative;
-    top:50px;
+.fusion-mobile-menu-icons {
+    position: relative;
+    top: 50px;
 }
 .custom-form-row {
     display: block;
@@ -926,8 +926,8 @@ nav.fusion-secondary-menu {
     float: right!important;
     margin-right: 20px;
 }
-.fusion-social-links-header{
+.fusion-social-links-header {
     float: left!important;
-    margin-left:20px;
+    margin-left: 20px;
 }
 }
