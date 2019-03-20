@@ -147,7 +147,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</form>
 			</div>
 			<?php if ( is_active_sidebar( 'testimonial_widgit' ) ) : ?>
-				<div class="fusion-row partner-logo">
+				<div class="fusion-row testimonial-widgit">
 					<div class="fusion-columns fusion-columns-1 fusion-widget-area">
 						<div class="fusion-column col-lg-12 col-md-12 col-sm-12">
 							<div id="partner-logo-widgit" class="primary-sidebar widget-area" role="complementary">
