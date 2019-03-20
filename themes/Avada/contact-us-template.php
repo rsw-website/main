@@ -19,7 +19,7 @@ get_header();
  */
 $avada_contact = new Avada_Contact();
 ?>
-<section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
+<section id="content" class="full-width">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>
