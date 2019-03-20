@@ -106,6 +106,7 @@ class Avada_Contact {
 			$this->process_phone();
 			$this->process_email();
 			$this->process_message();
+			$this->process_company();
 
 			if ( Avada()->settings->get( 'contact_form_privacy_checkbox' ) ) {
 				$this->process_data_privacy_confirmation();
@@ -174,14 +175,33 @@ class Avada_Contact {
 	}
 
 	/**
-	 * Phone field is not required.
+	 * Phone field is required.
 	 *
 	 * @access private
 	 * @return void
 	 */
 	private function process_phone() {
-		$post_url      = ( isset( $_POST['url'] ) ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : ''; // WPCS: CSRF ok.
-		$this->Phone = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_url ) : $post_url;
+		$post_url = ( isset( $_POST['url'] ) ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : ''; // WPCS: CSRF ok.
+		if ( '' === $post_url || esc_attr__( 'Phone (required)', 'Avada' ) === $post_url ) {
+			$this->has_error = true;
+		} else {
+			$this->phone = $post_url;
+		}
+	}
+
+	/**
+	 * Company field is required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_company() {
+		$post_company = ( isset( $_POST['company'] ) ) ? sanitize_text_field( wp_unslash( $_POST['company'] ) ) : ''; // WPCS: CSRF ok.
+		if ( '' === $post_company || esc_attr__( 'Company (required)', 'Avada' ) === $post_company ) {
+			$this->has_error = true;
+		} else {
+			$this->company = $post_company;
+		}
 	}
 
 	/**
@@ -295,6 +315,7 @@ class Avada_Contact {
 		$name                      = esc_html( $this->name );
 		$email                     = sanitize_email( $this->email );
 		$phone                   = wp_filter_kses( $this->phone );
+		$company 				= wp_filter_kses($this->company);
 		$message                   = wp_filter_kses( $this->message );
 		$data_privacy_confirmation = ( $this->data_privacy_confirmation ) ? esc_html__( 'confirmed', 'Avada' ) : '';
 
@@ -311,9 +332,12 @@ class Avada_Contact {
 		/* translators: The email. */
 		$body .= sprintf( esc_attr__( 'Email: %s', 'Avada' ), " $email \n\n" );
 		/* translators: The Phone. */
-		$body .= sprintf( esc_attr__( 'Phone: %s', 'Avada' ), " $Phone \n\n" );
+		$body .= sprintf( esc_attr__( 'Phone: %s', 'Avada' ), " $phone \n\n" );
 		/* translators: The comments. */
+		$body .= sprintf( esc_attr__( 'Company: %s', 'Avada' ), " $company \n\n" );
+
 		$body .= sprintf( esc_attr__( 'Message: %s', 'Avada' ), "\n$message \n\n" );
+
 
 		if ( Avada()->settings->get( 'contact_form_privacy_checkbox' ) ) {
 			/* translators: The data privacy terms. */
