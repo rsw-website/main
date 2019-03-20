@@ -54,12 +54,12 @@ class Avada_Contact {
 	public $name = '';
 
 	/**
-	 * Subject.
+	 * Phone.
 	 *
 	 * @access public
 	 * @var string
 	 */
-	public $subject = '';
+	public $phone = '';
 
 	/**
 	 * Email address.
@@ -103,7 +103,7 @@ class Avada_Contact {
 		if ( isset( $_POST['submit'] ) ) { // WPCS: CSRF ok.
 			$this->set_error_message();
 			$this->process_name();
-			$this->process_subject();
+			$this->process_phone();
 			$this->process_email();
 			$this->process_message();
 
@@ -174,14 +174,14 @@ class Avada_Contact {
 	}
 
 	/**
-	 * Subject field is not required.
+	 * Phone field is not required.
 	 *
 	 * @access private
 	 * @return void
 	 */
-	private function process_subject() {
+	private function process_phone() {
 		$post_url      = ( isset( $_POST['url'] ) ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : ''; // WPCS: CSRF ok.
-		$this->subject = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_url ) : $post_url;
+		$this->Phone = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_url ) : $post_url;
 	}
 
 	/**
@@ -294,12 +294,12 @@ class Avada_Contact {
 	private function send_email() {
 		$name                      = esc_html( $this->name );
 		$email                     = sanitize_email( $this->email );
-		$subject                   = wp_filter_kses( $this->subject );
+		$phone                   = wp_filter_kses( $this->phone );
 		$message                   = wp_filter_kses( $this->message );
 		$data_privacy_confirmation = ( $this->data_privacy_confirmation ) ? esc_html__( 'confirmed', 'Avada' ) : '';
 
 		if ( function_exists( 'stripslashes' ) ) {
-			$subject = stripslashes( $subject );
+			$phone = stripslashes( $phone );
 			$message = stripslashes( $message );
 		}
 
@@ -310,8 +310,8 @@ class Avada_Contact {
 		$body = sprintf( esc_attr__( 'Name: %s', 'Avada' ), " $name \n\n" );
 		/* translators: The email. */
 		$body .= sprintf( esc_attr__( 'Email: %s', 'Avada' ), " $email \n\n" );
-		/* translators: The subject. */
-		$body .= sprintf( esc_attr__( 'Subject: %s', 'Avada' ), " $subject \n\n" );
+		/* translators: The Phone. */
+		$body .= sprintf( esc_attr__( 'Phone: %s', 'Avada' ), " $Phone \n\n" );
 		/* translators: The comments. */
 		$body .= sprintf( esc_attr__( 'Message: %s', 'Avada' ), "\n$message \n\n" );
 
@@ -319,7 +319,7 @@ class Avada_Contact {
 			/* translators: The data privacy terms. */
 			$body .= sprintf( esc_attr__( 'Data Privacy Terms: %s', 'Avada' ), " $data_privacy_confirmation" );
 		}
-
+		$subject = get_option('blogname').' Contact Request';
 		$headers = 'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n";
 
 		wp_mail( $email_to, $subject, $body, $headers );
@@ -335,7 +335,7 @@ class Avada_Contact {
 
 			$this->name                      = '';
 			$this->email                     = '';
-			$this->subject                   = '';
+			$this->phone                   = '';
 			$this->message                   = '';
 			$this->data_privacy_confirmation = 0;
 		}
