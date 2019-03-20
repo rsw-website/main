@@ -963,4 +963,7 @@ p.mike-img img{
     display: block;
     text-align: center;
 }
+.custom-form-row .custom-form-col{
+    width:100%;
+}
 }
