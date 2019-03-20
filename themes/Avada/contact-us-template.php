@@ -68,11 +68,17 @@ $avada_contact = new Avada_Contact();
 						<textarea name="msg" id="comment" cols="39" rows="4" tabindex="4" class="textarea-comment" placeholder="<?php esc_attr_e( 'Message', 'Avada' ); ?>" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
 					</div>
 				<?php endif; ?>
-
+				<div class="form-row">
+					<div class="form-col">
+						<label>Name<span class="required">*</span></label>
+						<div class="form-holder">
+						</div>
+					</div>
+				</div>
 				<div id="comment-input">
 					<input type="text" name="contact_name" id="author" value="<?php echo esc_attr( $avada_contact->name ); ?>" placeholder="<?php esc_attr_e( 'Name (required)', 'Avada' ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Name (required)', 'Avada' ); ?>" class="input-name">
 					<input type="email" name="email" id="email" value="<?php echo esc_attr( $avada_contact->email ); ?>" placeholder="<?php esc_attr_e( 'Email (required)', 'Avada' ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Email (required)', 'Avada' ); ?>" class="input-email">
-					<input type="text" name="url" id="url" value="<?php echo esc_attr( $avada_contact->subject ); ?>" placeholder="<?php esc_attr_e( 'Subject', 'Avada' ); ?>" aria-label="<?php esc_attr_e( 'Subject', 'Avada' ); ?>" size="22" class="input-website">
+					<input type="text" name="url" id="url" value="<?php echo esc_attr( $avada_contact->phone ); ?>" placeholder="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="input-website">
 				</div>
 
 				<?php if ( 'above' !== Avada()->settings->get( 'contact_comment_position' ) ) : ?>
