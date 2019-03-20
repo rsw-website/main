@@ -11,7 +11,7 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
-<?php get_header(); ?>
+get_header(); ?>
 <section id="content" class="full-width">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
