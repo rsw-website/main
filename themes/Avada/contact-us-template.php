@@ -146,6 +146,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 				</form>
 			</div>
+			<?php if ( is_active_sidebar( 'testimonial_widgit' ) ) : ?>
+				<div class="fusion-row partner-logo">
+					<div class="fusion-columns fusion-columns-1 fusion-widget-area">
+						<div class="fusion-column col-lg-12 col-md-12 col-sm-12">
+							<div id="partner-logo-widgit" class="primary-sidebar widget-area" role="complementary">
+								<?php dynamic_sidebar( 'testimonial_widgit' ); ?>
+							</div><!-- #primary-sidebar -->
+						</div>
+					</div>
+				</div>
+			<?php endif; ?>
 		</div>
 	<?php endwhile; ?>
 </section>
