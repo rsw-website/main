@@ -19,16 +19,15 @@ get_header();
  */
 $avada_contact = new Avada_Contact();
 ?>
-<section id="content" class="full-width">
+<section id="content" <?php Avada()->layout->add_style( 'content_style' ); ?>>
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
-		<?php while ( have_posts() ) : ?>
-		<?php the_post(); ?>
-		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>
 			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
 			<?php avada_featured_images_for_pages(); ?>
-			<div class="post-content">
+			<div class="post-content contact-form-details">
 				<?php the_content(); ?>
+
 				<?php if ( ! Avada()->settings->get( 'email_address' ) ) : // Email address not set. ?>
 					<?php if ( shortcode_exists( 'fusion_alert' ) ) : ?>
 						<?php echo do_shortcode( '[fusion_alert type="error"]' . esc_html__( 'Form email address is not set in Theme Options. Please fill in a valid address to make contact form work.', 'Avada' ) . '[/fusion_alert]' ); ?>
