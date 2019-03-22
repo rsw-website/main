@@ -129,7 +129,10 @@ function changeActiveTab(homeTabs, nextActiveItem){
 }
 
 function changeTabAfterInterval() {
-  	return setInterval(function(){ 
+  	return setInterval(function(){
+  		if(jQuery(window).width() < 786){
+  			return ;
+  		}
 	  	var homeTabs = jQuery('body.home div#home-tabs'); 
 	  	if(homeTabs.length){
 		  	var tabsLastIndex = jQuery('div#home-tabs')
@@ -150,7 +153,7 @@ function changeTabAfterInterval() {
 			}
 			changeActiveTab(homeTabs, nextActiveItem);
 	  	}
-   }, 10000);
+   }, 3000);
 }
 
 function changeTabWithTimer(){
