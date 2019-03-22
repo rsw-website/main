@@ -229,6 +229,8 @@ footer h5{
 }
 .comp-contact p{
     display:block;
+    font-size:16px;
+    margin:5px 0;
 }
 /*=========Home Page========*/
 body.home #main {
