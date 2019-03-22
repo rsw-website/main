@@ -1085,4 +1085,7 @@ p.mike-img img {
 .testimonial-widgit .fusion-columns .fusion-column:not(.fusion-column-last){
     margin:0!important;
 }
+.custom-form-holder{
+    margin-bottom:20px;
+}
 }
