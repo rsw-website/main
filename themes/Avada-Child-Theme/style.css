@@ -935,12 +935,18 @@ ul.custom-pagination li {
 }
 
 /*Media queries*/
+@media screen and (max-width:1200px) {
+
+
+.contact-form-details{
+    padding-left:30px;
+    padding-right:30px;
+}
+}
 @media screen and (max-width:800px) {
-.fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu {
+    .fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu {
     background-color: #000!important;
 }
-}
-@media screen and (max-width:800px) {
 .fusion-header {
     background: #000!important;
 }
@@ -1087,5 +1093,12 @@ p.mike-img img {
 }
 .custom-form-holder{
     margin-bottom:20px;
+}
+#footer-quote p, .comp-moto{
+    padding-top:20px;
+    padding-bottom:20px;
+}
+a.fusion-icon fusion-icon-search{
+    display:none;
 }
 }
