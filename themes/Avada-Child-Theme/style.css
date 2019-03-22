@@ -220,17 +220,17 @@ footer a.primary-link {
     font-size: 14px;
     padding-right: 5px;
 }
-footer h5{
-    margin:10px 0;
-    color:#fff;
+footer h5 {
+    margin: 10px 0;
+    color: #fff;
 }
-.comp-contact{
-    margin-top:15px;
+.comp-contact {
+    margin-top: 15px;
 }
-.comp-contact p{
-    display:block;
-    font-size:16px;
-    margin:5px 0;
+.comp-contact p {
+    display: block;
+    font-size: 16px;
+    margin: 5px 0;
 }
 /*=========Home Page========*/
 body.home #main {
@@ -389,10 +389,10 @@ body.home #main {
 #home-tabs li.active #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
     background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 -80px;
 }
-#home-tabs #mobile-fusion-tab-improvecashflow  .fusion-tab-heading i.fa-angle-down.fas {
+#home-tabs #mobile-fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
     background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 0;
 }
-#home-tabs li.active #mobile-fusion-tab-improvecashflow  .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-improvecashflow  .fusion-tab-heading i.fa-angle-down.fas {
+#home-tabs li.active #mobile-fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
     background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 -80px;
 }
 #home-tabs #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
@@ -948,16 +948,24 @@ ul.custom-pagination li {
 .home-tab-c2 img {
     width: 100%;
 }
-#home-intro{
-    padding-top:40px;
-    padding-bottom:20px;
+#home-intro {
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
-#home-intro h1{
-    margin-bottom:15px;
+#home-intro h1 {
+    margin-bottom: 15px;
+    font-size: 40px!important;
+    line-height: 40px;
+    font-weight: 400;
 }
-h1{
-    font-size:36px;
-    line-height:36px;
+.home-quote {
+    margin: 60px auto 60px;
+}
+h2 {
+    font-size: 36px!important;
+}
+h3 {
+    font-size: 32px!important;
 }
 #home-features .fusion-row {
     max-width: 420px;
@@ -972,6 +980,9 @@ h1{
 #testimonials blockquote {
     margin-left: 30px;
     margin-right: 30px;
+}
+#rs-quick-contact {
+    padding: 70px 0!important;
 }
 .fusion-mobile-menu-icons {
     position: relative;
@@ -1029,8 +1040,8 @@ p.mike-img img {
     width: 100%;
 }
 /*---Nav on collapse--*/
-.fusion-mobile-menu-design-modern .fusion-mobile-nav-holder > ul, .fusion-mobile-nav-holder > ul{
-    border-top:1px solid #333!important;
+.fusion-mobile-menu-design-modern .fusion-mobile-nav-holder > ul, .fusion-mobile-nav-holder > ul {
+    border-top: 1px solid #333!important;
 }
 .fusion-mobile-nav-item {
     position: relative;
@@ -1047,7 +1058,17 @@ p.mike-img img {
     border: none!important;
     font-size: 16px!important;
 }
-.fusion-contact-info{
-    padding:.6em 10px!important;
+.fusion-contact-info {
+    padding: .6em 10px!important;
+}
+/*--Search--*/
+.fusion-search-form-content {
+    margin-top: 50px;
+}
+.comp-moto {
+    border-left: none;
+    border-top: 1px solid #121416;
+    border-bottom: 1px solid #121416;
+    padding-left: 0;
 }
 }
