@@ -192,7 +192,7 @@ footer h4 {
 #footer-logo {
     padding-top: 45px;
 }
-#footer-quote p, .comp-moto{
+#footer-quote p, .comp-moto {
     font-size: 24px;
     padding: 40px 0 40px 80px;
     border-left: 1px solid #121416;
@@ -369,6 +369,43 @@ body.home #main {
 }
 #home-tabs .fusion-tab-heading i.fa-angle-down:before {
     content: '';
+}
+/*--For Mobile--*/
+#home-tabs #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 0;
+}
+#home-tabs li.active #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 -80px;
+}
+#home-tabs #mobile-fusion-tab-improvecashflow  .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 0;
+}
+#home-tabs li.active #mobile-fusion-tab-improvecashflow  .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-improvecashflow  .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 -80px;
+}
+#home-tabs #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 0;
+}
+#home-tabs li.active #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 -80px;
+}
+#home-tabs #mobile-fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 0;
+}
+#home-tabs li.active #mobile-fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 -80px;
+}
+#home-tabs #mobile-fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 0;
+}
+#home-tabs li.active #mobile-fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 -80px;
+}
+#home-tabs #mobile-fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 0;
+}
+#home-tabs li.active #mobile-fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 -80px;
 }
 #home-tabs-container {
     background: #fff;
@@ -864,12 +901,14 @@ ul.custom-pagination li {
     width: 100%;
     height: 100px;
 }
-.page-template-contact-us-template #main > .fusion-row{max-width: 100% !important;}
-.contact-form-details{
+.page-template-contact-us-template #main > .fusion-row {
+    max-width: 100% !important;
+}
+.contact-form-details {
     max-width: 1100px;
     margin: 0 auto;
 }
-.fusion-row.testimonial-widgit{
+.fusion-row.testimonial-widgit {
     max-width: 100% !important;
 }
 
@@ -879,7 +918,7 @@ ul.custom-pagination li {
     background-color: #000!important;
 }
 }
-@media screen and (max-width:767px) {
+@media screen and (max-width:800px) {
 .fusion-header {
     background: #000!important;
 }
@@ -896,6 +935,17 @@ ul.custom-pagination li {
 }
 .home-tab-c2 img {
     width: 100%;
+}
+#home-intro{
+    padding-top:40px;
+    padding-bottom:20px;
+}
+#home-intro h1{
+    margin-bottom:15px;
+}
+h1{
+    font-size:36px;
+    line-height:36px;
 }
 #home-features .fusion-row {
     max-width: 420px;
@@ -933,26 +983,26 @@ nav.fusion-secondary-menu {
     float: left!important;
     margin-left: 20px;
 }
-.comp-motto{
-    margin-top:0;
-    padding:0
+.comp-motto {
+    margin-top: 0;
+    padding: 0
 }
 .comp-motto li {
     display: block;
     padding: 5px 20px 20px 20px;
-    border-right:none;
+    border-right: none;
     margin: 15px auto;
     text-align: center;
     border-bottom: 1px solid #a8231f;
     max-width: 240px;
 }
-p.mike-img{
+p.mike-img {
     display: block;
     margin: 0 auto;
     width: 100%;
 }
-p.mike-img img{
-        width: 80px;
+p.mike-img img {
+    width: 80px;
     display: block;
     margin: 0 auto 15px auto;
 }
@@ -963,7 +1013,7 @@ p.mike-img img{
     display: block;
     text-align: center;
 }
-.custom-form-row .custom-form-col{
-    width:100%;
+.custom-form-row .custom-form-col {
+    width: 100%;
 }
 }
