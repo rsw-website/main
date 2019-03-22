@@ -166,7 +166,7 @@ nav.fusion-secondary-menu i.fa-user {
 /*#partner-logo-widgit {
     margin-top: 60px;
 }*/
-body.home #partner-logo-widgit {
+body.home #partner-logo-widgit, body.page-template-contact-us-template #partner-logo-widgit, body.page-template-contact-us-template #partner-logo-widgit  {
     margin-top: 0;
 }
 footer {
@@ -1075,7 +1075,7 @@ p.mike-img img {
     margin-top: 50px;
 }
 .comp-moto {
-    border-left: none;
+    border-left:none!important;
     border-top: 1px solid #121416;
     border-bottom: 1px solid #121416;
     padding-left: 0;
