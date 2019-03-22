@@ -220,6 +220,16 @@ footer a.primary-link {
     font-size: 14px;
     padding-right: 5px;
 }
+footer h5{
+    margin:10px 0;
+    color:#fff;
+}
+.comp-contact{
+    margin-top:15px;
+}
+.comp-contact p{
+    display:block;
+}
 /*=========Home Page========*/
 body.home #main {
     padding-top: 0!important;
@@ -1034,5 +1044,8 @@ p.mike-img img {
     color: #fff;
     border: none!important;
     font-size: 16px!important;
+}
+.fusion-contact-info{
+    padding:.6em 10px!important;
 }
 }
