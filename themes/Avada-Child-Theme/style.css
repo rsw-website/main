@@ -615,7 +615,9 @@ h3.main-heading {
 /*=======Contact Us======*/
 #submit, .submit{
     width:200px;
-    margin:30px auto;
+    margin:30px 0;
+    display:block;
+
 }
 /*========Theme CSS Updates========*/
 #side-header .fusion-logo, .fusion-header .fusion-logo {
@@ -1078,6 +1080,9 @@ p.mike-img img {
     border-left:none!important;
     border-top: 1px solid #121416;
     border-bottom: 1px solid #121416;
-    padding-left: 0;
+    padding-left: 0!important;
+}
+.testimonial-widgit .fusion-columns .fusion-column:not(.fusion-column-last){
+    margin:0!important;
 }
 }
