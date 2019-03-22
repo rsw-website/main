@@ -153,7 +153,7 @@ function changeTabAfterInterval() {
 			}
 			changeActiveTab(homeTabs, nextActiveItem);
 	  	}
-   }, 3000);
+   }, 10000);
 }
 
 function changeTabWithTimer(){
