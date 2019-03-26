@@ -30,7 +30,7 @@ ul li {
     line-height: 20px;
     padding: 0 15px;
     margin: 0;
-    font-weight:400;
+    font-weight: 400;
 }
 .list-items li {
     margin: 10px 0;
@@ -551,8 +551,8 @@ body.home #main {
     border-radius: 5px;
     -webkit-border-radius: 5px;
     -moz-border-radiius: 5px;
-    font-size:20px;
-    font-weight:bold;
+    font-size: 20px;
+    font-weight: bold;
 }
 .button-contact:hover {
     background: #be1b17;
@@ -622,12 +622,12 @@ h3.main-heading {
     display: block;
 }
 /*========Theme CSS Updates========*/
-.fusion-contact-info, .fusion-secondary-header a{
-    font-weight:400;
-    color:#000!important;
+.fusion-contact-info, .fusion-secondary-header a {
+    font-weight: 400;
+    color: #000!important;
 }
-.fusion-contact-info i{
-    color:#e13834!important;
+.fusion-contact-info i {
+    color: #e13834!important;
 }
 #side-header .fusion-logo, .fusion-header .fusion-logo {
     margin-top: 0!important;
@@ -670,8 +670,8 @@ h3.main-heading {
 .fusion-social-networks a:hover {
     font-size: 20px;
 }
-.fusion-animated{
-    visibility:visible!important;
+.fusion-animated {
+    visibility: visible!important;
 }
 /*--------Login Form---*/
 .com-form input {
@@ -945,7 +945,7 @@ ul.custom-pagination li {
 .fusion-row.testimonial-widgit {
     max-width: 100% !important;
 }
-.preview-link{
+.preview-link {
     width: 100%;
     padding: 5px 13px;
     outline: none;
@@ -955,10 +955,12 @@ ul.custom-pagination li {
     letter-spacing: 0px;
     border-radius: 2px;
 }
-.preview-link:hover{
+.preview-link:hover {
     color: white !important;
 }
-#document-list-table th{text-align: left !important;}
+#document-list-table th {
+    text-align: left !important;
+}
 
 /*Media queries*/
 @media screen and (max-width:1200px) {
@@ -973,6 +975,11 @@ ul.custom-pagination li {
 }
 .fusion-header {
     background: #000!important;
+    padding-top: 10px!important;
+    padding-bottom: 10px!important;
+}
+.fusion-logo img {
+    max-width: 220px!important;
 }
 #main .fullwidth-box .fusion-row {
     padding-left: 20px!important;
@@ -1028,7 +1035,7 @@ h3 {
 }
 .fusion-mobile-menu-icons {
     position: relative;
-    top: 50px;
+    top: 35px;
 }
 .custom-form-row {
     display: block;
