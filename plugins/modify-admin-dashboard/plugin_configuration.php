@@ -436,6 +436,7 @@ function list_staff() {
       <table class="table" id="document-list-table"> 
         <thead> 
         <tr> 
+          <th>-</th>
           <th>S.No.</th>
           <th> 
             <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_title', 'order' => $newOrder), $wp->request)); ?>">
