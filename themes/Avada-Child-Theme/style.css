@@ -961,6 +961,7 @@ ul.custom-pagination li {
 .home-tab-c2 {
     padding: 0 20px;
     margin-top: 40px;
+    width:100%;
 }
 .home-tab-c2 img {
     width: 100%;
@@ -1098,7 +1099,14 @@ p.mike-img img {
     padding-top:20px;
     padding-bottom:20px;
 }
-a.fusion-icon fusion-icon-search{
+a.fusion-icon .fusion-icon-search{
     display:none;
 }
+.fusion-contact-info {
+border-bottom:1px solid #f6f6f6;
+}
+.fusion-social-links-header{
+    border-right:none!important;
+}
+
 }

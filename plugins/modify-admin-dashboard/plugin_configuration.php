@@ -436,12 +436,12 @@ function list_staff() {
       <table class="table" id="document-list-table"> 
         <thead> 
         <tr> 
+          <th>S.No.</th>
           <th> 
             <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_title', 'order' => $newOrder), $wp->request)); ?>">
               Title <i class="fa <?php echo $titleOrder; ?>" aria-hidden="true"></i>
               </a>
             </th> 
-          <th>URL</th> 
           <th><a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_modified', 'order' => $newOrder), $wp->request)); ?>"">
             Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
             </a></th> 
@@ -452,8 +452,8 @@ function list_staff() {
         foreach ($tableListData as $key => $tableData) {
         ?>   
         <tr>   
-          <td><?php echo $tableData->post_title; ?></td>   
-          <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>"><?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?></a></td> 
+          <td><?php echo $key + 1; ?></td>   
+          <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
           <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td> 
         </tr>   
         <?php   
@@ -522,7 +522,6 @@ function list_staff() {
 function list_staff_obj($atts, $content=null) {
     ob_start();
     $currentUserId = get_current_user_id();
-    echo get_edit_user_link( $currentUserId );
   $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
   $user=wp_get_current_user();
   if($accessStatus === 1 || in_array("administrator", $user->roles)){
