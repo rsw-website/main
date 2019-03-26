@@ -669,6 +669,9 @@ h3.main-heading {
 .fusion-social-networks a:hover {
     font-size: 20px;
 }
+.fusion-animated{
+    visibility:visible!important;
+}
 /*--------Login Form---*/
 .com-form input {
     height: 40px!important;
