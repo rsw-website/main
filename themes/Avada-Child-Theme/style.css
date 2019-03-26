@@ -954,6 +954,7 @@ ul.custom-pagination li {
 .preview-link:hover{
     color: white !important;
 }
+#document-list-table th{text-align: left !important;}
 
 /*Media queries*/
 @media screen and (max-width:1200px) {
