@@ -28,8 +28,9 @@ ul li {
     list-style: none;
     font-size: 16px;
     line-height: 20px;
-    padding: 0 20px;
-    margin: 0
+    padding: 0 15px;
+    margin: 0;
+    font-weight:400;
 }
 .list-items li {
     margin: 10px 0;
@@ -69,13 +70,13 @@ a:hover {
 .btn-primary {
     background: #e13834!important;
     color: #fff;
-    font-size: 14px;
+    font-size: 16px!important;
     text-align: center;
     width: auto;
     padding: 6px 10px;
-    border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
+    border-radius: 5px!important;
+    -webkit-border-radius: 5px!important;
+    -moz-border-radius: 5px!important;
     text-transform: none;
 }
 .btn-c1 {
