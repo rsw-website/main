@@ -445,6 +445,7 @@ function list_staff() {
           <th><a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_modified', 'order' => $newOrder), $wp->request)); ?>"">
             Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
             </a></th> 
+            <th>Action</th>
         </tr> 
         </thead> 
         <tbody> 
@@ -454,7 +455,8 @@ function list_staff() {
         <tr>   
           <td><?php echo $key + 1; ?></td>   
           <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
-          <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td> 
+          <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
+          <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>">View</a></td> 
         </tr>   
         <?php   
         }
