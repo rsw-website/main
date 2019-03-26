@@ -453,7 +453,12 @@ function list_staff() {
         <?php   
         foreach ($tableListData as $key => $tableData) {
         ?>   
-        <tr>   
+        <tr> 
+          <td>
+            <a href="javascript:void(0)" class="toggle-bookmark">
+              <i class="fa-star far" data-name="star"></i>
+            </a>
+          </td>  
           <td><?php echo $key + 1; ?></td>   
           <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
           <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>

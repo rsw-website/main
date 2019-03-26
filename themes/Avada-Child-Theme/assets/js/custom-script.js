@@ -166,3 +166,5 @@ changeTabWithTimer();
 jQuery('div#home-tabs > div.nav > ul.nav-tabs li').on('click', function(e){
 	changeTabWithTimer();
 });
+
+jQuery('#home-features').find('img').removeAttr('title');
