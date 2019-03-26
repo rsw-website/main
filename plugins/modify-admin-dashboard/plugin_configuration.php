@@ -456,7 +456,7 @@ function list_staff() {
           <td><?php echo $key + 1; ?></td>   
           <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
           <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
-          <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>">View</a></td> 
+          <td><a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'preview-document' ))); ?>">View</a></td> 
         </tr>   
         <?php   
         }
