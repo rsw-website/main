@@ -359,8 +359,42 @@ function submit_document_access_request() {
 }
 add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');
 
+function update_document_bookmarked_status() {
+    global $wpdb;
+    if ( !wp_verify_nonce( $_POST['nonce'], "bookmark_status")) {
+      exit("No naughty business please");
+      $response = 0;
+    }
+    $table_name = 'wp_bookmarked_documents';
+    $current_user_id = get_current_user_id();
+    $document_id = intval(base64_decode($_POST['document_id']));
+    $book_marked = intval($_POST['book_marked']);
+    $query = "SELECT * FROM $table_name WHERE user_id = '".$current_user_id."' AND document_id = '".$document_id."'";
+    $book_marked_result = $wpdb->get_results($query);
+    if($wpdb->num_rows){
+      // update record
+      $wpdb->query( $wpdb->prepare("UPDATE $table_name 
+                SET is_bookmarked = %s 
+             WHERE user_id = %s AND document_id = %s",$book_marked, $current_user_id, $document_id)
+      );
+    } else {
+      $wpdb->insert( 
+        $table_name, 
+        array( 
+          'user_id' => $current_user_id, 
+          'document_id' => $document_id,
+          'is_bookmarked' => $book_marked
+        ));
+      // insert record
+    }
+    echo 1;
+    die();
+}
+add_action('wp_ajax_document_bookmarked_request', 'update_document_bookmarked_status');
+
 
 function list_staff() {
+    $current_user_id = get_current_user_id();
     global $wpdb; //This is used only if making any database queries
     global $wp;
     $argsArray = array();
@@ -412,38 +446,55 @@ function list_staff() {
       $dateOrder = 'fa-sort fas';
       $titleOrder = 'fa-sort fas';
     }
-
-
+    $titleArgsArray = array('orderby' => 'post_title', 'order' => $newOrder);
+    $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $query = "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND post_title LIKE '%".$search."%'";
+    $preQuery = "SELECT wp_posts.*, wp_bookmarked_documents.is_bookmarked FROM wp_posts LEFT JOIN wp_bookmarked_documents ON wp_bookmarked_documents.document_id = wp_posts.ID WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND wp_posts.post_title LIKE '%".$search."%'";
+    if(isset($_GET['type'])){
+      $argsArray['type'] = $_GET['type'];
+      $titleArgsArray['type'] = $_GET['type'];
+      $dateArgsArray['type'] = $_GET['type'];
+      $preQuery = $preQuery . " AND wp_bookmarked_documents.user_id = ".$current_user_id." AND wp_bookmarked_documents.is_bookmarked = 1";
+    }
+
+    $query = $preQuery;
     if($order && $orderBy){
-      $argsArray = array('orderby' => $orderBy, 'order' => $order);
+      $argsArray['orderby'] = $orderBy;
+      $argsArray['order'] = $order;
       $query = $query . " ORDER BY $orderBy $order";
     }
     $query = $query . " LIMIT $startFrom, $limit";
 
-  $tableListData = $wpdb->get_results($query); 
+  $tableListData = $wpdb->get_results($query);
   ?>
+      <form action="" method="get" id="dashboard-document-filter">
+        <select class="action-filter" name="action-filter">
+          <option>Select action</option>
+          <option path="<?php echo home_url( add_query_arg( array(), $wp->request ) ); ?>">Reset all filters</option>
+          <option path="<?php echo home_url( add_query_arg( array('type' => 'bookmark-documents'), $wp->request ) ); ?>">Show bookmarked documents</option>
+        </select>
+        <input type="submit" class="button apply-button" name="apply" value="apply"/>
+      </form>
       <form action="" method="get" id="dashboard-document-search">
         <?php if($orderBy && $order): ?>
             <input type="hidden" name="orderby" value="<?php echo $orderBy; ?>" />
             <input type="hidden" name="order" value="<?php echo $order; ?>" />
-          <?php endif; ?>
+        <?php endif; ?>
         <input type="text" name="skey" id="search" placeholder="Search" value="<?php echo $search; ?>" />
         <span class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
       </form>
       <table class="table" id="document-list-table"> 
         <thead> 
         <tr> 
-          <th>-</th>
+          <th></th>
           <th>S.No.</th>
           <th> 
-            <a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_title', 'order' => $newOrder), $wp->request)); ?>">
+            <a href="<?php echo home_url(add_query_arg($titleArgsArray, $wp->request)); ?>">
               Title <i class="fa <?php echo $titleOrder; ?>" aria-hidden="true"></i>
               </a>
             </th> 
-          <th><a href="<?php echo home_url(add_query_arg(array('orderby' => 'post_modified', 'order' => $newOrder), $wp->request)); ?>"">
+          <th><a href="<?php echo home_url(add_query_arg($dateArgsArray, $wp->request)); ?>"">
             Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
             </a></th> 
             <th>Action</th>
@@ -455,8 +506,8 @@ function list_staff() {
         ?>   
         <tr> 
           <td>
-            <a href="javascript:void(0)" class="toggle-bookmark">
-              <i class="fa-star far" data-name="star"></i>
+            <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="Mark as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
+              <i class="fa-star" data-name="star"></i>
             </a>
           </td>  
           <td><?php echo $key + 1; ?></td>   
@@ -471,8 +522,7 @@ function list_staff() {
       </table> 
        <ul class="custom-pagination"> 
       <?php   
-        $tableListCount = $wpdb->get_results
-        ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND post_title LIKE '%".$search."%'" );   
+        $tableListCount = $wpdb->get_results($preQuery); 
           $totalRecords = count($tableListCount);
           if($totalRecords > $limit){
             // Number of pages required. 

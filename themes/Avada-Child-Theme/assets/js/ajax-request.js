@@ -30,4 +30,41 @@ jQuery(document).ready( function($) {
 	 	});
 	 	return false;
 	});
+
+	jQuery('a.toggle-bookmark').on('click', function(){
+		debugger;
+		var isBookmarked = 0;
+		var documentId = jQuery(this).attr('document-id');
+		var nonce = jQuery(this).attr('_nonce');
+		var currentElement = jQuery(this);
+		if(jQuery(this).hasClass('empty-star')){
+			isBookmarked = 1; 
+		} else{
+			isBookmarked = 0;
+		}
+		var data = {
+			action: 'document_bookmarked_request',
+			dataType: 'JSON',
+			document_id : documentId,
+		    book_marked: isBookmarked,
+		    nonce : nonce,
+		};
+
+		// the_ajax_script.ajaxurl is a variable that will
+		 // contain the url to the ajax processing file
+
+	 	$.post(custom_ajax_script.ajaxurl, data, function(response) {
+	 		debugger;
+	 		if(parseInt(response) === 1){ //success
+	 			if(isBookmarked === 1){
+	 				jQuery(currentElement).removeClass('empty-star').addClass('solid-star');
+	 			} else{
+	 				jQuery(currentElement).removeClass('solid-star').addClass('empty-star');
+	 			}
+	 		} else{
+	 			alert('Something went wrong');
+	 		}
+	 	});
+	});
+
 });
