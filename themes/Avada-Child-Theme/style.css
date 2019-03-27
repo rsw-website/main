@@ -962,6 +962,34 @@ ul.custom-pagination li {
     text-align: left !important;
 }
 
+a.toggle-bookmark i.fa-star{
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+    font-family: "Font Awesome 5 Free";
+}
+a.solid-star i.empty-star{
+    font-weight: 900;
+}
+a.solid-star i.fa-star{
+    font-weight: 900;
+}
+a.solid-star{
+    color: #be1b17 !important;
+}
+#dashboard-document-filter{
+    display: inline-block; 
+    float: left;
+}
+input.apply-button{
+    padding: 6px 10px !important;
+    text-transform: capitalize !important;
+    margin-left: 10px !important;
+}
+
 /*Media queries*/
 @media screen and (max-width:1200px) {
 .contact-form-details {
@@ -1141,3 +1169,4 @@ a.fusion-icon.fusion-icon-search {
     border-right: none!important;
 }
 }
+

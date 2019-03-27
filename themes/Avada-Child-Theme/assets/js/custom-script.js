@@ -168,3 +168,14 @@ jQuery('div#home-tabs > div.nav > ul.nav-tabs li').on('click', function(e){
 });
 
 jQuery('#home-features').find('img').removeAttr('title');
+
+jQuery('form#dashboard-document-filter').on('submit', function(event){
+	debugger;
+	event.preventDefault();
+	var path = jQuery(this).find('select.action-filter')
+	.children("option:selected").attr('path');
+	if(path !== undefined){
+		window.location.href = path;
+	}
+	
+});
