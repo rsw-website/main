@@ -58,8 +58,10 @@ jQuery(document).ready( function($) {
 	 		if(parseInt(response) === 1){ //success
 	 			if(isBookmarked === 1){
 	 				jQuery(currentElement).removeClass('empty-star').addClass('solid-star');
+	 				jQuery(currentElement).attr('title', 'Marked as favourite');
 	 			} else{
 	 				jQuery(currentElement).removeClass('solid-star').addClass('empty-star');
+	 				jQuery(currentElement).attr('title', 'Mark as favourite');
 	 			}
 	 		} else{
 	 			alert('Something went wrong');

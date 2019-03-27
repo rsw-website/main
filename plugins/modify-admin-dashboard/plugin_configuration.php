@@ -506,7 +506,7 @@ function list_staff() {
         ?>   
         <tr> 
           <td>
-            <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="Mark as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
+            <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="<?php echo $tableData->is_bookmarked ? 'Marked' : 'Mark'; ?> as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
               <i class="fa-star" data-name="star"></i>
             </a>
           </td>  
