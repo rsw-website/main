@@ -454,6 +454,12 @@ body.home #main {
 #home-features-tab.home-tab-opt .home-tab-c1 h2{
     color:#fff!important;
 }
+#home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1 .nav-tabs li a {
+    background-color: rgba(0,0,0,0.7)!important;
+}
+#home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
+    border-color: rgba(0,0,0,0.7)!important;
+}
 /*--Home Features--*/
 #home-features {
     margin-bottom: 40px;
