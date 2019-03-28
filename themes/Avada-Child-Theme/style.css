@@ -460,12 +460,14 @@ body.home #main {
 #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
     border-color: rgba(0,0,0,0.7)!important;
 }
-
+#home-features-tab.home-tab-opt.fusion-tabs.fusion-tabs-1 .nav-tabs li.active a, .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:hover, .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:focus{
+    background:#fff!important;
+}
 #home-intro-opt p{
     color:#000!important;
 }
 #home-intro-opt .comp-motto li {
-    border-right: 1px solid #999!important;
+    border-right: 1px solid #999;
     font-weight: 400;
     color: #f00!important;
 }
@@ -477,7 +479,7 @@ body.home #main {
     background:rgba(44, 68, 107, 0.5);
 }
 #home-intro-opt .home-quote p{
-    color:#000!important;
+    color:#fff!important;
 }
 /*--Home Features--*/
 #home-features {

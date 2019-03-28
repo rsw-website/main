@@ -53,9 +53,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 <script>   
     url = 'http://localhost/reliablesoftworks/preview-document/?id=MTIx';
     var thePdf = null;
-    var scale = 1;
+    var scale = 2;
+    // Loaded via <script> tag, create shortcut to access PDF.js exports.
+var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-    PDFJS.getDocument(url).promise.then(function(pdf) {
+// The workerSrc property shall be specified.
+pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf) {
         thePdf = pdf;
         viewer = document.getElementById('pdf-viewer');
 
