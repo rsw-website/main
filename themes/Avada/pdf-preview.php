@@ -20,6 +20,7 @@ if(!isset($_GET['id'])){
 	get_footer();
 	exit();
 }
+$fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_page_by_path( 'preview-document' )));
 ?>
 <script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <section id="content" class="full-width">
@@ -43,7 +44,7 @@ if(!isset($_GET['id'])){
 	<?php endwhile; ?>
 </section>
 <script>   
-    url = 'http://localhost/reliablesoftworks/preview-document/?id=MTIx';
+    url = '<?php echo $fileAccessUrl; ?>';
     var thePdf = null;
     var scale = 2;
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
