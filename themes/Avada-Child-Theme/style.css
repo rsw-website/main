@@ -1029,7 +1029,9 @@ input.apply-button{
     margin: 0 auto;
     display: block;
 }
-
+body.woocommerce-account .fusion-footer{
+    margin-top: 20px;
+}
 /*Media queries*/
 @media screen and (max-width:1200px) {
 .contact-form-details {
