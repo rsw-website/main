@@ -12,44 +12,36 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	<script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
-	<style type="text/css">
-		canvas{
-			width: 80%;
-    		margin: 0 auto;
-    		display: block;
-		}
-	</style>
-</head>
-<body>
-	<nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><button id="prev">Previous</button></li>
-            <li><span id="page_num"></span> / <span id="page_count"></span></li>
-            <li><button id="next">Next</button></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-      </div>
-    </nav>
-
-<div id='pdf-viewer'></div>
-</body>
+<?php get_header(); 
+if(!isset($_GET['id'])){
+	?>
+	<h2>Invalid file path</h2>
+	<?php
+	get_footer();
+	exit();
+}
+?>
+<script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<section id="content" class="full-width">
+	<?php while ( have_posts() ) : ?>
+		<?php the_post(); ?>
+		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
+			<?php avada_featured_images_for_pages(); ?>
+			<div class="post-content">
+				<div id='pdf-viewer'></div>
+				<?php the_content(); ?>
+				<?php fusion_link_pages(); ?>
+			</div>
+			<?php if ( ! post_password_required( $post->ID ) ) : ?>
+				<?php if ( Avada()->settings->get( 'comments_pages' ) ) : ?>
+					<?php wp_reset_postdata(); ?>
+					<?php comments_template(); ?>
+				<?php endif; ?>
+			<?php endif; ?>
+		</div>
+	<?php endwhile; ?>
+</section>
 <script>   
     url = 'http://localhost/reliablesoftworks/preview-document/?id=MTIx';
     var thePdf = null;
@@ -81,8 +73,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
     });
     }
 </script>
+<?php
+get_footer();
 
-
-</html>
-
-
+/* Omit closing PHP tag to avoid "Headers already sent" issues. */
