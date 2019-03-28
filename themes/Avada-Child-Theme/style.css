@@ -467,7 +467,6 @@ body.home #main {
 #home-intro-opt .comp-motto li {
     border-right: 1px solid #999!important;
     font-weight: 400;
-    font-size: 24px;
     color: #f00!important;
 }
 #home-intro-opt h1 {
@@ -475,7 +474,10 @@ body.home #main {
     color: #f00!important;
 }
 #home-intro-opt .home-quote{
-    background:#aaa;
+    background:rgba(44, 68, 107, 0.5);
+}
+#home-intro-opt .home-quote p{
+    color:#000!important;
 }
 /*--Home Features--*/
 #home-features {
