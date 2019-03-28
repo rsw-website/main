@@ -1024,7 +1024,11 @@ input.apply-button{
     text-transform: capitalize !important;
     margin-left: 10px !important;
 }
-
+#pdf-viewer canvas.pdf-page-canvas {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+}
 /*Media queries*/
 @media screen and (max-width:1200px) {
 .contact-form-details {
