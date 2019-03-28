@@ -28,7 +28,4 @@ global $woocommerce, $current_user;
 			</span>
 		</div>
 	</div>
-	<div class="avada-myaccount-user-column message">
-		<?php echo do_shortcode( '[request-access-button showTitle = 0 ]' ); ?>
-	</div>
 </div>
