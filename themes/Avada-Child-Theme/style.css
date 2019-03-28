@@ -127,6 +127,9 @@ h2.main-title {
 .hide {
     display: none!important;
 }
+.required{
+    color:#f00;
+}
 /*---Form---*/
 .com-form input {
     height: 40px!important;
