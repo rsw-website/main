@@ -210,7 +210,7 @@ function new_modify_user_table( $column ) {
     $column['document_access'] = 'Access';
     return $column;
 }
-add_filter( 'manage_users_columns', 'new_modify_user_table' );
+// add_filter( 'manage_users_columns', 'new_modify_user_table' );
 
 function new_modify_user_table_row( $val, $column_name, $user_id ) {
     switch ($column_name) {
@@ -232,10 +232,10 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
     }
     return $val;
 }
-add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+// add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
 
-add_action( 'show_user_profile', 'extra_user_profile_fields' );
-add_action( 'edit_user_profile', 'extra_user_profile_fields' );
+// add_action( 'show_user_profile', 'extra_user_profile_fields' );
+// add_action( 'edit_user_profile', 'extra_user_profile_fields' );
 
 function extra_user_profile_fields( $user ) { 
   $documentAccess = intval(get_user_meta( $user->ID, 'document_access', true )); ?>
@@ -248,8 +248,8 @@ function extra_user_profile_fields( $user ) {
 </select>
 <?php }
 
-add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
-add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
+// add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
+// add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
 
 function save_extra_user_profile_fields( $user_id ) {
   $userData = get_userdata($user_id); 
@@ -305,7 +305,6 @@ function wk_endpoint_content() {
         My Documents     
   </h2>
   <?php
-  echo do_shortcode( '[request-access-button showTitle = 1]' );
   echo do_shortcode( '[list-staff]' );
 }
 
@@ -450,12 +449,13 @@ function list_staff() {
     $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $preQuery = "SELECT wp_posts.*, wp_bookmarked_documents.is_bookmarked FROM wp_posts LEFT JOIN wp_bookmarked_documents ON wp_bookmarked_documents.document_id = wp_posts.ID WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND wp_posts.post_title LIKE '%".$search."%'";
+    $preQuery = "SELECT wp_posts.*, wp_bookmarked_documents.is_bookmarked FROM wp_posts LEFT JOIN wp_bookmarked_documents ON wp_bookmarked_documents.document_id = wp_posts.ID AND wp_bookmarked_documents.user_id = ".$current_user_id." WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND wp_posts.post_title LIKE '%".$search."%'";
+
     if(isset($_GET['type'])){
       $argsArray['type'] = $_GET['type'];
       $titleArgsArray['type'] = $_GET['type'];
       $dateArgsArray['type'] = $_GET['type'];
-      $preQuery = $preQuery . " AND wp_bookmarked_documents.user_id = ".$current_user_id." AND wp_bookmarked_documents.is_bookmarked = 1";
+      $preQuery = $preQuery . " AND wp_bookmarked_documents.is_bookmarked = 1";
     }
 
     $query = $preQuery;
@@ -580,26 +580,11 @@ function list_staff() {
 function list_staff_obj($atts, $content=null) {
     ob_start();
     $currentUserId = get_current_user_id();
-  $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
-  $user=wp_get_current_user();
-  if($accessStatus === 1 || in_array("administrator", $user->roles)){
+    $user=wp_get_current_user();
     list_staff($atts, $content=null);
     $output=ob_get_contents();
     ob_end_clean();
     return $output;
-  } else if($accessStatus === 2){
-    ?>
-    <p>Your document access request has been denied by administrator.<br>
-    If you further want to access the documents, then write us at : <a href="mailto:support@reliablesoftworks.com">support@reliablesoftworks.com</a> 
-    </p>
-    <?php
-  } else if($accessStatus === 3){
-    ?>
-    <p>Your document access request has been submitted to administrator. The administrator can either approve or deny your request.<br>
-    You will receive an email with instructions on what you will need to do next. Thanks for your patience. 
-    </p>
-    <?php
-  }
 }
 
 add_shortcode( 'list-staff', 'list_staff_obj' );

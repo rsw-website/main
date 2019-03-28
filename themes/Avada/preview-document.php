@@ -12,7 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
 ?>
-
+<style type="text/css">
+	viewer-pdf-toolbar#toolbar{display: none !important;}
+</style>
 <?php
 	if(isset($_GET['id'])){
 		$documentId = base64_decode($_GET['id']);
