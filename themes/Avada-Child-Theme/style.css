@@ -449,6 +449,11 @@ body.home #main {
     left: 33%;
     bottom: -25px;
 }
+
+/*--Tab Options--*/
+#home-features-tab.home-tab-opt .home-tab-c1 h2{
+    color:#fff!important;
+}
 /*--Home Features--*/
 #home-features {
     margin-bottom: 40px;
