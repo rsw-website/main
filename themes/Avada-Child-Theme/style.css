@@ -460,6 +460,23 @@ body.home #main {
 #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
     border-color: rgba(0,0,0,0.7)!important;
 }
+
+#home-intro-opt p{
+    color:#000!important;
+}
+#home-intro-opt .comp-motto li {
+    border-right: 1px solid #999!important;
+    font-weight: 400;
+    font-size: 24px;
+    color: #f00!important;
+}
+#home-intro-opt h1 {
+    margin-bottom: 0!important;
+    color: #f00!important;
+}
+#home-intro-opt .home-quote{
+    background:#aaa;
+}
 /*--Home Features--*/
 #home-features {
     margin-bottom: 40px;
