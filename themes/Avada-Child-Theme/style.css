@@ -1212,4 +1212,8 @@ a.fusion-icon.fusion-icon-search {
     border-right: none!important;
 }
 }
-
+@media screen and (max-width:480px){
+    a.toplink-email{
+        display:block;
+    }
+}
