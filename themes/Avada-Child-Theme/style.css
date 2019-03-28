@@ -1029,6 +1029,7 @@ input.apply-button{
     margin: 0 auto;
     display: block;
 }
+
 /*Media queries*/
 @media screen and (max-width:1200px) {
 .contact-form-details {
