@@ -333,6 +333,7 @@ body.home #main {
     position: relative;
     margin:0 0 20px 0;
     line-height:24px;
+    color:#5a6789;
 }
 #home-tabs .list-items li i {
     left: 0;
@@ -444,7 +445,7 @@ body.home #main {
 .home-tab-c2 ul {
     color: #fff;
 }
-.fusion-tabs.horizontal-tabs.clean .nav-tabs li.active a:after {
+#home-tabs .fusion-tabs.horizontal-tabs.clean .nav-tabs li.active a:after {
     width: 0;
     height: 0;
     border-left: 30px solid transparent;
@@ -455,7 +456,12 @@ body.home #main {
     left: 33%;
     bottom: -25px;
 }
-
+#home-tabs .fusion-tabs.fusion-tabs-1 .nav-tabs li a {
+    background-color:rgba(115, 132, 177, 0.4)!important;
+}
+#home-tabs .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
+    border-color: rgba(115, 132, 177, 0.6)!important;
+}
 /*--Tab Options--*/
 #home-features-tab.home-tab-opt .home-tab-c1 h2{
     color:#fff!important;
