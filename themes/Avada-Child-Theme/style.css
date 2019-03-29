@@ -445,7 +445,7 @@ body.home #main {
 .home-tab-c2 ul {
     color: #fff;
 }
-#home-tabs .fusion-tabs.horizontal-tabs.clean .nav-tabs li.active a:after {
+#home-features-tab .fusion-tabs.horizontal-tabs.clean .nav-tabs li.active a:after {
     width: 0;
     height: 0;
     border-left: 30px solid transparent;
@@ -456,11 +456,19 @@ body.home #main {
     left: 33%;
     bottom: -25px;
 }
-#home-tabs .fusion-tabs.fusion-tabs-1 .nav-tabs li a {
+#home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li a {
     background-color:rgba(115, 132, 177, 0.4)!important;
+    color:#!important;
 }
-#home-tabs .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
-    border-color: rgba(115, 132, 177, 0.6)!important;
+#home-features-tab .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
+    border-color: rgba(115, 132, 177, 0.1)!important;
+}
+#home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a, #home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:hover, #home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:focus{
+    background:#fff!important;
+}
+#home-features-tab h4{
+    color:#fff;
+
 }
 /*--Tab Options--*/
 #home-features-tab.home-tab-opt .home-tab-c1 h2{
