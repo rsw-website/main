@@ -457,7 +457,7 @@ body.home #main {
     bottom: -25px;
 }
 #home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li a {
-    background-color:rgba(115, 132, 177, 0.4)!important;
+    background-color:rgba(115, 132, 177, 0.6)!important;
     color:#!important;
 }
 #home-features-tab .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
@@ -541,6 +541,10 @@ body.home #main {
     top: 50%;
     cursor: pointer;
 }
+.spacer1{
+    height:36px;
+}
+
 /*--Home Testimonials--*/
 #testimonials {
     padding: 100px 0;
