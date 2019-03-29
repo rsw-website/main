@@ -282,7 +282,8 @@ body.home #main {
     padding-right: 0!important;
 }
 .home-quote {
-    background: rgba(0, 0, 0, 0.5);
+    /*background: rgba(0, 0, 0, 0.5);*/
+    background:#e13834;
     max-width: 720px;
     color: #fff;
     padding: 20px;
@@ -442,6 +443,10 @@ body.home #main {
     float: left;
     margin-top: 140px;
 }
+.home-tab-c2 img{
+    display:block;
+    margin:0 auto;
+}
 .home-tab-c2 ul {
     color: #fff;
 }
@@ -578,7 +583,7 @@ body.home #main {
 }
 /*--Home Contact--*/
 #rs-quick-contact {
-    padding: 200px 0!important;
+    padding:140px 0!important;
     position: relative;
     z-index: 2;
 }
