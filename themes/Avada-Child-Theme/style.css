@@ -318,9 +318,10 @@ body.home #main {
 }
 #home-tabs h4 {
     font-size: 18px;
+    color:#fff;
 }
 #home-tabs h2 {
-    color: #dfae37;
+    color: #f00;
     line-height: 48px;
 }
 #home-tabs .list-items {
@@ -330,12 +331,14 @@ body.home #main {
 #home-tabs .list-items li {
     padding-left: 30px;
     position: relative;
-    margin: 15px 0;
+    margin:0 0 20px 0;
+    line-height:24px;
 }
 #home-tabs .list-items li i {
     left: 0;
     position: absolute;
-    top: 3px;
+    top: 6px;
+    color:#e13834;
 }
 #home-tabs h4 {
     color: #999;
@@ -458,10 +461,10 @@ body.home #main {
     color:#fff!important;
 }
 #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1 .nav-tabs li a {
-    background-color: rgba(0,0,0,0.7)!important;
+    background-color:rgba(115, 132, 177, 0.4)!important;
 }
 #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
-    border-color: rgba(0,0,0,0.7)!important;
+    border-color: rgba(115, 132, 177, 0.6)!important;
 }
 #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a, #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:hover, #home-features-tab.home-tab-opt .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:focus{
     background:#fff!important;
