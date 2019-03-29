@@ -1106,6 +1106,7 @@ body.woocommerce-account .fusion-footer{
 }
 .home-quote {
     margin: 60px auto 60px;
+    max-width:420px;
 }
 h2 {
     font-size: 36px!important;
@@ -1179,11 +1180,11 @@ p.mike-img img {
     margin: 0 auto 15px auto;
 }
 .home-quote p {
-    margin-bottom: 0;
-    margin: 10px auto;
+    margin:0 auto;
     width: 100%;
     display: block;
     text-align: center;
+    font-size:18px;
 }
 .custom-form-row .custom-form-col {
     width: 100%;
