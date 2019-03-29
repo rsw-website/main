@@ -570,8 +570,8 @@ body.home #main {
     margin: 0 auto;
 }
 #fusion-testimonials-1 a:hover, #fusion-testimonials-1 a.activeSlide {
-    background-color: #5a0700;
-    border: 1px solid #5a0700;
+    background-color: #fff;
+    border: 1px solid #fff;
 }
 #testimonials blockquote {
     border-radius: 30px;
@@ -1162,8 +1162,11 @@ nav.fusion-secondary-menu {
     border-right: none;
     margin: 15px auto;
     text-align: center;
-    border-bottom: 1px solid #a8231f;
+    border-bottom: 1px solid #a0aac6;
     max-width: 240px;
+}
+.comp-motto li:last-child{
+    border-bottom:none;
 }
 p.mike-img {
     display: block;
