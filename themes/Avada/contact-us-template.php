@@ -82,7 +82,7 @@ $avada_contact = new Avada_Contact();
 							</div>
 						</div>
 						<div class="custom-form-col">
-							<label>City<span class="required">*</span></label>
+							<label>City</label>
 							<div class="custom-form-holder">
 								<input type="text" name="city" id="city" value="<?php echo esc_attr( $avada_contact->city ); ?>" aria-label="<?php esc_attr_e( 'City', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
 							</div>
@@ -90,15 +90,15 @@ $avada_contact = new Avada_Contact();
 					</div>
 					<div class="custom-form-row">
 						<div class="custom-form-col">
-							<label>Zip<span class="required">*</span></label>
+							<label>Zip</label>
 							<div class="custom-form-holder">
 								<input type="text" name="zip" id="zip" maxlength="5" value="<?php echo esc_attr( $avada_contact->zip ); ?>" aria-label="<?php esc_attr_e( 'Zip', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
 							</div>
 						</div>
 						<div class="custom-form-col">
-							<label>State<span class="required">*</span></label>
+							<label>State</label>
 							<div class="custom-form-holder">
-								<select name="State" id="state">
+								<select name="State" id="state" class="custom-form-control">
 		                            <option value="AL" selected="selected">AL</option>
 		                            <option value="AK">AK</option>
 		                            <option value="AZ">AZ</option>
