@@ -16,6 +16,7 @@ get_header();
  * Instantiate the Avada_Contact class.
  */
 $avada_contact = new Avada_Contact();
+
 ?>
 <section id="content" class="full-width">
 	<?php while ( have_posts() ) : ?>

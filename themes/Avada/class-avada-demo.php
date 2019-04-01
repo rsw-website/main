@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Handle contact pages.
  */
-class Avada_Contact {
+class Avada_Demo {
 	/**
 	 * The recaptcha class instance.
 	 *
@@ -342,7 +342,7 @@ class Avada_Contact {
 			/* translators: The data privacy terms. */
 			$body .= sprintf( esc_attr__( 'Data Privacy Terms: %s', 'Avada' ), " $data_privacy_confirmation" );
 		}
-		$subject = get_option('blogname').' Contact Request';
+		$subject = get_option('blogname').' Free Demo Request';
 		$headers = 'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n";
 		wp_mail( $email_to, $subject, $body, $headers );
 
