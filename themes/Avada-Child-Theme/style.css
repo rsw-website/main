@@ -283,7 +283,7 @@ body.home #main {
 }
 .home-quote {
     /*background: rgba(0, 0, 0, 0.5);*/
-    background:#e13834;
+    background:#000;
     max-width: 720px;
     color: #fff;
     padding: 20px;
@@ -322,7 +322,8 @@ body.home #main {
     color:#fff;
 }
 #home-tabs h2 {
-    color: #f00;
+    color: #000;
+    font-weight:400;
     line-height: 48px;
 }
 #home-tabs .list-items {
@@ -346,90 +347,90 @@ body.home #main {
     color: #999;
 }
 #home-tabs li.active h4 {
-    color: #e13834;
+    color: #000;
 }
 #home-tabs .fusion-tab-heading i {
     width: 80px;
     height: 80px;
     display: block;
     margin: 0 auto;
-    background: url("../Avada-Child-Theme/images/icon-business-control.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-business-control-final.png") 0 0;
 }
 #home-tabs #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-final.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-final.png") 0 -80px;
 }
 #home-tabs #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-final.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-final.png") 0 -80px;
 }
 #home-tabs #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-business-control-final.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-business-control-final.png") 0 -80px;
 }
 #home-tabs #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-connected-final.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-connected-final.png") 0 -80px;
 }
 #home-tabs #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-final.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-final.png") 0 -80px;
 }
 #home-tabs #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-final.png") 0 0;
 }
 #home-tabs li.active #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-final.png") 0 -80px;
 }
 #home-tabs .fusion-tab-heading i.fa-angle-down:before {
     content: '';
 }
 /*--For Mobile--*/
 #home-tabs #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-final.png") 0 0;
 }
 #home-tabs li.active #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-driveprofitablesales .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-drive-profit-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-drive-profit-final.png") 0 -80px;
 }
 #home-tabs #mobile-fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-final.png") 0 0;
 }
 #home-tabs li.active #mobile-fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-improvecashflow .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cash-flow-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-cash-flow-final.png") 0 -80px;
 }
 #home-tabs #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-business-control-final.png") 0 0;
 }
 #home-tabs li.active #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-takecontrolofbusiness .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-business-control-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-business-control-final.png") 0 -80px;
 }
 #home-tabs #mobile-fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-connected-final.png") 0 0;
 }
 #home-tabs li.active #mobile-fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-connectedtoeverything .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-connected-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-connected-final.png") 0 -80px;
 }
 #home-tabs #mobile-fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-final.png") 0 0;
 }
 #home-tabs li.active #mobile-fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-mobiledeviceaccess .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-mobile-access-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-mobile-access-final.png") 0 -80px;
 }
 #home-tabs #mobile-fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 0;
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-final.png") 0 0;
 }
 #home-tabs li.active #mobile-fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas, #home-tabs li:hover #mobile-fusion-tab-fastdatabaseandclouddeployment .fusion-tab-heading i.fa-angle-down.fas {
-    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-2.png") 0 -80px;
+    background: url("../Avada-Child-Theme/images/icon-cloud-deployment-final.png") 0 -80px;
 }
 #home-tabs-container {
     background: #fff;
