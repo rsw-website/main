@@ -19,6 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Handle contact pages.
  */
 class Avada_Contact {
+
 	/**
 	 * The recaptcha class instance.
 	 *
@@ -344,6 +345,7 @@ class Avada_Contact {
 		}
 		$subject = get_option('blogname').' Contact Request';
 		$headers = 'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n";
+
 		wp_mail( $email_to, $subject, $body, $headers );
 
 		$this->email_sent = true;
