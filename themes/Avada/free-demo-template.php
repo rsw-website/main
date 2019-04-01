@@ -101,7 +101,7 @@ $avada_contact = new Avada_Demo();
 					</div>
 					<div class="custom-form-row">
 						<div class="custom-form-col custom-form-area">
-							<label>Message</label>
+							<label>Preferred Date(s)/Time(s):</label>
 							<textarea name="msg" id="comment" cols="39" rows="4" class="" aria-label="<?php esc_attr_e( 'Message', 'Avada' ); ?>"><?php echo esc_textarea( $avada_contact->message ); // WPCS: CSRF ok. ?></textarea>
 						</div>
 					</div>
