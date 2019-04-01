@@ -134,8 +134,8 @@ function changeActiveTab(homeTabs, nextActiveItem){
 }
 
 function changeTabAfterInterval() {
-	debugger;
   	return setInterval(function(){
+		debugger;
   		if(jQuery(window).width() < 786 || !enableTimer){
   			return ;
   		}
