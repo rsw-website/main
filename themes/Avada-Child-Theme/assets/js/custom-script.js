@@ -1,5 +1,5 @@
 var timer;
-
+var enableTimer = true;
 jQuery('form.woocommerce-form-login .woocommerce-Button')
 .on('click', function(e){
 	// debugger;
@@ -70,6 +70,11 @@ jQuery('form.woocommerce-form-register .woocommerce-Button')
 	} 
 });
 
+jQuery('.tab-link').on('click', function(e){
+	debugger;
+	enableTimer = false;
+
+});
 
 jQuery('.home-tabs-arrow').on('click', function(e){
 	var activeTabIndex = jQuery(this).siblings('div#home-tabs')
@@ -129,8 +134,9 @@ function changeActiveTab(homeTabs, nextActiveItem){
 }
 
 function changeTabAfterInterval() {
+	debugger;
   	return setInterval(function(){
-  		if(jQuery(window).width() < 786){
+  		if(jQuery(window).width() < 786 || !enableTimer){
   			return ;
   		}
 	  	var homeTabs = jQuery('body.home div#home-tabs'); 
