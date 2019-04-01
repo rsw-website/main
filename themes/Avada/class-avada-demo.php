@@ -106,6 +106,7 @@ class Avada_Demo {
 			$this->process_email();
 			$this->process_message();
 			$this->process_company();
+			$this->process_service();
 
 			if ( Avada()->settings->get( 'contact_form_privacy_checkbox' ) ) {
 				$this->process_data_privacy_confirmation();
@@ -221,6 +222,30 @@ class Avada_Demo {
 		}
 	}
 
+
+	/**
+	 * Get all selected services
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_service() {
+		$post_service = '';
+		if ( '' === $_POST['service'] || count($_POST['service']) < 1 ) {
+			$this->has_error = true;
+		} else {
+			foreach ($_POST['service'] as $key => $service_data) {
+				if($key === 0){
+					$post_service = $service_data;
+				}
+				if($key === 1){
+					$post_service = $post_service.' , '.$service_data;
+				}
+			}
+			$this->service = trim( $post_service );
+		}
+	}
+
 	/**
 	 * Check to make sure a message was entered.
 	 *
@@ -316,6 +341,7 @@ class Avada_Demo {
 		$phone                   = wp_filter_kses( $this->phone );
 		$company 				= wp_filter_kses($this->company);
 		$message                   = wp_filter_kses( $this->message );
+		$service                   = wp_filter_kses( $this->service );
 		$data_privacy_confirmation = ( $this->data_privacy_confirmation ) ? esc_html__( 'confirmed', 'Avada' ) : '';
 
 		if ( function_exists( 'stripslashes' ) ) {
@@ -332,8 +358,10 @@ class Avada_Demo {
 		$body .= sprintf( esc_attr__( 'Email: %s', 'Avada' ), " $email \n\n" );
 		/* translators: The Phone. */
 		$body .= sprintf( esc_attr__( 'Phone: %s', 'Avada' ), " $phone \n\n" );
-		/* translators: The comments. */
+		/* translators: The Company. */
 		$body .= sprintf( esc_attr__( 'Company: %s', 'Avada' ), " $company \n\n" );
+		/* translators: The Services. */
+		$body .= sprintf( esc_attr__( 'Services: %s', 'Avada' ), " $service \n\n" );
 
 		$body .= sprintf( esc_attr__( 'Message: %s', 'Avada' ), "\n$message \n\n" );
 

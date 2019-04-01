@@ -62,6 +62,17 @@ $avada_contact = new Avada_Demo();
 					<?php endif; ?>
 					<div class="custom-form-row">
 						<div class="custom-form-col">
+							<label>Services<span class="required">*</span></label>
+							<div class="custom-form-holder">
+								<input type="checkbox" name="service[]" value="ReliaSale">
+								<span>ReliaSale</span>
+								<input type="checkbox" name="service[]" value="ReliaServ">
+								<span>ReliaServ</span>
+							</div>
+						</div>
+					</div>
+					<div class="custom-form-row">
+						<div class="custom-form-col">
 							<label>Name<span class="required">*</span></label>
 							<div class="custom-form-holder">
 								<input type="text" name="contact_name" id="author" value="<?php echo esc_attr( $avada_contact->name ); ?>" size="22" required aria-required="true" aria-label="<?php esc_attr_e( 'Name (required)', 'Avada' ); ?>" class="custom-form-control input-name">

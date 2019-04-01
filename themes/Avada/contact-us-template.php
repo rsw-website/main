@@ -98,7 +98,7 @@ $avada_contact = new Avada_Contact();
 						<div class="custom-form-col">
 							<label>State</label>
 							<div class="custom-form-holder">
-								<select name="State" id="state" class="custom-form-control">
+								<select name="state" id="state" class="custom-form-control">
 		                            <option value="AL" selected="selected">AL</option>
 		                            <option value="AK">AK</option>
 		                            <option value="AZ">AZ</option>
