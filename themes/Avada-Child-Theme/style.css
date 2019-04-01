@@ -323,7 +323,7 @@ body.home #main {
 }
 #home-tabs h2 {
     color: #000;
-    font-weight:400;
+    font-weight:400!important;
     line-height: 48px;
 }
 #home-tabs .list-items {
@@ -335,7 +335,7 @@ body.home #main {
     position: relative;
     margin:0 0 20px 0;
     line-height:24px;
-    color:#5a6789;
+    color:#000;
 }
 #home-tabs .list-items li i {
     left: 0;
@@ -345,6 +345,9 @@ body.home #main {
 }
 #home-tabs h4 {
     color: #999;
+}
+#home-tab li a:hover{
+    color:#000;
 }
 #home-tabs li.active h4 {
     color: #000;
