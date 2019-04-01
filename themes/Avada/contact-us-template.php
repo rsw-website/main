@@ -108,6 +108,17 @@ $avada_contact = new Avada_Contact();
 							<input type="hidden" name="fusion-recaptcha-response" id="fusion-recaptcha-response" value="">
 						<?php endif; ?>
 
+						<?php if ( Avada()->settings->get( 'recaptcha_public' ) && Avada()->settings->get( 'recaptcha_private' ) ) : ?>
+						<div id="comment-recaptcha">
+							<?php if ( 'v2' === Avada()->settings->get( 'recaptcha_version' ) ) : ?>
+								<div class="g-recaptcha" data-type="audio" data-theme="<?php echo esc_attr( Avada()->settings->get( 'recaptcha_color_scheme' ) ); ?>" data-sitekey="<?php echo esc_attr( Avada()->settings->get( 'recaptcha_public' ) ); ?>"></div>
+							<?php else : ?>
+								<?php $hide_badge_class   = 'hide' === Avada()->settings->get( 'recaptcha_badge_position' ) ? ' fusion-hide-recaptcha-badge' : ''; ?>
+								<div id="recaptcha-container" class="recaptcha-container<?php echo esc_attr( $hide_badge_class ); ?>"></div>
+							<?php endif; ?>
+						</div>
+					<?php endif; ?>
+
 						<input name="submit" type="submit" id="submit" value="<?php esc_html_e( 'Submit', 'Avada' ); ?>" class="btn-c2 comment-submit fusion-button fusion-button-default fusion-button-default-size fusion-button-<?php echo esc_attr( strtolower( $button_size ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_shape ) ); ?> fusion-button-<?php echo esc_attr( strtolower( $button_type ) ); ?>">
 					</div>
 					<div id="comment-input">
@@ -126,17 +137,6 @@ $avada_contact = new Avada_Contact();
 						<div id="comment-privacy-checkbox-wrapper" class="fusion-comment-privacy-checkbox-wrapper">
 							<input type="checkbox" value="1" <?php checked( $avada_contact->data_privacy_confirmation, 1 ); ?> required aria-required="true" id="data-privacy-confirmation" name="data_privacy_confirmation" class="fusion-comment-privacy-checkbox" />
 							<label for="data-privacy-confirmation"><?php echo Avada()->settings->get( 'contact_form_privacy_label' ); // WPCS: XSS ok. ?></label>
-						</div>
-					<?php endif; ?>
-
-					<?php if ( Avada()->settings->get( 'recaptcha_public' ) && Avada()->settings->get( 'recaptcha_private' ) ) : ?>
-						<div id="comment-recaptcha">
-							<?php if ( 'v2' === Avada()->settings->get( 'recaptcha_version' ) ) : ?>
-								<div class="g-recaptcha" data-type="audio" data-theme="<?php echo esc_attr( Avada()->settings->get( 'recaptcha_color_scheme' ) ); ?>" data-sitekey="<?php echo esc_attr( Avada()->settings->get( 'recaptcha_public' ) ); ?>"></div>
-							<?php else : ?>
-								<?php $hide_badge_class   = 'hide' === Avada()->settings->get( 'recaptcha_badge_position' ) ? ' fusion-hide-recaptcha-badge' : ''; ?>
-								<div id="recaptcha-container" class="recaptcha-container<?php echo esc_attr( $hide_badge_class ); ?>"></div>
-							<?php endif; ?>
 						</div>
 					<?php endif; ?>
 
