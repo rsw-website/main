@@ -15,6 +15,8 @@ body p {
 }
 #main {
     padding: 0!important;
+    padding-left:30px!important;
+    padding-right:30px!important;
 }
 .sub-header {
     font-size: 18px;
@@ -1070,7 +1072,20 @@ body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fu
     padding-left: 30px;
     padding-right: 30px;
 }
+#home-tabs h4 {
+    font-size: 16px;
 }
+}
+@media screen and (max-width:960px){
+    .fusion-tabs .nav-tabs li {
+    display: block;
+    position: relative;
+    float: none;
+    text-align: center;
+    margin: 0;
+}
+}
+
 @media screen and (max-width:800px) {
 .fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu {
     background-color: #000!important;
