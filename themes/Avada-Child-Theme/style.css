@@ -1249,8 +1249,8 @@ a.fusion-icon.fusion-icon-search {
 .fusion-social-links-header {
     border-right: none!important;
 }
-.fusion-footer-widget-area.fusion-widget-area.fusion-column {
-    margin-bottom: 20px!important;
+.fusion-footer footer .fusion-row .fusion-columns .fusion-column{
+    margin-bottom:20px;
 }
 }
 @media screen and (max-width:480px) {

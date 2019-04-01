@@ -105,7 +105,9 @@ class Avada_Contact {
 			$this->process_phone();
 			$this->process_email();
 			$this->process_message();
-			$this->process_company();
+			$this->process_city();
+			$this->process_zip();
+			$this->process_state();
 
 			if ( Avada()->settings->get( 'contact_form_privacy_checkbox' ) ) {
 				$this->process_data_privacy_confirmation();
@@ -189,21 +191,6 @@ class Avada_Contact {
 	}
 
 	/**
-	 * Company field is required.
-	 *
-	 * @access private
-	 * @return void
-	 */
-	private function process_company() {
-		$post_company = ( isset( $_POST['company'] ) ) ? sanitize_text_field( wp_unslash( $_POST['company'] ) ) : ''; // WPCS: CSRF ok.
-		if ( '' === $post_company || esc_attr__( 'Company (required)', 'Avada' ) === $post_company ) {
-			$this->has_error = true;
-		} else {
-			$this->company = $post_company;
-		}
-	}
-
-	/**
 	 * Check to make sure sure that a valid email address is submitted.
 	 *
 	 * @access private
@@ -219,6 +206,39 @@ class Avada_Contact {
 		} else {
 			$this->email = trim( $email );
 		}
+	}
+
+	/**
+	 * City field is not required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_city() {
+		$post_city      = ( isset( $_POST['city'] ) ) ? sanitize_text_field( wp_unslash( $_POST['city'] ) ) : ''; // WPCS: CSRF ok.
+		$this->city = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_city ) : $post_city;
+	}
+
+	/**
+	 * Zip field is not required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_zip() {
+		$post_zip      = ( isset( $_POST['zip'] ) ) ? sanitize_text_field( wp_unslash( $_POST['zip'] ) ) : ''; // WPCS: CSRF ok.
+		$this->zip = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_zip ) : $post_zip;
+	}
+
+	/**
+	 * State field is not required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_state() {
+		$post_state      = ( isset( $_POST['state'] ) ) ? sanitize_text_field( wp_unslash( $_POST['state'] ) ) : ''; // WPCS: CSRF ok.
+		$this->state = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_state ) : $post_state;
 	}
 
 	/**
@@ -314,7 +334,9 @@ class Avada_Contact {
 		$name                      = esc_html( $this->name );
 		$email                     = sanitize_email( $this->email );
 		$phone                   = wp_filter_kses( $this->phone );
-		$company 				= wp_filter_kses($this->company);
+		$city 				= wp_filter_kses($this->city);
+		$zip 				= wp_filter_kses($this->zip);
+		$state 				= wp_filter_kses($this->state);
 		$message                   = wp_filter_kses( $this->message );
 		$data_privacy_confirmation = ( $this->data_privacy_confirmation ) ? esc_html__( 'confirmed', 'Avada' ) : '';
 
@@ -332,8 +354,13 @@ class Avada_Contact {
 		$body .= sprintf( esc_attr__( 'Email: %s', 'Avada' ), " $email \n\n" );
 		/* translators: The Phone. */
 		$body .= sprintf( esc_attr__( 'Phone: %s', 'Avada' ), " $phone \n\n" );
-		/* translators: The comments. */
-		$body .= sprintf( esc_attr__( 'Company: %s', 'Avada' ), " $company \n\n" );
+		/* translators: The city. */
+		$body .= sprintf( esc_attr__( 'City: %s', 'Avada' ), " $city \n\n" );
+		/* translators: The Zip. */
+		$body .= sprintf( esc_attr__( 'Zip: %s', 'Avada' ), " $zip \n\n" );
+		/* translators: The State. */
+		$body .= sprintf( esc_attr__( 'State: %s', 'Avada' ), " $state \n\n" );
+
 
 		$body .= sprintf( esc_attr__( 'Message: %s', 'Avada' ), "\n$message \n\n" );
 
