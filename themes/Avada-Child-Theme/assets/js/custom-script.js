@@ -2,7 +2,6 @@ var timer;
 var enableTimer = true;
 jQuery('form.woocommerce-form-login .woocommerce-Button')
 .on('click', function(e){
-	// debugger;
 	var usernameCheck = true;
 	var passwordCheck = true;
 	var form = jQuery(this).parents('form.woocommerce-form-login');
@@ -28,7 +27,6 @@ jQuery('form.woocommerce-form-login .woocommerce-Button')
 
 jQuery('form.woocommerce-form-register .woocommerce-Button')
 .on('click', function(e){
-	// debugger;
 	var firstnameCheck = true;
 	var lastnameCheck = true;
 	var emailCheck = true;
@@ -71,7 +69,6 @@ jQuery('form.woocommerce-form-register .woocommerce-Button')
 });
 
 jQuery('.tab-link').on('click', function(e){
-	debugger;
 	enableTimer = false;
 
 });
@@ -121,7 +118,6 @@ jQuery('.home-tabs-arrow').on('click', function(e){
 
 
 function changeActiveTab(homeTabs, nextActiveItem){
-	// debugger;
 	jQuery(homeTabs).children('div.nav').find('ul.nav-tabs')
 	.find('li').removeClass('active');
 	jQuery(nextActiveItem).addClass('active');
@@ -135,7 +131,6 @@ function changeActiveTab(homeTabs, nextActiveItem){
 
 function changeTabAfterInterval() {
   	return setInterval(function(){
-		debugger;
   		if(jQuery(window).width() < 786 || !enableTimer){
   			return ;
   		}
@@ -159,7 +154,7 @@ function changeTabAfterInterval() {
 			}
 			changeActiveTab(homeTabs, nextActiveItem);
 	  	}
-   }, 3000);
+   }, 20000);
 }
 
 function changeTabWithTimer(){
@@ -176,7 +171,6 @@ jQuery('div#home-tabs > div.nav > ul.nav-tabs li').on('click', function(e){
 jQuery('#home-features').find('img').removeAttr('title');
 
 jQuery('form#dashboard-document-filter').on('submit', function(event){
-	debugger;
 	event.preventDefault();
 	var path = jQuery(this).find('select.action-filter')
 	.children("option:selected").attr('path');
