@@ -1067,7 +1067,7 @@ input.apply-button{
 body.woocommerce-account .fusion-footer{
     margin-top: 20px;
 }
-body.page-template-contact-us-template .fusion-fullwidth.fullwidth-box{
+body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fullwidth-box{
     padding:60px 30px!important;
 
 }
