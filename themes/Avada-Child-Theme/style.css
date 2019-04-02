@@ -1372,14 +1372,14 @@ h2.main-title {
     display:inline-block!important;
 }
 /*--Captcha update for Login--*/
-.rc-anchor-normal .rc-anchor-pt {
+#recaptcha-accessible-status .rc-anchor-normal .rc-anchor-pt {
     text-align: left!important;
     width: 100px!important;
 }
-.rc-anchor-normal .rc-anchor-content{
+#recaptcha-accessible-status .rc-anchor-normal .rc-anchor-content{
     width:155px!important;
 }
-.rc-anchor-normal .rc-anchor-checkbox-label{
+#recaptcha-accessible-status .rc-anchor-normal .rc-anchor-checkbox-label{
     width:100px!important;
 }
 .new-signup{
