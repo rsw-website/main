@@ -1083,6 +1083,15 @@ body.woocommerce-account .fusion-footer {
 body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fullwidth-box, body.page-template-free-demo-template #partner-logo-widgit .fusion-fullwidth.fullwidth-box {
     padding: 60px 30px!important;
 }
+.panel-body h5.small-heading{
+    margin-bottom: 0px;
+}
+h5.small-heading:first-child {
+    margin-top: 0px;
+}
+.custom-list-item ul > li {
+    list-style-type: none;
+}
 /*----Inner Template---*/
 .inner-template{
     padding-top:40px;
@@ -1375,11 +1384,4 @@ a.toplink-email {
 #home-tabs h2 {
     font-size: 24px;
 }
-}
-
-.panel-body h5.small-heading{
-    margin-bottom: 0px;
-}
-h5.small-heading:first-child {
-    margin-top: 0px;
 }
