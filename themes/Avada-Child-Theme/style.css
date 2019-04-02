@@ -1323,6 +1323,20 @@ h2.main-title {
 .fusion-footer {
     background: #000;
 }
+.woocommerce #customer_login .login .inline, .woocommerce #customer_login .login .lost_password{
+    display:inline-block!important;
+}
+/*--Captcha update for Login--*/
+.rc-anchor-normal .rc-anchor-pt {
+    text-align: left!important;
+    width: 100px!important;
+}
+.rc-anchor-normal .rc-anchor-content{
+    width:155px!important;
+}
+.rc-anchor-normal .rc-anchor-checkbox-label{
+    width:100px!important;
+}
 }
 @media screen and (max-width:480px) {
 .fusion-contact-info {
