@@ -1157,8 +1157,7 @@ h5.small-heading:first-child {
 }
 .fusion-header {
     background: #000!important;
-    padding-top: 10px!important;
-    padding-bottom: 10px!important;
+    padding:10px 20px!important;
 }
 .fusion-logo img {
     max-width: 220px!important;
