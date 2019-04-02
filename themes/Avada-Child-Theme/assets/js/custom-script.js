@@ -180,14 +180,20 @@ jQuery('form#dashboard-document-filter').on('submit', function(event){
 });
 
 jQuery('body.home').ready( function() {
+	ActiveSelectedTab(window.location.hash.substr(1));
+});
+
+jQuery('body.home ul.product-feature-links > li > a').on('click', function(e) {
+	debugger;
 	ActiveSelectedTab();
 });
 
-function ActiveSelectedTab(){
-	var hashId = window.location.hash.substr(1);
-	if(hashId.length){
-		jQuery('a.tab-link#'+hashId).click();
+function ActiveSelectedTab(hashId = null){
+	if(hashId){
 		// click id function
+	} else{
+		
 	}
+	jQuery('a.tab-link#'+hashId).click();
 
 }
