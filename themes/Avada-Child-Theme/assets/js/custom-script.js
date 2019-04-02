@@ -177,5 +177,12 @@ jQuery('form#dashboard-document-filter').on('submit', function(event){
 	if(path !== undefined){
 		window.location.href = path;
 	}
-	
+});
+
+jQuery('body.home').ready( function() {
+	debugger;
+	var hashId = window.location.hash.substr(1);
+	if(hashId.length){
+		// click id function
+	}
 });
