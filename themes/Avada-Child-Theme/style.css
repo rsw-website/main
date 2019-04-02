@@ -1259,6 +1259,9 @@ nav.fusion-secondary-menu {
     border-bottom: 1px solid #a0aac6;
     max-width: 280px;
 }
+.comp-motto li a{
+    color:#fff!important;
+}
 .comp-motto li:last-child {
     border-bottom: none;
 }
