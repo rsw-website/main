@@ -1010,6 +1010,10 @@ ul.custom-pagination li {
 .page-template-contact-us-template #main > .fusion-row, .page-template-free-demo-template #main > .fusion-row {
     max-width: 100% !important;
 }
+.page-template-contact-us-template #main,
+.page-template-free-demo-template #main{
+    padding: 0px !important;
+}
 .contact-form-details {
     max-width: 1100px;
     margin: 0 auto;
