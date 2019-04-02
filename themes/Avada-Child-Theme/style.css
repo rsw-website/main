@@ -1125,7 +1125,7 @@ body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fu
     font-weight: 400;
 }
 .home-quote {
-    margin: 60px auto 60px;
+    margin: 25px auto 25px;
     max-width: 420px;
 }
 h2 {
@@ -1179,12 +1179,12 @@ nav.fusion-secondary-menu {
 }
 .comp-motto li {
     display: block;
-    padding: 5px 20px 20px 20px;
+    padding: 50px 20px 15px 20px;
     border-right: none;
-    margin: 15px auto;
+    margin: 10px auto;
     text-align: center;
     border-bottom: 1px solid #a0aac6;
-    max-width: 240px;
+    max-width: 280px;
 }
 .comp-motto li:last-child {
     border-bottom: none;
@@ -1217,7 +1217,7 @@ p.mike-img img {
     position: relative;
     font-size: 16px;
     line-height: normal;
-    padding: 15px;
+    padding: 10px;
     border-bottom: 1px solid #333;
     background: #1d1d1d;
 }
@@ -1267,6 +1267,13 @@ a.fusion-icon.fusion-icon-search {
 .fusion-footer footer .fusion-row .fusion-columns .fusion-column{
     margin-bottom:20px;
 }
+#home-features-tab .fusion-tabs.horizontal-tabs.clean .nav-tabs li.active a:after{
+    display:none;
+}
+h2.main-title {
+    color: #fff!important;
+    padding: 60px 0 10px 0;
+}
 }
 @media screen and (max-width:480px) {
     .fusion-contact-info {
@@ -1274,5 +1281,15 @@ a.fusion-icon.fusion-icon-search {
 }
 a.toplink-email {
     display: block;
+}
+#home-intro h1 {
+    font-size: 30px!important;
+    line-height: 30px;
+}
+.home-intro {
+    font-size: 18px;
+}
+#home-tabs h2{
+    font-size:24px;
 }
 }
