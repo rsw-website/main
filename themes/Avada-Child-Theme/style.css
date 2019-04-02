@@ -1108,15 +1108,18 @@ h5.small-heading:first-child {
     font-size: 16px;
 }
 }
-@media screen and (min-width:801px) and (max-width:1024px) {
+@media screen and (min-width:801px) and (max-width:1100px) {
 #home-features-tab .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
     min-height: 185px;
 }
 .home-tab-c1 {
-    max-width: 54px;
+    max-width:55%;
 }
 .home-tab-c2 {
     float: right;
+    width:30%;
+    min-width:370px;
+    
 }
 }
 @media screen and (max-width:960px) {
@@ -1129,6 +1132,9 @@ h5.small-heading:first-child {
 }
 }
  @media screen and (max-width:800px) {
+     #home-features-tab .parallax-inner{
+        background-image: url(http://websitetest.reliablesoftworks.info/wp-content/uploads/2019/04/bg-home-banner-mob.jpg)!important;
+     }
 
 .fusion-header-wrapper .fusion-header, .fusion-header-wrapper .fusion-secondary-main-menu {
     background-color: #000!important;
