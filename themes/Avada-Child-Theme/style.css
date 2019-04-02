@@ -1163,10 +1163,7 @@ h5.small-heading:first-child {
 .fusion-logo img {
     max-width: 220px!important;
 }
-#main .fullwidth-box .fusion-row {
-    padding-left: 20px!important;
-    padding-right: 20px!important;
-}
+
     #home-features-tab{
         padding-top:30px;
      }
@@ -1390,6 +1387,9 @@ h2.main-title {
 }
 #partner-logo-widgit .fusion-fullwidth.fullwidth-box{
     padding:30px!important;
+}
+#customer_login{
+    padding:20px 15px 30px 16px;
 }
 }
 @media screen and (max-width:480px) {
