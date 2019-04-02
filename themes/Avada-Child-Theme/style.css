@@ -455,6 +455,7 @@ body.home #main {
 .home-tab-c2 img {
     display: block;
     margin: 0 auto;
+    border-radius:5px;
 }
 .home-tab-c2 ul {
     color: #fff;
@@ -1257,6 +1258,9 @@ nav.fusion-secondary-menu {
     text-align: center;
     border-bottom: 1px solid #a0aac6;
     max-width: 280px;
+}
+.comp-motto li a{
+    color:#fff!important;
 }
 .comp-motto li:last-child {
     border-bottom: none;
