@@ -1083,7 +1083,11 @@ body.woocommerce-account .fusion-footer {
 body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fullwidth-box, body.page-template-free-demo-template #partner-logo-widgit .fusion-fullwidth.fullwidth-box {
     padding: 60px 30px!important;
 }
-
+/*----Inner Template---*/
+.inner-template{
+    padding-top:40px;
+    padding-bottom:40px;
+}
 
 /*Media queries*/
 @media screen and (max-width:1200px) {
