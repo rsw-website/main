@@ -1389,7 +1389,7 @@ h2.main-title {
     padding:30px!important;
 }
 #customer_login{
-    padding:20px 15px 30px 16px;
+    padding:20px 15px 30px 15px;
 }
 }
 @media screen and (max-width:480px) {
@@ -1408,5 +1408,12 @@ a.toplink-email {
 }
 #home-tabs h2 {
     font-size: 24px;
+}
+#main {
+    padding-left: 15px!important;
+    padding-right: 15px!important;
+}
+#customer_login{
+    padding:20px 10px 30px 10px;
 }
 }
