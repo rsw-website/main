@@ -1269,6 +1269,9 @@ a.fusion-icon.fusion-icon-search {
 }
 }
 @media screen and (max-width:480px) {
+    .fusion-contact-info {
+        display:none;
+}
 a.toplink-email {
     display: block;
 }
