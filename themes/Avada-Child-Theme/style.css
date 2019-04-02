@@ -1129,11 +1129,13 @@ h5.small-heading:first-child {
     left: 42%;
     bottom: 10px;
     width:40px;
+    display:none;
 }
 #home-features-tab span#tab-arrow-right {
     right: 42%;
     bottom: 10px;
     width:40px;
+    display:none;
 }
 }
 @media screen and (max-width:960px) {
