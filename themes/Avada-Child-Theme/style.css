@@ -1366,6 +1366,9 @@ h2.main-title {
 .fusion-footer-widget-area .widget-title {
     margin: 0 0 10px!important;
 }
+#partner-logo-widgit .fusion-fullwidth.fullwidth-box{
+    padding:30px!important;
+}
 }
 @media screen and (max-width:480px) {
 .fusion-contact-info {
