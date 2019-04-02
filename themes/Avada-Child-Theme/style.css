@@ -348,6 +348,9 @@ body.home #main {
 #home-tabs h4 {
     color: #999;
 }
+#home-tab li:hover{
+    color:#000;
+}
 #home-tab li a:hover {
     color: #000;
 }
@@ -473,6 +476,7 @@ body.home #main {
 }
 #home-features-tab .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
     border-color: rgba(115, 132, 177, 0.1)!important;
+    min-height:160px;
 }
 #home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a, #home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:hover, #home-features-tab .fusion-tabs.fusion-tabs-1 .nav-tabs li.active a:focus {
     background: #fff!important;
@@ -1079,6 +1083,17 @@ body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fu
     font-size: 16px;
 }
 }
+@media screen and (min-width:801px) and (max-width:1024px){
+    #home-features-tab .fusion-tabs.fusion-tabs-1.clean .nav-tabs li a {
+    min-height: 185px;
+ }
+ .home-tab-c1 {
+    max-width: 54px;
+}
+.home-tab-c2{
+    float:right;
+}
+}
 @media screen and (max-width:960px){
     .fusion-tabs .nav-tabs li {
     display: block;
@@ -1289,6 +1304,9 @@ h2.main-title {
 }
 #home-features-tab span#tab-arrow-left, #home-features-tab span#tab-arrow-right{
     display:none;
+}
+.fusion-footer{
+    background:#000;
 }
 }
 @media screen and (max-width:480px) {
