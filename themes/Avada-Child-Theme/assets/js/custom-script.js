@@ -184,7 +184,11 @@ jQuery('body.home').ready( function() {
 });
 
 jQuery('body.home ul.product-feature-links > li > a').on('click', function(e) {
+	debugger;
 	var hashId = jQuery(this).attr('href').replace('/#', '');
+	if(jQuery(window).width() < 800){
+  			hashId = 'mobile-'+hashId;
+  		}
 	ActiveSelectedTab(hashId);
 });
 
