@@ -189,6 +189,8 @@ jQuery('body.home ul.product-feature-links > li > a').on('click', function(e) {
 	if(jQuery(window).width() < 800){
   			hashId = 'mobile-'+hashId;
   		}
+	var hashRef = '/#'+hashId;
+	jQuery(this).attr('href', hashRef);
 	ActiveSelectedTab(hashId);
 });
 
