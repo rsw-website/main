@@ -1120,8 +1120,8 @@ body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fu
 }
 #home-intro h1 {
     margin-bottom: 15px;
-    font-size: 40px!important;
-    line-height: 40px;
+    font-size: 36px!important;
+    line-height: 36px;
     font-weight: 400;
 }
 .home-quote {
@@ -1129,10 +1129,10 @@ body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fu
     max-width: 420px;
 }
 h2 {
-    font-size: 36px!important;
+    font-size:24px!important;
 }
 h3 {
-    font-size: 32px!important;
+    font-size: 20px!important;
 }
 #home-features .fusion-row {
     max-width: 420px;
@@ -1179,9 +1179,9 @@ nav.fusion-secondary-menu {
 }
 .comp-motto li {
     display: block;
-    padding: 50px 20px 15px 20px;
+    padding: 10px 20px 15px 20px;
     border-right: none;
-    margin: 10px auto;
+    margin: 5px auto;
     text-align: center;
     border-bottom: 1px solid #a0aac6;
     max-width: 280px;
@@ -1273,6 +1273,12 @@ a.fusion-icon.fusion-icon-search {
 h2.main-title {
     color: #fff!important;
     padding: 60px 0 10px 0;
+}
+#text-3.fusion-footer-widget-column, #text-4.fusion-footer-widget-column, #text-5.fusion-footer-widget-column {
+    margin-bottom: 5px;
+}
+#home-quick-contact h3{
+    font-size:20px;
 }
 }
 @media screen and (max-width:480px) {
