@@ -184,7 +184,7 @@ jQuery('body.home').ready( function() {
 });
 
 jQuery('body.home ul.product-feature-links > li > a').on('click', function(e) {
-	var hashId = jQuery(this).attr('href').replace('#', '');
+	var hashId = jQuery(this).attr('href').replace('/#', '');
 	ActiveSelectedTab(hashId);
 });
 
