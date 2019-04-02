@@ -69,7 +69,6 @@ jQuery('form.woocommerce-form-register .woocommerce-Button')
 });
 
 jQuery('.tab-link').on('click', function(e){
-	debugger;
 	enableTimer = false;
 
 });
@@ -181,12 +180,10 @@ jQuery('form#dashboard-document-filter').on('submit', function(event){
 });
 
 jQuery('body.home').ready( function() {
-	debugger;
 	ActiveSelectedTab();
 });
 
 function ActiveSelectedTab(){
-	debugger;
 	var hashId = window.location.hash.substr(1);
 	if(hashId.length){
 		jQuery('a.tab-link#'+hashId).click();
