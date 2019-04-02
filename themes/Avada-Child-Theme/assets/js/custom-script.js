@@ -184,16 +184,13 @@ jQuery('body.home').ready( function() {
 });
 
 jQuery('body.home ul.product-feature-links > li > a').on('click', function(e) {
-	debugger;
-	ActiveSelectedTab();
+	var hashId = jQuery(this).attr('href').replace('#', '');
+	ActiveSelectedTab(hashId);
 });
 
-function ActiveSelectedTab(hashId = null){
-	if(hashId){
-		// click id function
-	} else{
-		
+function ActiveSelectedTab(hashId){
+	if(hashId.length){
+		jQuery('a.tab-link#'+hashId).click();
 	}
-	jQuery('a.tab-link#'+hashId).click();
 
 }
