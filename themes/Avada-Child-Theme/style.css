@@ -1113,13 +1113,23 @@ h5.small-heading:first-child {
     min-height: 185px;
 }
 .home-tab-c1 {
-    max-width:55%;
+    max-width:50%;
 }
 .home-tab-c2 {
     float: right;
     width:30%;
     min-width:370px;
     
+}
+#home-features-tab span#tab-arrow-left {
+    left: 42%;
+    bottom: 10px;
+    width:40px;
+}
+#home-features-tab span#tab-arrow-right {
+    right: 42%;
+    bottom: 10px;
+    width:40px;
 }
 }
 @media screen and (max-width:960px) {
