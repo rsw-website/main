@@ -517,6 +517,9 @@ body.home #main {
     position: relative;
     z-index: 1;
 }
+#home-features h2{
+    font-weight:400;
+}
 .home-features-box {
     -webkit-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
     -moz-box-shadow: -2px -2px 20px 3px rgba(209,209,209,1);
@@ -1125,7 +1128,7 @@ body.page-template-contact-us-template #partner-logo-widgit .fusion-fullwidth.fu
     font-weight: 400;
 }
 .home-quote {
-    margin: 25px auto 25px;
+    margin:15px auto 15px;
     max-width: 420px;
 }
 h2 {
@@ -1197,7 +1200,7 @@ p.mike-img {
 p.mike-img img {
     width: 80px;
     display: block;
-    margin: 0 auto 15px auto;
+    margin: 0 auto 10px auto;
 }
 .home-quote p {
     margin: 0 auto;
@@ -1241,6 +1244,10 @@ p.mike-img img {
     border-bottom: 1px solid #121416;
     padding-left: 0!important;
 }
+.mike-quote span {
+    font-size: 14px;
+    margin-top: 0;
+}
 .testimonial-widgit .fusion-columns .fusion-column:not(.fusion-column-last) {
     margin: 0!important;
 }
@@ -1279,6 +1286,9 @@ h2.main-title {
 }
 #home-quick-contact h3{
     font-size:20px;
+}
+#home-features-tab span#tab-arrow-left, #home-features-tab span#tab-arrow-right{
+    display:none;
 }
 }
 @media screen and (max-width:480px) {
