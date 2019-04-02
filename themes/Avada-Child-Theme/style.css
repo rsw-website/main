@@ -1337,6 +1337,9 @@ h2.main-title {
 .rc-anchor-normal .rc-anchor-checkbox-label{
     width:100px!important;
 }
+.new-signup{
+    clear:both;
+}
 }
 @media screen and (max-width:480px) {
 .fusion-contact-info {
