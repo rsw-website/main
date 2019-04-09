@@ -68,3 +68,7 @@ function custom_notification_message($message, $user) {
 }
 add_filter('new_user_approve_approve_user_message', 'custom_notification_message', 10, 2);
 
+function wpdocs_enqueue_custom_admin_script() {
+         wp_enqueue_script( 'custom-script', plugins_url('documents-management/custom-script.js'), __FILE__);
+}
+add_action( 'admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_script' );

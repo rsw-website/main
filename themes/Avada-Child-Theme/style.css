@@ -1416,3 +1416,10 @@ a.toplink-email {
     padding:20px 10px 30px 10px;
 }
 }
+
+.video-container{
+    text-align: center;
+}
+.video-container video{
+    width: 600px;
+}
