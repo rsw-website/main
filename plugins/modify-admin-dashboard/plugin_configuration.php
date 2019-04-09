@@ -588,3 +588,12 @@ function list_staff_obj($atts, $content=null) {
 }
 
 add_shortcode( 'list-staff', 'list_staff_obj' );
+
+add_action('admin_menu', 'user_activity_menu');
+
+function user_activity_menu() {
+  add_users_page('Client User Activity', 'User Activities', 'read', 'user-activity', 'get_user_activity');
+}
+
+function get_user_activity(){
+}
