@@ -40,8 +40,11 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 						  	Your browser does not support HTML5 video.
 						</video>
 					</div>
+				<?php else: ?>
+					<div id='pdf-viewer'>
+						<div class="loadersmall"></div>
+					</div>
 				<?php endif; ?>
-				<div id='pdf-viewer'></div>
 				<?php the_content(); ?>
 				<?php fusion_link_pages(); ?>
 			</div>
@@ -67,7 +70,10 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
         thePdf = pdf;
         viewer = document.getElementById('pdf-viewer');
-
+        debugger;
+    	if(pdf.numPages){
+    		jQuery('.loadersmall').remove();
+    	}
         for(page = 1; page <= pdf.numPages; page++) {
           canvas = document.createElement("canvas");    
           canvas.className = 'pdf-page-canvas';         
@@ -77,6 +83,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
     });
 
     function renderPage(pageNumber, canvas) {
+    	debugger;
         thePdf.getPage(pageNumber).then(function(page) {
           viewport = page.getViewport(scale);
           canvas.height = viewport.height;
