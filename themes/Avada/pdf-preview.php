@@ -19,6 +19,9 @@ if(!isset($_GET['id'])){
 	<?php
 	get_footer();
 	exit();
+} else{
+	$documentId = base64_decode($_GET['id']);
+	$attchmentData = get_post($documentId);
 }
 $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_page_by_path( 'preview-document' )));
 ?>
@@ -29,7 +32,15 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
 			<?php avada_featured_images_for_pages(); ?>
-			<div class="post-content">
+			<div class="post-content">	
+				<?php if($attchmentData->post_mime_type === 'video/mp4'): ?>
+					<div class="video-container">
+						<video controls controlsList="nodownload">
+						  	<source src=<?php echo $attchmentData->guid; ?> type="<?php echo $attchmentData->post_mime_type; ?>">
+						  	Your browser does not support HTML5 video.
+						</video>
+					</div>
+				<?php endif; ?>
 				<div id='pdf-viewer'></div>
 				<?php the_content(); ?>
 				<?php fusion_link_pages(); ?>

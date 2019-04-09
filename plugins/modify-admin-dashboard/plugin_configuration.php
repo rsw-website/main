@@ -449,7 +449,7 @@ function list_staff() {
     $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $preQuery = "SELECT wp_posts.*, wp_bookmarked_documents.is_bookmarked FROM wp_posts LEFT JOIN wp_bookmarked_documents ON wp_bookmarked_documents.document_id = wp_posts.ID AND wp_bookmarked_documents.user_id = ".$current_user_id." WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND wp_posts.post_title LIKE '%".$search."%'";
+    $preQuery = "SELECT wp_posts.*, wp_bookmarked_documents.is_bookmarked FROM wp_posts LEFT JOIN wp_bookmarked_documents ON wp_bookmarked_documents.document_id = wp_posts.ID AND wp_bookmarked_documents.user_id = ".$current_user_id." WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND wp_posts.post_title LIKE '%".$search."%'";
 
     if(isset($_GET['type'])){
       $argsArray['type'] = $_GET['type'];

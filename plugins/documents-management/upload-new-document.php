@@ -3,11 +3,13 @@
   <form method="post" enctype="multipart/form-data">
       <p id="async-upload-wrap">
         <label class="screen-reader-text" for="async-upload">Upload</label>
-        <input type="file" name="test_upload_pdf" id="test_upload_pdf"/>
+        <input type="file" name="test_upload_pdf[]" id="test_upload_pdf" multiple/>
         <input type="submit" name="submit" id="submit" class="button button-primary" value="Upload"> 
         <p class="upload-file-description">
-        Allowed document types : <span>.pdf</span><span>.doc</span><span>.docx</span><span>.ppt</span><span>.pptx</span><span>.xls</span><span>.xlsx</span></p>     
+        Allowed document types : <span>.pdf</span><span>.mp4</span><span>.doc</span><span>.docx</span><span>.ppt</span><span>.pptx</span><span>.xls</span><span>.xlsx</span></p>
       </p>
+      <p class="upload-file-description">Maximum upload file size: 500 MB.</p>
+      
   </form>
 </div>
   <style type="text/css">

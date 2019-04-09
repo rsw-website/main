@@ -49,37 +49,56 @@ function addNewDocument(){
 }
 
 function insertNewDocument(){
-    // First check if the file appears on the _FILES array
-    if(isset($_FILES['test_upload_pdf'])){
-        $document = $_FILES['test_upload_pdf'];
-        if($document['type'] === 'application/pdf' ||
-        $document['type'] === 'text/plain' || 
-        $document['type'] === 'application/vnd.oasis.opendocument.spreadsheet' || 
-        $document['type'] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-        $document['type'] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'){ 
-            // Use the wordpress function to upload
-            // test_upload_pdf corresponds to the position in the $_FILES array
-            // 0 means the content is not associated with any other posts
-            $uploaded=media_handle_upload('test_upload_pdf', 0);
-            ?>
-            <div class="error-page"><p>
-            <?php
-            // Error checking using WP functions
-            if(is_wp_error($uploaded)){
-                    echo "Error uploading file: " . $uploaded->get_error_message();
-            }else{
-                    echo "File upload successfully!";
+ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    ?>
+    <div class="error-page">
+    <?php
+    require_once( ABSPATH . 'wp-admin/includes/image.php' );
+    require_once( ABSPATH . 'wp-admin/includes/file.php' );
+    require_once( ABSPATH . 'wp-admin/includes/media.php' );
+
+    $files = $_FILES["test_upload_pdf"];
+    foreach ($files['name'] as $key => $value) {
+        if ($files['name'][$key]) {
+            if($files['type'][$key] === 'application/pdf' ||
+                $files['type'][$key] === 'text/plain' || 
+                $files['type'][$key] === 'application/vnd.oasis.opendocument.spreadsheet' || 
+                $files['type'][$key] === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
+                $files['type'][$key] === 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' ||
+                $files['type'][$key] === 'video/mp4' ||
+                $files['type'][$key] === 'video/x-matroska'){
+                    $file = array(
+                        'name' => $files['name'][$key],
+                        'type' => $files['type'][$key],
+                        'tmp_name' => $files['tmp_name'][$key],
+                        'error' => $files['error'][$key],
+                        'size' => $files['size'][$key]
+                    );
+                    $_FILES = array("upload_file" => $file);
+                    $attachment_id = media_handle_upload("upload_file", 0);
+
+                    if (is_wp_error($attachment_id)) {
+                        // There was an error uploading the image.
+                        ?>
+                        <p><?php echo $files['name'][$key]; ?> - Error uploading File!!
+                        </p>
+                        <?php                    } else {
+                        // The image was uploaded successfully!
+                        ?>
+                        <p><?php echo $files['name'][$key]; ?> - File uploaded successfully!!
+                        </p>
+                        <?php
+                    }
+            } else{
+                ?>
+                <p><?php echo $files['name'][$key]; ?> - This file type is not permitted for security reasons.</p>
+                <?php
             }
-            ?>
-            </p></div>
-            <?php
-        } else{
-            ?>
-            <div class="error-page">
-                <p>Sorry, this file type is not permitted for security reasons.</p>
-            </div>
-            <?php
         }
     }
+    ?>
+</div>
+    <?php
+}
 }
 

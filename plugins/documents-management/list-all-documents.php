@@ -52,14 +52,13 @@ function process_bulk_action() {
         //Detect when a bulk action is being triggered...
         if( 'delete'=== $this->current_action() ) {
           $nonce = esc_attr( $_REQUEST['document_wpnonce'] );
-          // die($nonce);
           if ( ! wp_verify_nonce( $nonce, 'wp_delete_document' ) ) {
             die( 'Go get a life script kiddies' );
           } else {
             self::delete_document( absint( $_GET['document'] ) );
             // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
             // add_query_arg() return the current url
-            wp_redirect('?page=all-document');
+            wp_redirect('?page=all-document&deleted=1');
             exit;
           }
 
@@ -70,6 +69,7 @@ function process_bulk_action() {
              || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
         ) {
           $delete_ids = esc_sql( $_POST['bulk-delete'] );
+        print_r($delete_ids);
 
           // loop over the array of record IDs and delete them
           foreach ( $delete_ids as $id ) {
@@ -79,7 +79,7 @@ function process_bulk_action() {
 
           // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
                 // add_query_arg() return the current url
-                wp_redirect('?page=all-document');
+                wp_redirect('?page=all-document&deleted='.count($delete_ids));
           exit;
         }
         
@@ -104,7 +104,7 @@ function column_post_title($item){
         //Build row actions
         $delete_nonce = wp_create_nonce( 'wp_delete_document' );
         $actions = array(
-            'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s">Delete</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce),
+            'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">Delete</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce),
         );
         
         //Return the title contents
@@ -129,7 +129,7 @@ function column_post_title($item){
         
         //Return the title contents
         return sprintf('<a target="_blank" href="%1$s">%1$s</a> <span style="color:silver"></span>%3$s',
-            /*$1%s*/ add_query_arg(array('id' => base64_encode($item['ID'])), get_permalink( get_page_by_path( 'documents' ))),
+            /*$1%s*/ add_query_arg(array('id' => base64_encode($item['ID'])), get_permalink( get_page_by_path( 'preview-document' ))),
             /*$2%s*/ $item['ID'],
             /*$3%s*/ $this->row_actions($actions)
         );
@@ -173,7 +173,7 @@ function column_post_title($item){
 function prepare_items($search = '') {
   global $wpdb; //This is used only if making any database queries
   $tableListData = $wpdb->get_results
-  ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
+  ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
     $per_page = 10;
   $columns  = $this->get_columns();
   $hidden   = array();
