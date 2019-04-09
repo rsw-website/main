@@ -207,32 +207,21 @@ function testimonial_widgit() {
 add_action( 'widgets_init', 'testimonial_widgit' );
 
 function new_modify_user_table( $column ) {
-    $column['document_access'] = 'Access';
+    $column['user_activity'] = 'User Activity';
     return $column;
 }
-// add_filter( 'manage_users_columns', 'new_modify_user_table' );
+add_filter( 'manage_users_columns', 'new_modify_user_table' );
 
 function new_modify_user_table_row( $val, $column_name, $user_id ) {
     switch ($column_name) {
-        case 'document_access' :
-            $documentAccess = intval(get_user_meta
-              ( $user_id, 'document_access', true ));
-            if($documentAccess === 1){
-                $accessText = 'Granted';
-            } elseif ($documentAccess === 2) {
-              $accessText = 'Revoked';
-            } elseif ($documentAccess === 3) {
-              $accessText = 'Pending';
-            } else{
-              $accessText = '<span aria-hidden="true">—</span>';
-            }
-            return $accessText;
+        case 'user_activity' :
+            return "<a href='".admin_url('users.php?page=user-activity&id='.$user_id)."'>Track Activity</a>";
             break;
         default:
     }
     return $val;
 }
-// add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
+add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
 
 // add_action( 'show_user_profile', 'extra_user_profile_fields' );
 // add_action( 'edit_user_profile', 'extra_user_profile_fields' );
@@ -596,4 +585,9 @@ function user_activity_menu() {
 }
 
 function get_user_activity(){
+  if(isset($_GET['id'])){
+    $userData = get_user_by('ID', $_GET['id']);
+    echo "<pre>";
+    print_r($userData);
+  }
 }
