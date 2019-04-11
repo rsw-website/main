@@ -1445,3 +1445,6 @@ a.toplink-email {
   100% { transform: rotate(360deg); }
 }
 .back-list{font-size: 20px;}
+.fusion-social-links-header{
+    display:none!important;
+}
