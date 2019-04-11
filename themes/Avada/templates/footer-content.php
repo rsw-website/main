@@ -20,6 +20,7 @@ $display_footer = get_post_meta( $c_page_id, 'pyre_display_footer', true );
 <?php if ( ( Avada()->settings->get( 'footer_widgets' ) && 'no' !== $display_footer ) || ( ! Avada()->settings->get( 'footer_widgets' ) && 'yes' === $display_footer ) ) : ?>
 	<?php $footer_widget_area_center_class = ( Avada()->settings->get( 'footer_widgets_center_content' ) ) ? ' fusion-footer-widget-area-center' : ''; ?>
 	<?php if ( is_active_sidebar( 'partner_logo_widgit' ) ) : ?>
+		<?php if((!is_page('free-demo')) && (!is_page('contact-us'))) : ?>
 		<div class="fusion-row partner-logo">
 			<div class="fusion-columns fusion-columns-1 fusion-widget-area">
 				<div class="fusion-column col-lg-12 col-md-12 col-sm-12">
@@ -29,6 +30,7 @@ $display_footer = get_post_meta( $c_page_id, 'pyre_display_footer', true );
 				</div>
 			</div>
 		</div>
+		<?php endif; ?>
 	<?php endif; ?>
 	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area">
 		<div class="fusion-row">
