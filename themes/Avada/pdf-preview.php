@@ -57,7 +57,13 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 		</div>
 	<?php endwhile; ?>
 </section>
-<script>   
+<script>
+	jQuery(document).ready(function()
+	{
+	    jQuery(window).bind("beforeunload", function() { 
+	        return confirm("Do you really want to close?"); 
+	    });
+	});   
     url = '<?php echo $fileAccessUrl; ?>';
     var thePdf = null;
     var scale = 2;
