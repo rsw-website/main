@@ -32,7 +32,8 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 		<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 			<?php echo fusion_render_rich_snippets_for_pages(); // WPCS: XSS ok. ?>
 			<?php avada_featured_images_for_pages(); ?>
-			<div class="post-content">	
+			<div class="post-content">
+				<div class="back-list"><a href="<?php echo isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '/client-dashboard/my-document/'; ?>"><i class="fa-long-arrow-alt-left fas" data-name="angle-left"></i> Back to documents list</a></div>	
 				<?php if($attchmentData->post_mime_type === 'video/mp4'): ?>
 					<div class="video-container">
 						<video controls controlsList="nodownload">
