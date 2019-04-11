@@ -371,6 +371,15 @@ class Avada_Contact {
 		}
 		$subject = get_option('blogname').' Contact Request';
 		$headers = 'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n";
+		// Send auto response mail to user
+		$auto_headers = 'Reply-To: ' . get_bloginfo( 'name' ) . ' <' . $email_to . '>' . "\r\n";
+		$auto_subject = 'Request Received - Contact form submitted';
+		$auto_body = "Hi, \n\n";
+		$auto_body .= "Thank you for contacting ".get_bloginfo( 'name' ).". Our business team will contact you soon. \n\n";
+		$auto_body .= "Best Regards, \n\n".get_bloginfo( 'name' );
+
+		wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
+
 		wp_mail( $email_to, $subject, $body, $headers );
 
 		$this->email_sent = true;

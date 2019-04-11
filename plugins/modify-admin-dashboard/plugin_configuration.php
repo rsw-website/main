@@ -93,6 +93,10 @@ function wooc_save_extra_register_fields( $customer_id ) {
       // WooCommerce billing last name.
       update_user_meta( $customer_id, 'billing_last_name', sanitize_text_field( $_POST['billing_last_name'] ) );
   }
+  if ( isset( $_POST['billing_company'] ) ) {
+      // WordPress default last name field.
+      update_user_meta( $customer_id, 'billing_company', sanitize_text_field( $_POST['billing_company'] ) );
+  }
 }
 
 add_action( 'woocommerce_created_customer', 
@@ -207,6 +211,7 @@ function testimonial_widgit() {
 add_action( 'widgets_init', 'testimonial_widgit' );
 
 function new_modify_user_table( $column ) {
+    $column['company'] = 'Company';
     $column['user_activity'] = 'User Activity';
     return $column;
 }
@@ -216,6 +221,9 @@ function new_modify_user_table_row( $val, $column_name, $user_id ) {
     switch ($column_name) {
         case 'user_activity' :
             return "<a href='".admin_url('users.php?page=user-activity&id='.$user_id)."'>Track Activity</a>";
+            break;
+        case 'company' :
+            return get_user_meta( $user_id, 'billing_company', true );
             break;
         default:
     }
@@ -587,7 +595,9 @@ function user_activity_menu() {
 function get_user_activity(){
   if(isset($_GET['id'])){
     $userData = get_user_by('ID', $_GET['id']);
-    echo "<pre>";
-    print_r($userData);
+    // $all_meta_for_user = get_user_meta( $_GET['id'] );
+  // echo get_user_meta( $_GET['id'], 'billing_company', true );
+      echo "<pre>";
+    // print_r($userData);
   }
 }
