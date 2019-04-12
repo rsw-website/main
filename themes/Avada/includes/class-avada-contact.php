@@ -379,7 +379,6 @@ class Avada_Contact {
 		$auto_body .= "Best Regards, \n\n".get_bloginfo( 'name' );
 
 		$stat = wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
-		echo "stat is : ".$stat;
 		wp_mail( $email_to, $subject, $body, $headers );
 
 		$this->email_sent = true;
