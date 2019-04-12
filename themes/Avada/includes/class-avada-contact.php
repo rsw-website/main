@@ -378,8 +378,8 @@ class Avada_Contact {
 		$auto_body .= "Thank you for contacting ".get_bloginfo( 'name' ).". Our business team will contact you soon. \n\n";
 		$auto_body .= "Best Regards, \n\n".get_bloginfo( 'name' );
 
-		wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
-
+		$stat = wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
+		echo "stat is : ".$stat;
 		wp_mail( $email_to, $subject, $body, $headers );
 
 		$this->email_sent = true;
