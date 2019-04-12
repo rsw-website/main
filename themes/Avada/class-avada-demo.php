@@ -376,7 +376,7 @@ class Avada_Demo {
 
 		// Send auto response mail to user
 		$auto_headers = 'Reply-To: ' . get_bloginfo( 'name' ) . ' <' . $email_to . '>' . "\r\n";
-		$auto_subject = 'Request Received - Contact form submitted';
+		$auto_subject = 'Request Received - Free Demo Request';
 		$auto_body = "Hi, \n\n";
 		$auto_body .= "Thank you for contacting ".get_bloginfo( 'name' ).". Our business team will contact you soon. \n\n";
 		$auto_body .= "Best Regards, \n\n".get_bloginfo( 'name' );
