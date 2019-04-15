@@ -48,20 +48,38 @@ function get_bulk_actions() {
     }
 
 function process_bulk_action() {
-        
         //Detect when a bulk action is being triggered...
-        if( 'delete'=== $this->current_action() ) {
-          $nonce = esc_attr( $_REQUEST['document_wpnonce'] );
+        $nonce = esc_attr( $_REQUEST['document_wpnonce'] );
+        if( 'inactive'=== $this->current_action() ) {
           if ( ! wp_verify_nonce( $nonce, 'wp_delete_document' ) ) {
-            die( 'Go get a life script kiddies' );
+            die( 'Something went wrong. Unable to delete file.' );
+          } else {
+            $status = 'trash';
+            self::update_document_status($status, absint( $_GET['document'] ));
+            wp_redirect('?page=all-document&post-status='.$_GET['post-status'].'&trashed=1');
+            exit;
+          }
+        }
+        if( 'active'=== $this->current_action() ) {
+          if ( ! wp_verify_nonce( $nonce, 'wp_delete_document' ) ) {
+            die( 'Something went wrong. Unable to delete file.' );
+          } else {
+            $status = 'inherit';
+            self::update_document_status($status, absint( $_GET['document'] ));
+            wp_redirect('?page=all-document&post-status='.$_GET['post-status'].'&trashed=1');
+            exit;
+          }
+        }
+        if( 'delete'=== $this->current_action() ) {
+          if ( ! wp_verify_nonce( $nonce, 'wp_delete_document' ) ) {
+            die( 'Something went wrong. Unable to delete file.' );
           } else {
             self::delete_document( absint( $_GET['document'] ) );
             // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
             // add_query_arg() return the current url
-            wp_redirect('?page=all-document&deleted=1');
+            wp_redirect('?page=all-document&post-status='.$_GET['post-status'].'&deleted=1');
             exit;
           }
-
         }
 
         // If the delete bulk action is triggered
@@ -79,7 +97,7 @@ function process_bulk_action() {
 
           // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
                 // add_query_arg() return the current url
-                wp_redirect('?page=all-document&deleted='.count($delete_ids));
+                wp_redirect('?page=all-document&post-status='.$_GET['post-status'].'&deleted='.count($delete_ids));
           exit;
         }
         
@@ -100,11 +118,51 @@ function process_bulk_action() {
     );
   }
 
+  /**
+   * Update document status.
+   *
+   * @param int $id post ID
+   */
+  public static function update_document_status( $status, $id ) {
+    global $wpdb;
+    $table_name = 'wp_posts';
+    $wpdb->query($wpdb->prepare(
+      "UPDATE $table_name SET post_status='%s' WHERE ID=%s", $status, $id));
+  }
+  
+protected function get_views() { 
+    $views = array();
+     $current = ( !empty($_REQUEST['post-status']) ? $_REQUEST['post-status'] : 'all');
+
+     //All link
+     $class = ($current == 'all' ? ' class="current"' :'');
+     $all_url = remove_query_arg('post-status');
+     $views['all'] = "<a href='{$all_url }' {$class} >All</a>";
+
+     //Active link
+     $foo_url = add_query_arg('post-status','active');
+     $class = ($current == 'active' ? ' class="current"' :'');
+     $views['active'] = "<a href='{$foo_url}' {$class} >Active</a>";
+
+     //Abandon
+     $bar_url = add_query_arg('post-status','inactive');
+     $class = ($current == 'inactive' ? ' class="current"' :'');
+     $views['inactive'] = "<a href='{$bar_url}' {$class} >Inactive</a>";
+
+     return $views;
+  }
+
 function column_post_title($item){
         //Build row actions
+  if(isset($_GET['post-status'])){
+    $post_status = $_GET['post-status'];
+  } else{
+    $post_status = 'all';
+  }
         $delete_nonce = wp_create_nonce( 'wp_delete_document' );
         $actions = array(
-            'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">Delete</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce),
+            'status'    => sprintf('<a href="?page=%s&post-status=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete">%s</a>',$_REQUEST['page'], $post_status, $item['post_status'] === 'inherit' ? 'inactive' : 'active' ,$item['ID'], $delete_nonce, $item['post_status'] === 'inherit' ? 'Inactive' : 'Active'),
+            'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
         );
         
         //Return the title contents
@@ -171,9 +229,17 @@ function column_post_title($item){
 
 
 function prepare_items($search = '') {
+  if($_GET['post-status'] == 'active'){
+    $post_status = 'inherit';
+  } elseif ($_GET['post-status'] == 'inactive') {
+    $post_status = 'trash';
+  } else{
+    $post_status = 'inherit';
+  }
   global $wpdb; //This is used only if making any database queries
   $tableListData = $wpdb->get_results
-  ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
+  ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' 
+    AND post_status = '".$post_status."' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
     $per_page = 10;
   $columns  = $this->get_columns();
   $hidden   = array();
