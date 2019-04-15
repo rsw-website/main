@@ -5,4 +5,5 @@
 /plugins/*
 !/plugins/documents-management/
 !/plugins/modify-admin-dashboard/
+!/plugins/no-captcha-recaptcha-for-woocommerce/
 /languages
