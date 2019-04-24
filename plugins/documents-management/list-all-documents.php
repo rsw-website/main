@@ -163,7 +163,7 @@ function column_post_title($item){
   $actions = array(
       'edit'    => sprintf('<a href="?page=%s&edit=%s">%s</a>',$_REQUEST['page'], $item['ID'], 'Edit'),
       'status'    => sprintf('<a href="?page=%s&post-status=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete">%s</a>',$_REQUEST['page'], $post_status, $item['post_status'] === 'inherit' ? 'inactive' : 'active' ,$item['ID'], $delete_nonce, $item['post_status'] === 'inherit' ? 'Inactive' : 'Active'),
-      'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
+      'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitkdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
   );
   
   //Return the title contents
@@ -231,16 +231,16 @@ function column_post_title($item){
 
 function prepare_items($search = '') {
   if($_GET['post-status'] == 'active'){
-    $post_status = 'inherit';
+    $post_status = "AND post_status = 'inherit'";
   } elseif ($_GET['post-status'] == 'inactive') {
-    $post_status = 'trash';
+    $post_status = "AND post_status = 'trash'";
   } else{
-    $post_status = 'inherit';
+    $post_status = '';
   }
   global $wpdb; //This is used only if making any database queries
   $tableListData = $wpdb->get_results
   ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' 
-    AND post_status = '".$post_status."' AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
+    ".$post_status." AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
     $per_page = 10;
   $columns  = $this->get_columns();
   $hidden   = array();
