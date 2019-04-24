@@ -13,15 +13,16 @@
       <p class="upload-file-description">Maximum upload file size: 500 MB.</p>
       <h2 class="hndle ui-sortable-handle"><span>Tags</span></h2>
       <div class="tags-list">
-      <?php
-      $html = '';
-        foreach ($tags as $tag){
-          
-          $html .= "<a href='javascript:void(0)' title='{$tag['tag_name']}' class='tag-list' tag-slug='{$tag['tag_slug']}' tag-id='{$tag['ID']}'>";
-          $html .= "{$tag['tag_name']}</a>";
-        }
-      echo $html;
-      ?>
+        <ul class="tag-list-ul">
+        <?php foreach ($tags as $tag): ?>
+          <li>
+            <a href="javascript:void(0)" class="tag-list" title='<?php echo $tag['tag_name']; ?>'
+             tag-slug='<?php echo $tag['tag_slug']; ?>' tag-id='<?php echo $tag['ID']; ?>'>
+             <?php echo $tag['tag_name']; ?>
+            </a>
+          </li>
+        <?php endforeach; ?>
+        </ul>
       </div>
       <input type="hidden" id="tag-id-list" name="tag_ids"/>
       <p>
@@ -30,32 +31,66 @@
   </form>
 </div>
   <style type="text/css">
-      .tags-list > a{
-        background: #fff;
-        color: #0085ba;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
-        padding: .2em .5em;
-        margin-right: 5px;
-        text-decoration: none;
-        outline: none;
+      ul.tag-list-ul{
+        list-style: none;
+        margin: 0;
+        overflow: hidden; 
+        padding: 0;
       }
-      .tags-list > a:hover{
+      ul.tag-list-ul li {
+        float: left;
+      }
+      a.tag-list {
+        background: #fff;
+        border-radius: 3px 0 0 3px;
+        color: #0085ba;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        padding: 0 20px 0 23px;
+        position: relative;
+        margin: 0 10px 10px 0;
+        text-decoration: none;
+        -webkit-transition: color 0.2s;
+      }
+      a.tag-list::before {
+        background: #f1f1f1;
+        border-radius: 10px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+        content: '';
+        height: 6px;
+        left: 10px;
+        position: absolute;
+        width: 6px;
+        top: 10px;
+      }
+
+      a.tag-list::after {
+        background: #f1f1f1;
+        border-bottom: 13px solid transparent;
+        border-left: 10px solid #fff;
+        border-top: 13px solid transparent;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      a.tag-list:hover {
         color: #000;
       }
-
       a.selected-tag{
         color: #fff !important;
-        background: #0085ba;
-        border-color: #0085ba;
+        background: #0085ba !important;
+        border-color: #0085ba !important;
       }
-
-      .tags-list > a:focus{
+      a.selected-tag::after{
+        border-left-color: #0085ba; 
+      }
+      a.tag-list:focus{
         outline: none;
         box-shadow: none;
       }
-
       .upload-file-description span{
             background: #f5f5f5;
             color: #666;
@@ -76,5 +111,6 @@
         box-shadow: 0 1px 3px rgba(0,0,0,0.13);
       }
       .error-page p{font-size: 14px;}
+
       
   </style>
