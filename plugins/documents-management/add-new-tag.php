@@ -42,8 +42,22 @@ $tags_list_table = new Tags_list_table();
     </div>
     <div id="col-right">
       <div class="col-wrap">
+        <?php
+          if(isset($_GET['deleted'])){
+            if(intval($_GET['deleted']) === 1){
+              $message = 'Tag permanently deleted.';
+            } elseif (intval($_GET['deleted']) > 1) {
+              $message = $_GET['deleted'].' tags permanently deleted.';
+            } else{
+              $message = '';
+            }
+            ?>
+              <div id="message" class="updated notice is-dismissible"><p><?php echo $message; ?></p><button type="button" class="notice-dismiss"><span class="screen-reader-text">Dismiss this notice.</span></button></div>
+            <?php
+          }
+        ?>
         <form id="tag-filter" method="post">
-          <?php wp_nonce_field( 'wp_delete_tag', 'document_delete_wpnonce' ); ?>
+          <?php wp_nonce_field( 'wp_delete_tag', 'tag_delete_wpnonce' ); ?>
           <input type="hidden" name="page" value="<?php //echo $_REQUEST['page'] ?>" />
           <!-- Now we can render the completed list table -->
           <?php

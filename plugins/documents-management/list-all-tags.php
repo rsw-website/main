@@ -49,7 +49,7 @@ class Tags_list_table extends WP_List_Table {
         $delete_nonce = wp_create_nonce( 'wp_delete_tag' );
           $actions = array(
               'edit'    => sprintf('<a href="?page=%s&action=%s&tag_id=%s" class="submitdelete">Edit</a>',$_REQUEST['page'], 'edit', $item['ID']),
-              'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&tag_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
+              'delete'    => sprintf('<a href="?page=%s&action=%s&tag=%s&tag_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
           );
       return sprintf('%1$s <span style="color:silver"></span>%3$s',
           /*$1%s*/ $item['tag_name'],
@@ -89,6 +89,56 @@ class Tags_list_table extends WP_List_Table {
         return $actions;
     }
 
+    function process_bulk_action() {
+        //Detect when a bulk action is being triggered...
+        $nonce = esc_attr( $_REQUEST['tag_wpnonce'] );
+        if( 'delete'=== $this->current_action() ) {
+          if ( ! wp_verify_nonce( $nonce, 'wp_delete_tag' ) ) {
+            die( 'Something went wrong. Unable to delete file.' );
+          } else {
+            self::delete_tag( absint( $_GET['tag'] ) );
+            // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
+            // add_query_arg() return the current url
+            wp_redirect('?page=document-tags&deleted=1');
+            exit;
+          }
+        }
+
+        // If the delete bulk action is triggered
+        if ( ( isset( $_POST['action'] ) && $_POST['action'] == 'bulk-delete' )
+             || ( isset( $_POST['action2'] ) && $_POST['action2'] == 'bulk-delete' )
+        ) {
+          $delete_ids = esc_sql( $_POST['bulk-delete'] );
+            print_r($delete_ids);
+
+          // loop over the array of record IDs and delete them
+          foreach ( $delete_ids as $id ) {
+            self::delete_tag( $id );
+
+          }
+
+          // esc_url_raw() is used to prevent converting ampersand in url to "#038;"
+                // add_query_arg() return the current url
+                wp_redirect('?page=document-tags&deleted='.count($delete_ids));
+          exit;
+        }
+        
+    }
+
+    /**
+   * Delete the document.
+   *
+   * @param int $id post ID
+   */
+  public static function delete_tag( $id ) {
+    global $wpdb;
+    $deleted_tag = $wpdb->query($wpdb->prepare(
+        "DELETE FROM {$wpdb->prefix}document_tags WHERE ID = %s", 
+        $id)
+    );
+    return $deleted_tag;
+  }
+
     function prepare_items($search = '') {
         global $wpdb; //This is used only if making any database queries
         $columns  = $this->get_columns();
@@ -104,6 +154,7 @@ class Tags_list_table extends WP_List_Table {
         $this->_column_headers = array( $columns, $hidden, $sortable );
         $per_page = 10;
         $hidden   = array();
+        $this->process_bulk_action();
         $current_page = $this->get_pagenum();
         $total_items = count($tableListData);
         $data = array_slice($tableListData,(($current_page-1)*$per_page),$per_page);
