@@ -3,7 +3,7 @@
 if( ! class_exists( 'WP_List_Table' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
-class My_Example_List_Table extends WP_List_Table {
+class Documents_list_table extends WP_List_Table {
     function __construct(){
     global $status, $page;
         parent::__construct( array(
@@ -159,19 +159,20 @@ function column_post_title($item){
   } else{
     $post_status = 'all';
   }
-        $delete_nonce = wp_create_nonce( 'wp_delete_document' );
-        $actions = array(
-            'status'    => sprintf('<a href="?page=%s&post-status=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete">%s</a>',$_REQUEST['page'], $post_status, $item['post_status'] === 'inherit' ? 'inactive' : 'active' ,$item['ID'], $delete_nonce, $item['post_status'] === 'inherit' ? 'Inactive' : 'Active'),
-            'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
-        );
-        
-        //Return the title contents
-        return sprintf('%1$s <span style="color:silver"></span>%3$s',
-            /*$1%s*/ $item['post_title'],
-            /*$2%s*/ $item['ID'],
-            /*$3%s*/ $this->row_actions($actions)
-        );
-    }
+  $delete_nonce = wp_create_nonce( 'wp_delete_document' );
+  $actions = array(
+      'edit'    => sprintf('<a href="?page=%s&edit=%s">%s</a>',$_REQUEST['page'], $item['ID'], 'Edit'),
+      'status'    => sprintf('<a href="?page=%s&post-status=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete">%s</a>',$_REQUEST['page'], $post_status, $item['post_status'] === 'inherit' ? 'inactive' : 'active' ,$item['ID'], $delete_nonce, $item['post_status'] === 'inherit' ? 'Inactive' : 'Active'),
+      'delete'    => sprintf('<a href="?page=%s&action=%s&document=%s&document_wpnonce=%s" class="submitdelete" onclick="showConfirmBox()">%s</a>',$_REQUEST['page'],'delete',$item['ID'], $delete_nonce, 'Delete Permanently'),
+  );
+  
+  //Return the title contents
+  return sprintf('%1$s <span style="color:silver"></span>%3$s',
+      /*$1%s*/ $item['post_title'],
+      /*$2%s*/ $item['ID'],
+      /*$3%s*/ $this->row_actions($actions)
+  );
+}
 
   function column_post_date_gmt($item){
         
