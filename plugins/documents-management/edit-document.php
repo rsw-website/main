@@ -29,10 +29,16 @@
           </div>
           <h1 class="wp-heading-inline">Tags</h1>
           <div class="tags-list">
-            <?php foreach ($tags as $tag): ?>
-               <a href="javascript:void(0)" class="tag-list <?php echo in_array($tag['ID'], $selected_tags) ? 'selected-tag' : ''?>" title='<?php echo $tag['tag_name']; ?>'
-               tag-slug='<?php echo $tag['tag_slug']; ?>' tag-id='<?php echo $tag['ID']; ?>'><?php echo $tag['tag_name']; ?></a>
-            <?php endforeach; ?>
+            <ul class="tag-list-ul">
+              <?php foreach ($tags as $tag): ?>
+                <li>
+                   <a href="javascript:void(0)" class="tag-list <?php echo in_array($tag['ID'], $selected_tags) ? 'selected-tag' : ''?>" title='<?php echo $tag['tag_name']; ?>'
+                   tag-slug='<?php echo $tag['tag_slug']; ?>' tag-id='<?php echo $tag['ID']; ?>'>
+                   <?php echo $tag['tag_name']; ?>
+                 </a>
+                </li>
+              <?php endforeach; ?>
+            </ul>
           </div>
           <input type="hidden" id="tag-id-list" name="tag_ids" value='<?php echo json_encode($selected_tags); ?>'/>
           <?php wp_nonce_field( 'wp_edit_document', 'document_edit' ); ?>
@@ -45,31 +51,63 @@
   </div>    
 </div>
   <style type="text/css">
-      .tags-list{
-        margin-top: 20px;
+      ul.tag-list-ul{
+        list-style: none;
+        margin: 0;
+        overflow: hidden; 
+        padding: 0;
       }
-      .tags-list > a{
+      ul.tag-list-ul li {
+        float: left;
+      }
+      a.tag-list {
         background: #fff;
+        border-radius: 3px 0 0 3px;
         color: #0085ba;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        font-size: 14px;
-        padding: .2em .5em;
-        margin-right: 5px;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        padding: 0 20px 0 23px;
+        position: relative;
+        margin: 0 10px 10px 0;
         text-decoration: none;
-        outline: none;
+        -webkit-transition: color 0.2s;
       }
-      .tags-list > a:hover{
+      a.tag-list::before {
+        background: #f1f1f1;
+        border-radius: 10px;
+        box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+        content: '';
+        height: 6px;
+        left: 10px;
+        position: absolute;
+        width: 6px;
+        top: 10px;
+      }
+
+      a.tag-list::after {
+        background: #f1f1f1;
+        border-bottom: 13px solid transparent;
+        border-left: 10px solid #fff;
+        border-top: 13px solid transparent;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      a.tag-list:hover {
         color: #000;
       }
-
       a.selected-tag{
         color: #fff !important;
-        background: #0085ba;
-        border-color: #0085ba;
+        background: #0085ba !important;
+        border-color: #0085ba !important;
       }
-
-      .tags-list > a:focus{
+      a.selected-tag::after{
+        border-left-color: #0085ba; 
+      }
+      a.tag-list:focus{
         outline: none;
         box-shadow: none;
       }
