@@ -59,12 +59,38 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 	<?php endwhile; ?>
 </section>
 <script>
-	jQuery(document).ready(function()
-	{
-	    jQuery(window).bind("beforeunload", function() { 
-	        return confirm("Do you really want to close?"); 
-	    });
-	});   
+	var unloaded = false;
+	var access_type = 0;
+	function store_document_meta(access_type = null){      
+		debugger;
+	    if(!unloaded){
+	        jQuery.ajax({
+	            type: 'post',
+	            async: false,
+	            url : custom_ajax_script.ajaxurl,
+	            data : {action: "store_document_withdraw_time", 
+	            user_id : '<?php echo get_current_user_id(); ?>', 
+	            document_id : '<?php echo $_GET['id']; ?>', 
+	        	'access_type' : access_type},
+	            success:function(response){ 
+	            	debugger;
+	            	if(!access_type){
+	            		unloaded = true; 
+	            	}
+	            },
+	            timeout: 5000
+	        });
+	    }
+	}   
+	jQuery(window).on('beforeunload unload', function(){
+		debugger;
+		store_document_meta();
+	});
+	jQuery(window).load(function(){
+		debugger;
+		access_type = 1;
+		store_document_meta(access_type);
+	});
     url = '<?php echo $fileAccessUrl; ?>';
     var thePdf = null;
     var scale = 2;
@@ -77,7 +103,6 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
         thePdf = pdf;
         viewer = document.getElementById('pdf-viewer');
-        debugger;
     	if(pdf.numPages){
     		jQuery('.loadersmall').remove();
     	}
@@ -90,7 +115,6 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
     });
 
     function renderPage(pageNumber, canvas) {
-    	debugger;
         thePdf.getPage(pageNumber).then(function(page) {
           viewport = page.getViewport(scale);
           canvas.height = viewport.height;

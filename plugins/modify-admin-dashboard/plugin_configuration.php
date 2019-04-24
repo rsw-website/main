@@ -210,67 +210,6 @@ function testimonial_widgit() {
 }
 add_action( 'widgets_init', 'testimonial_widgit' );
 
-function new_modify_user_table( $column ) {
-    $column['company'] = 'Company';
-    $column['user_activity'] = 'User Activity';
-    return $column;
-}
-add_filter( 'manage_users_columns', 'new_modify_user_table' );
-
-function new_modify_user_table_row( $val, $column_name, $user_id ) {
-    switch ($column_name) {
-        case 'user_activity' :
-            return "<a href='".admin_url('users.php?page=user-activity&id='.$user_id)."'>Track Activity</a>";
-            break;
-        case 'company' :
-            return get_user_meta( $user_id, 'billing_company', true );
-            break;
-        default:
-    }
-    return $val;
-}
-add_filter( 'manage_users_custom_column', 'new_modify_user_table_row', 10, 3 );
-
-// add_action( 'show_user_profile', 'extra_user_profile_fields' );
-// add_action( 'edit_user_profile', 'extra_user_profile_fields' );
-
-function extra_user_profile_fields( $user ) { 
-  $documentAccess = intval(get_user_meta( $user->ID, 'document_access', true )); ?>
-<h3 id="document-access-request"><?php _e("Document Access Permission", "blank"); ?></h3>
-  <select name="document_access">
-  <option value="0" <?php echo $documentAccess === 0 ? 'selected' : '' ?> ><span aria-hidden="true">—</span></option>
-  <option value="1" <?php echo $documentAccess === 1 ? 'selected' : '' ?>>Grant</option>
-  <option value="2" <?php echo $documentAccess === 2 ? 'selected' : '' ?>>Revoke</option>
-  <option value="3" <?php echo $documentAccess === 3 ? 'selected' : '' ?>>Pending</option>
-</select>
-<?php }
-
-// add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
-// add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
-
-function save_extra_user_profile_fields( $user_id ) {
-  $userData = get_userdata($user_id); 
-  if ( !current_user_can( 'edit_user', $user_id ) ) { return false; }
-  if(get_user_meta( $user_id, 'document_access', true) !== $_POST['document_access']){
-    // send mail
-    if($_POST['document_access'] == 1){
-      $status = 'Approved';
-      $message = "You have been approved to access documents on ".get_option('blogname').".\n\n";
-      $message .= "To access the document, login to you your account and vist the dashboard page.";
-    } elseif($_POST['document_access'] == 2){
-      $status = 'Denied';
-      $message = "You have been denied to access docuements on Reliable Softworks.\n";
-    }
-    $to = $userData->user_email;  
-    $subject = '['.get_option('blogname').'] - Document Request '.$status;
-    $headers = custom_email_headers();
-    if($_POST['document_access'] == 1 || $_POST['document_access'] == 2){
-      wp_mail( $to, $subject, $message, $headers );
-    }
-    update_user_meta( $user_id, 'document_access', $_POST['document_access'] );
-  }
-}
-
 function my_account_menu_order() {
   $menuOrder = array(
     'edit-account'      => __( 'Account Details', 'woocommerce' ),
@@ -305,25 +244,6 @@ function wk_endpoint_content() {
   echo do_shortcode( '[list-staff]' );
 }
 
-add_shortcode( 'request-access-button', 'custom_document_request_access' );
-function custom_document_request_access($atts){
-  ob_start();
-  $currentUserId = get_current_user_id();
-  $accessStatus = intval(get_user_meta( $currentUserId, 'document_access', true ));
-  if($accessStatus === 0){
-    ?>
-      <div class="document-request-text">
-        <p>You do not have permission to access the documents added by the admin.</p>
-        <div class="custom-loader lds-dual-ring hidden"></div>
-        <button class="document-request-access btn-c2">Request Document Access</button>
-      </div>
-  <?php
-  }
-  $requestData = ob_get_clean();
-  return $requestData;
-}
-
-
 function custom_ajax_request() {
   // load our jquery file that sends the $.post request
   wp_enqueue_script( "ajax-request", get_stylesheet_directory_uri() . '/assets/js/ajax-request.js', array ( 'jquery' ) );
@@ -355,13 +275,53 @@ function submit_document_access_request() {
 }
 add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');
 
+function document_withdraw_time() {
+  global $wpdb;
+  $user_id = $_POST['user_id'];
+  $document_id = base64_decode($_POST['document_id']);
+  $table_name = 'wp_documents_meta';
+  $access_type = (int) $_POST['access_type'];
+  $query = "SELECT * FROM $table_name WHERE user_id = '".$user_id."' AND document_id = '".$document_id."'";
+  $document_meta = $wpdb->get_row($query);
+  if($wpdb->num_rows){
+    if($access_type === 1){
+      $wpdb->query($wpdb->prepare("UPDATE $table_name 
+                  SET last_access_time = %s, last_withdraw_time = NULL, 
+                  no_of_times = %s 
+                  WHERE user_id = %s AND document_id = %s", 
+                  gmdate("Y-m-d h:i:s"), intval($document_meta->no_of_times) + 1, 
+                $user_id, $document_id)
+      );
+      echo $wpdb->last_query;
+    } else{ 
+      $wpdb->query($wpdb->prepare("UPDATE $table_name 
+                    SET last_withdraw_time = %s
+                 WHERE user_id = %s AND document_id = %s",
+                  gmdate("Y-m-d h:i:s"), $user_id, $document_id)
+        );
+    }
+  } else{
+    $wpdb->insert( 
+      $table_name, 
+      array( 
+        'user_id' => $user_id, 
+        'document_id' => $document_id,
+        'last_access_time' => gmdate("Y-m-d h:i:s"),
+        'no_of_times' => 1
+    ));
+  }
+  echo 1;
+  die();
+}
+add_action('wp_ajax_store_document_withdraw_time', 'document_withdraw_time');
+
 function update_document_bookmarked_status() {
     global $wpdb;
     if ( !wp_verify_nonce( $_POST['nonce'], "bookmark_status")) {
       exit("No naughty business please");
       $response = 0;
     }
-    $table_name = 'wp_bookmarked_documents';
+    $table_name = 'wp_documents_meta';
     $current_user_id = get_current_user_id();
     $document_id = intval(base64_decode($_POST['document_id']));
     $book_marked = intval($_POST['book_marked']);
@@ -379,7 +339,7 @@ function update_document_bookmarked_status() {
         array( 
           'user_id' => $current_user_id, 
           'document_id' => $document_id,
-          'is_bookmarked' => $book_marked
+          'is_bookmarked' => $book_marked,
         ));
       // insert record
     }
@@ -399,6 +359,8 @@ function list_staff() {
     } else{
       $CurrentPage = 1; 
     }
+    $custom_key = ($CurrentPage - 1) * 10;
+
     if(isset($_GET['skey'])){
       $search = $_GET['skey'];
     } else{
@@ -446,13 +408,13 @@ function list_staff() {
     $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $preQuery = "SELECT wp_posts.*, wp_bookmarked_documents.is_bookmarked FROM wp_posts LEFT JOIN wp_bookmarked_documents ON wp_bookmarked_documents.document_id = wp_posts.ID AND wp_bookmarked_documents.user_id = ".$current_user_id." WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND wp_posts.post_title LIKE '%".$search."%'";
+    $preQuery = "SELECT wp_posts.*, wp_documents_meta.is_bookmarked FROM wp_posts LEFT JOIN wp_documents_meta ON wp_documents_meta.document_id = wp_posts.ID AND wp_documents_meta.user_id = ".$current_user_id." WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND wp_posts.post_title LIKE '%".$search."%'";
 
     if(isset($_GET['type'])){
       $argsArray['type'] = $_GET['type'];
       $titleArgsArray['type'] = $_GET['type'];
       $dateArgsArray['type'] = $_GET['type'];
-      $preQuery = $preQuery . " AND wp_bookmarked_documents.is_bookmarked = 1";
+      $preQuery = $preQuery . " AND wp_documents_meta.is_bookmarked = 1";
     }
 
     $query = $preQuery;
@@ -507,7 +469,7 @@ function list_staff() {
               <i class="fa-star" data-name="star"></i>
             </a>
           </td>  
-          <td><?php echo $key + 1; ?></td>   
+          <td><?php echo ++$custom_key; ?></td>   
           <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
           <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
           <td><a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>">View</a></td> 
@@ -586,18 +548,3 @@ function list_staff_obj($atts, $content=null) {
 
 add_shortcode( 'list-staff', 'list_staff_obj' );
 
-add_action('admin_menu', 'user_activity_menu');
-
-function user_activity_menu() {
-  add_users_page('Client User Activity', 'User Activities', 'read', 'user-activity', 'get_user_activity');
-}
-
-function get_user_activity(){
-  if(isset($_GET['id'])){
-    $userData = get_user_by('ID', $_GET['id']);
-    // $all_meta_for_user = get_user_meta( $_GET['id'] );
-  // echo get_user_meta( $_GET['id'], 'billing_company', true );
-      echo "<pre>";
-    // print_r($userData);
-  }
-}
