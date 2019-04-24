@@ -25,7 +25,7 @@
     $userData = get_user_by('ID', $_GET['id']);
   ?>
   <div class="wrap">
-      <h1 class="wp-heading-inline">Track User Login Activity - <?php echo $userData->display_name; ?></h1>
+      <h1 class="wp-heading-inline">User Activity - <?php echo get_user_meta( $_GET['id'], 'first_name', true ).' '.get_user_meta( $_GET['id'], 'last_name', true );  ?></h1>
       <?php //$myListTable->views(); ?>
       <form id="document-filter" method="post">
         <button name="refresh" style="float: right;" onClick="window.location.reload()" class="page-title-action aria-button-if-js">Refresh</button>
