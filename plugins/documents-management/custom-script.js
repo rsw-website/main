@@ -10,18 +10,23 @@ function showConfirmBox(){
 }
 
 jQuery(document).ready(function(){
-  // jQuery('#document-filter').on('submit', function(event){
-    jQuery(document).on('submit', '#document-filter, #tag-filter', function(event){
-      debugger;
-    var topSelect = jQuery(this).find('select#bulk-action-selector-top')
-    .find('option:selected').val();
-    var bottomSelect = jQuery(this).find('select#bulk-action-selector-bottom')
-    .find('option:selected').val();
-    if(topSelect === 'bulk-delete' || bottomSelect === 'bulk-delete'){
-      showConfirmBox();
-    } else{
-      event.preventDefault();
-    }
+  var searchButton = false;
+  jQuery(document).on('submit', '#document-filter, #tag-filter', function(event){
+      if(!searchButton){
+        var topSelect = jQuery(this).find('select#bulk-action-selector-top')
+        .find('option:selected').val();
+        var bottomSelect = jQuery(this).find('select#bulk-action-selector-bottom')
+        .find('option:selected').val();
+        if(topSelect === 'bulk-delete' || bottomSelect === 'bulk-delete'){
+          showConfirmBox();
+        } else{
+          event.preventDefault();
+        }
+      }
+  });
+
+  jQuery('#search-submit').on('click', function(event){
+    searchButton = true;
   });
 
   jQuery('a.tag-list').bind('click', function(event) {

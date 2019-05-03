@@ -238,9 +238,13 @@ function prepare_items($search = '') {
     $post_status = '';
   }
   global $wpdb; //This is used only if making any database queries
+
+  // SELECT DISTINCT(wp_posts.ID), wp_posts.post_title, wp_posts.post_modified FROM wp_posts LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_status = 'inherit' AND (wp_posts.post_title LIKE '%%' OR wp_document_tags.tag_name LIKE '%%' OR wp_document_tags.tag_description LIKE '%%')
+
+
   $tableListData = $wpdb->get_results
-  ( "SELECT * FROM {$wpdb->prefix}posts WHERE post_type = 'attachment' 
-    ".$post_status." AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_title LIKE '%".$search."%'", ARRAY_A ); 
+  ( "SELECT DISTINCT({$wpdb->prefix}posts.ID), wp_posts.post_title, wp_posts.post_modified, wp_posts.post_status FROM {$wpdb->prefix}posts LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id WHERE post_type = 'attachment' 
+    ".$post_status." AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')", ARRAY_A ); 
     $per_page = 10;
   $columns  = $this->get_columns();
   $hidden   = array();

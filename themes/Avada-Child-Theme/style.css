@@ -1448,3 +1448,7 @@ a.toplink-email {
 .fusion-social-links-header{
     display:none!important;
 }
+span.document-desc {
+    font-size: 13px !important;
+    display: block !important;
+}

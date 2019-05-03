@@ -69,3 +69,51 @@ function user_last_login( $user_login, $user ) {
     update_user_meta( $user->ID, 'last_login', gmdate("Y-m-d h:i:s") );
 }
 add_action( 'wp_login', 'user_last_login', 10, 2 );
+
+/*** Sort and Filter Users ***/
+add_action('restrict_manage_users', 'filter_by_company_name');
+
+function filter_by_company_name($which){
+  global $wpdb;
+  $companies = $wpdb->get_col("SELECT DISTINCT(meta_value) FROM $wpdb->usermeta WHERE meta_key = 'billing_company'" );
+
+  // template for filtering
+  $st = '<select name="company_%s" style="float:none;margin-left:10px;">
+      <option value="">%s</option>%s</select>';
+
+  // generate options
+  $options = '';
+  foreach ($companies as $key => $company) {
+   $options .= '<option value="'.$company.'">'.$company.'</option>';
+  }
+   
+  // combine template and options
+  $select = sprintf( $st, $which, __( 'Company Name' ), $options );
+
+  // output <select> and submit button
+  echo $select;
+  submit_button(__( 'Filter' ), null, $which, false);
+}
+
+add_filter('pre_get_users', 'filter_users_by_job_role_section');
+
+function filter_users_by_job_role_section($query){
+  global $pagenow;
+  if (is_admin() && 'users.php' == $pagenow) {
+    // figure out which button was clicked. The $which in filter_by_job_role()
+    $top = $_GET['company_top'];
+    $bottom = $_GET['company_bottom'];
+    if (!empty($top) OR !empty($bottom))
+    {
+     $section = !empty($top) ? $top : $bottom;
+     
+     // change the meta query based on which option was chosen
+     $meta_query = array (array (
+        'key' => 'billing_company',
+        'value' => $section,
+        'compare' => 'LIKE'
+     ));
+     $query->set('meta_query', $meta_query);
+    }
+  }
+}
