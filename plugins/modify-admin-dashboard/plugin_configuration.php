@@ -237,9 +237,9 @@ add_action( 'woocommerce_account_' . $endpoint .  '_endpoint', 'wk_endpoint_cont
 function wk_endpoint_content() {
     //content goes here
   ?>
-  <h2 class="avada-woocommerce-myaccount-heading">
-        My Documents     
-  </h2>
+  <h2 class="avada-woocommerce-myaccount-heading">My Documents
+    <span class="document-desc"> ( Search document by Document Name, Tag Name and Tag Description )</span></h2>
+
   <?php
   echo do_shortcode( '[list-staff]' );
 }
@@ -408,7 +408,7 @@ function list_staff() {
     $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $preQuery = "SELECT wp_posts.*, wp_documents_meta.is_bookmarked FROM wp_posts LEFT JOIN wp_documents_meta ON wp_documents_meta.document_id = wp_posts.ID AND wp_documents_meta.user_id = ".$current_user_id." WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_status = 'inherit' AND wp_posts.post_title LIKE '%".$search."%'";
+    $preQuery = "SELECT DISTINCT(wp_documents_meta.document_id), wp_posts.ID, wp_posts.post_title, wp_posts.post_modified , wp_documents_meta.is_bookmarked FROM wp_posts LEFT JOIN wp_documents_meta ON wp_documents_meta.document_id = wp_posts.ID AND wp_documents_meta.user_id = ".$current_user_id." LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_status = 'inherit' AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')";
 
     if(isset($_GET['type'])){
       $argsArray['type'] = $_GET['type'];
@@ -424,7 +424,7 @@ function list_staff() {
       $query = $query . " ORDER BY $orderBy $order";
     }
     $query = $query . " LIMIT $startFrom, $limit";
-
+    // print_r($query);
   $tableListData = $wpdb->get_results($query);
   ?>
       <form action="" method="get" id="dashboard-document-filter">

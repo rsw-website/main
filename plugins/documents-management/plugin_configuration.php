@@ -79,14 +79,17 @@ function addNewDocument(){
 }
 
 function addNewtag(){
+    global $wpdb;
     if(!$_GET['tag_id']){
         $response = insertNewTag();
         include_once('add-new-tag.php');
     } else{
-        echo "edit tag";
-        // include_once('upload-new-document.php');
+        $response = updateTag($_GET['tag_id']);
+        $tag_details = $wpdb->get_row(
+         "SELECT * FROM wp_document_tags WHERE ID = ".$_GET['tag_id'], ARRAY_A
+        );
+        include_once('edit-tag.php');
     }
-    // insertNewDocument();
 }
 
 function insertNewDocument(){
@@ -237,6 +240,42 @@ function insertNewTag(){
         }
     }
 }
+
+function updateTag($tag_id){
+    global $wpdb;
+    $table_name = 'wp_document_tags';
+    $errorStatus = [];
+    if (isset($_POST['update-tag'])) {
+        $nonce = esc_attr( $_REQUEST['document_tag'] );
+        if ( ! wp_verify_nonce( $nonce, 'wp_add_tag' ) ) {
+            echo "Something went wrong. Unable to update tag.";
+        } else{
+            // sanatize tag name
+            $tag_name = ( isset( $_POST['tag-name'] ) ) ? sanitize_text_field( wp_unslash( $_POST['tag-name'] ) ) : ''; // WPCS: CSRF ok.
+            if(!strlen($tag_name)){
+                $errorStatus['hasError'] = 'error';
+                $errorStatus['message'] = 'Tag name cannot be empty';
+            }
+            if(!count($errorStatus)){
+                // get tag description
+                if ( function_exists( 'sanitize_textarea_field' ) ) {
+                $description = ( isset( $_POST['description'] ) ) ? sanitize_textarea_field( wp_unslash( $_POST['description'] ) ) : ''; // WPCS: CSRF ok.
+                } else {
+                    $description = ( isset( $_POST['description'] ) ) ? wp_unslash( $_POST['description'] ) : ''; // WPCS: CSRF ok sanitization ok.
+                }
+                // Update record in DB
+                $updated_tag = $wpdb->query($wpdb->prepare("UPDATE $table_name SET tag_name = %s, tag_description = %s, tag_modified = %s WHERE ID = %s",
+                    $tag_name, $description ,date("Y-m-d H:i:s"), $tag_id)
+                );
+                $errorStatus['hasError'] = 'updated';
+                $errorStatus['message'] = 'Tag updated successfully.';
+            }
+            return $errorStatus;
+
+        }
+    }
+}
+
 function updateDocument($document_id){
     global $wpdb;
     $response = [];
@@ -262,7 +301,7 @@ function updateDocument($document_id){
                 "DELETE FROM $tags_relation_table WHERE document_id = %s", 
                 $document_id)
             );
-            echo $updated_post;
+            // echo $updated_post;
             if(count($tag_ids)){
                 insert_record($tag_ids, $document_id);
             }

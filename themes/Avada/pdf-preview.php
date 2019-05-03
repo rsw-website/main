@@ -62,7 +62,6 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 	var unloaded = false;
 	var access_type = 0;
 	function store_document_meta(access_type = null){      
-		debugger;
 	    if(!unloaded){
 	        jQuery.ajax({
 	            type: 'post',
@@ -73,7 +72,6 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 	            document_id : '<?php echo $_GET['id']; ?>', 
 	        	'access_type' : access_type},
 	            success:function(response){ 
-	            	debugger;
 	            	if(!access_type){
 	            		unloaded = true; 
 	            	}
@@ -83,11 +81,9 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 	    }
 	}   
 	jQuery(window).on('beforeunload unload', function(){
-		debugger;
 		store_document_meta();
 	});
 	jQuery(window).load(function(){
-		debugger;
 		access_type = 1;
 		store_document_meta(access_type);
 	});
