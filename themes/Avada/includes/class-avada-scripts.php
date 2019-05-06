@@ -771,6 +771,7 @@ class Avada_Scripts {
 		}
 
 		if ( is_page_template( 'contact.php' ) ) {
+			
 			$options = get_option( Avada::get_option_name() );
 			if ( $options['recaptcha_public'] && $options['recaptcha_private'] && ! function_exists( 'recaptcha_get_html' ) ) {
 				if ( version_compare( PHP_VERSION, '5.3' ) >= 0 && ! class_exists( 'ReCaptcha' ) ) {

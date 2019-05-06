@@ -1392,29 +1392,32 @@ h2.main-title {
 }
 }
 @media screen and (max-width:480px) {
-.fusion-contact-info {
-    display: none;
-}
-a.toplink-email {
-    display: block;
-}
-#home-intro h1 {
-    font-size: 30px!important;
-    line-height: 30px;
-}
-.home-intro {
-    font-size: 18px;
-}
-#home-tabs h2 {
-    font-size: 24px;
-}
-#main {
-    padding-left: 15px!important;
-    padding-right: 15px!important;
-}
-#customer_login{
-    padding:20px 10px 30px 10px;
-}
+    .fusion-contact-info {
+        display: none;
+    }
+    a.toplink-email {
+        display: block;
+    }
+    #home-intro h1 {
+        font-size: 30px!important;
+        line-height: 30px;
+    }
+    .home-intro {
+        font-size: 18px;
+    }
+    #home-tabs h2 {
+        font-size: 24px;
+    }
+    #main {
+        padding-left: 15px!important;
+        padding-right: 15px!important;
+    }
+    #customer_login{
+        padding:20px 10px 30px 10px;
+    }
+    ul.custom-pagination a span{
+        display: none;
+    }
 }
 
 .video-container{
@@ -1451,4 +1454,24 @@ a.toplink-email {
 span.document-desc {
     font-size: 13px !important;
     display: block !important;
+}
+.responsive-table{
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+}
+
+@media screen and (max-width:590px) {
+    #dashboard-document-filter{
+        display: block;
+        float: none;
+    }
+    #dashboard-document-search{
+        display: block;
+        float: none;
+        margin-top: 20px;
+    }
+    #dashboard-document-filter input{
+        float: none;
+    }
 }
