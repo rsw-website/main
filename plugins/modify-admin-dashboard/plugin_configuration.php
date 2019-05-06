@@ -443,42 +443,44 @@ function list_staff() {
         <input type="text" name="skey" id="search" placeholder="Search" value="<?php echo $search; ?>" />
         <span class="search-icon"><i class="fa fa-search" aria-hidden="true"></i></span>
       </form>
-      <table class="table" id="document-list-table"> 
-        <thead> 
-        <tr> 
-          <th></th>
-          <th>S.No.</th>
-          <th> 
-            <a href="<?php echo home_url(add_query_arg($titleArgsArray, $wp->request)); ?>">
-              Title <i class="fa <?php echo $titleOrder; ?>" aria-hidden="true"></i>
+      <div class="responsive-table">
+        <table class="table" id="document-list-table"> 
+          <thead> 
+          <tr> 
+            <th></th>
+            <th>S.No.</th>
+            <th> 
+              <a href="<?php echo home_url(add_query_arg($titleArgsArray, $wp->request)); ?>">
+                Title <i class="fa <?php echo $titleOrder; ?>" aria-hidden="true"></i>
+                </a>
+              </th> 
+            <th><a href="<?php echo home_url(add_query_arg($dateArgsArray, $wp->request)); ?>"">
+              Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
+              </a></th> 
+              <th>Action</th>
+          </tr> 
+          </thead> 
+          <tbody> 
+          <?php   
+          foreach ($tableListData as $key => $tableData) {
+          ?>   
+          <tr> 
+            <td>
+              <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="<?php echo $tableData->is_bookmarked ? 'Marked' : 'Mark'; ?> as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
+                <i class="fa-star" data-name="star"></i>
               </a>
-            </th> 
-          <th><a href="<?php echo home_url(add_query_arg($dateArgsArray, $wp->request)); ?>"">
-            Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
-            </a></th> 
-            <th>Action</th>
-        </tr> 
-        </thead> 
-        <tbody> 
-        <?php   
-        foreach ($tableListData as $key => $tableData) {
-        ?>   
-        <tr> 
-          <td>
-            <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="<?php echo $tableData->is_bookmarked ? 'Marked' : 'Mark'; ?> as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
-              <i class="fa-star" data-name="star"></i>
-            </a>
-          </td>  
-          <td><?php echo ++$custom_key; ?></td>   
-          <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
-          <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
-          <td><a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>">View</a></td> 
-        </tr>   
-        <?php   
-        }
-        ?>   
-        </tbody> 
-      </table> 
+            </td>  
+            <td><?php echo ++$custom_key; ?></td>   
+            <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
+            <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
+            <td><a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>">View</a></td> 
+          </tr>   
+          <?php   
+          }
+          ?>   
+          </tbody> 
+        </table> 
+      </div>
        <ul class="custom-pagination"> 
       <?php   
         $tableListCount = $wpdb->get_results($preQuery); 
@@ -518,16 +520,16 @@ function list_staff() {
             }
             ?>
             <li class="<?php echo $firstClass; ?>">
-              <a href="<?php echo $firstLink; ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i> First</a>
+              <a href="<?php echo $firstLink; ?>"><i class="fa fa-angle-double-left" aria-hidden="true"></i> <span>First</span></a>
             </li>
             <li class="<?php echo $previousClass; ?>">
-              <a href="<?php echo $previousLink; ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> Previous</a>
+              <a href="<?php echo $previousLink; ?>"><i class="fa fa-angle-left" aria-hidden="true"></i> <span>Previous</span></a>
             </li>
             <li class="<?php echo $nextClass; ?>">
-              <a href="<?php echo $nextLink; ?>">Next <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
+              <a href="<?php echo $nextLink; ?>"><span>Next</span> <i class="fa fa-angle-right" aria-hidden="true"></i> </a>
             </li>
             <li class="<?php echo $lastClass; ?>">
-              <a href="<?php echo $lastLink; ?>">Last <i class="fa fa-angle-double-right" aria-hidden="true"></i> </a>
+              <a href="<?php echo $lastLink; ?>"><span>Last</span> <i class="fa fa-angle-double-right" aria-hidden="true"></i> </a>
             </li>
           <?php
           }

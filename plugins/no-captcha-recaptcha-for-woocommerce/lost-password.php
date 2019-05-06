@@ -25,7 +25,7 @@ class WC_Ncr_Lost_Password_Captcha extends WC_Ncr_No_Captcha_Recaptcha {
 	 */
 	public static function validate_lost_password_captcha( $allow ) {
 		if ( isset( $_POST['wc_reset_password'] ) ) {
-			if ( ! isset( $_POST['g-recaptcha-response'] )) {
+			if ( ! isset( $_POST['g-recaptcha-response'] ) ) {
 				return new WP_Error( 'empty_captcha', self::$error_message );
 			}
 		}
