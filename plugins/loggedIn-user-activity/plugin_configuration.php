@@ -75,8 +75,7 @@ add_action('restrict_manage_users', 'filter_by_company_name');
 
 function filter_by_company_name($which){
   global $wpdb;
-  $companies = $wpdb->get_col("SELECT DISTINCT(meta_value) FROM $wpdb->usermeta WHERE meta_key = 'billing_company'" );
-
+  $companies = $wpdb->get_col("SELECT DISTINCT(meta_value) FROM $wpdb->usermeta WHERE meta_key = 'billing_company' AND meta_value > ''" ); 
   // template for filtering
   $st = '<select name="company_%s" style="float:none;margin-left:10px;">
       <option value="">%s</option>%s</select>';
@@ -103,10 +102,8 @@ function filter_users_by_job_role_section($query){
     // figure out which button was clicked. The $which in filter_by_job_role()
     $top = $_GET['company_top'];
     $bottom = $_GET['company_bottom'];
-    if (!empty($top) OR !empty($bottom))
-    {
-     $section = !empty($top) ? $top : $bottom;
-     
+    if (!empty($top) OR !empty($bottom)){
+      $section = !empty($top) ? $top : $bottom;
      // change the meta query based on which option was chosen
      $meta_query = array (array (
         'key' => 'billing_company',
