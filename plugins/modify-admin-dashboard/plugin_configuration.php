@@ -471,7 +471,7 @@ function list_staff() {
               </a>
             </td>  
             <td><?php echo ++$custom_key; ?></td>   
-            <td><a target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
+            <td><a target="_blank" title="<?php echo $tableData->post_title; ?>" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
             <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
             <td><a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>">View</a></td> 
           </tr>   

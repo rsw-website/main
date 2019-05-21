@@ -1475,3 +1475,9 @@ span.document-desc {
         float: none;
     }
 }
+#document-list-table td{
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
