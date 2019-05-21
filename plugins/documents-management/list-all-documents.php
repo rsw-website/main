@@ -178,7 +178,7 @@ function column_post_title($item){
         
         //Return the title contents
         return sprintf('%1$s <span style="color:silver"></span>%3$s',
-            /*$1%s*/ date('F j, Y', strtotime($item['post_date_gmt'])),
+            /*$1%s*/ date('F j, Y', strtotime($item['post_modified'])),
             /*$2%s*/ $item['ID'],
             /*$3%s*/ $this->row_actions($actions)
         );
