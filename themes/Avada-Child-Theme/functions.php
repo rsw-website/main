@@ -19,7 +19,6 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 function add_custom_theme_scripts() {
   wp_enqueue_script( 'custom-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array ( 'jquery' ), null, true);
-  wp_enqueue_script( 'jquery-cdn', 'http://websitetest.reliablesoftworks.info/wp-includes/js/jquery/jquery.js?ver=1.12.4', array ( 'jquery' ), null, true);
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
 
