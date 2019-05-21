@@ -362,6 +362,7 @@ function list_staff() {
     $custom_key = ($CurrentPage - 1) * 10;
 
     if(isset($_GET['skey'])){
+      $argsArray['skey'] = $_GET['skey'];
       $search = $_GET['skey'];
     } else{
       $search = '';
