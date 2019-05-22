@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+<?php //do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s Customer username */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_login ) ); ?></p>
@@ -35,8 +35,8 @@ your account to view tutorials, change your password and more at: %2$s', 'woocom
 	<p><?php printf( esc_html__( 'Password: %s', 'woocommerce' ), '<strong>' . esc_html( $user_pass ) . '</strong>' ); ?></p>
 <?php endif; ?>
 
-<p><?php esc_html_e( 'We look forward to seeing you online soon!.', 'woocommerce' ); ?></p>
+<p><?php esc_html_e( 'We look forward to seeing you online soon!', 'woocommerce' ); ?></p>
 <p><?php printf( esc_html__( '%s', 'woocommerce' ), esc_html( $blogname ) ); ?></p>
 
 <?php
-do_action( 'woocommerce_email_footer', $email );
+//do_action( 'woocommerce_email_footer', $email );
