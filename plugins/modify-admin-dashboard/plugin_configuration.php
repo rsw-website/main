@@ -118,7 +118,7 @@ function user_autologout(){
         return $redirect_url;
     } else{
         wp_logout();
-        return wc_get_page_permalink( 'myaccount' ).
+        return home_url('/client-dashboard/').
         'registration-successful/?ref_id='.base64_encode($user_id);
     }
   }
@@ -134,7 +134,7 @@ add_action('woocommerce_registration_redirect', 'user_autologout', 2);
  */
 
 function custom_login_redirect( $redirect ) {
-  wp_redirect(get_permalink( get_page_by_path( 'client-dashboard' ) ));
+  wp_redirect(home_url('/client-dashboard/'));
 }
 add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
 
@@ -425,8 +425,7 @@ function list_staff() {
       $query = $query . " ORDER BY $orderBy $order";
     }
     $query = $query . " LIMIT $startFrom, $limit";
-    // print_r($query);
-  $tableListData = $wpdb->get_results($query);
+    $tableListData = $wpdb->get_results($query);
   ?>
       <form action="" method="get" id="dashboard-document-filter">
         <select class="action-filter" name="action-filter">

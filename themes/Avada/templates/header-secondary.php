@@ -55,7 +55,7 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 							    		</a>
 					    			</li>
 				    			<?php $count++; endforeach; ?>
-				    			<a href="<?php echo wp_logout_url('/client-login'); ?>" class="menu-item menu-item-type-custom menu-item-object-custom fusion-dropdown-submenu"><span>Logout</span></a>
+				    			<a href="<?php echo wp_logout_url(home_url('/client-login/')); ?>" class="menu-item menu-item-type-custom menu-item-object-custom fusion-dropdown-submenu"><span>Logout</span></a>
 
 				    		</ul>
 						</li>   
@@ -63,7 +63,7 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 						} else{
 							?>
 							<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children fusion-dropdown-menu fusion-last-menu-item">
-							        <a href="/client-login" class="fusion-bar-highlight">
+							        <a href="<?php echo home_url('/client-login/'); ?>" class="fusion-bar-highlight">
 						    	    	<i class="fa fa-user"></i>
 						    	    	<span class="menu-text">
 						    	    		Client Login

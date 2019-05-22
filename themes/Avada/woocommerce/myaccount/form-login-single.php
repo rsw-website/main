@@ -45,7 +45,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 			</p>
 
 			<?php do_action( 'woocommerce_login_form' ); ?>
-
+			
 			<p class="form-row">
 				<?php wp_nonce_field( 'woocommerce-login', 'woocommerce-login-nonce' ); ?>
 				<button type="submit" class="woocommerce-Button button add btn-c2" name="login" value="<?php esc_attr_e( 'Log in', 'woocommerce' ); ?>"><?php esc_html_e( 'Log in', 'woocommerce' ); ?></button>
@@ -61,7 +61,7 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
             </div>
 			<div class="form-row new-signup">
             <h4>Get Started Now!</h4>
-            <a class="button btn-c4" href="/client-registration"> Register </a>
+            <a class="button btn-c4" href="<?php echo home_url('/client-registration/'); ?>"> Register </a>
             </div>
 
 			<?php do_action( 'woocommerce_login_form_end' ); ?>
