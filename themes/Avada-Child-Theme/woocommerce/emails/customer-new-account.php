@@ -42,6 +42,5 @@ your account to view tutorials, change your password and more at : %2$s', 'wooco
 
 <p><?php esc_html_e( 'We look forward to seeing you online soon!', 'woocommerce' ); ?></p>
 <p><?php printf( esc_html__( '%s', 'woocommerce' ), esc_html( $blogname ) ); ?></p>
-
 <?php
 //do_action( 'woocommerce_email_footer', $email );
