@@ -25,9 +25,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 <?php /* translators: %s Customer username */ ?>
 <?php 
-	$current_user = get_user_by( 'email', $user_email );
+	// $current_user = get_user_by( 'email', $user_email );
 ?>
-<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $current_user->first_name ) ); ?></p>
+<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_email ) ); ?></p>
 <?php /* translators: %1$s: Site title, %2$s: My account link */ ?>
 <p><?php printf( __( 'Thanks for creating an account with %1$s. You can access
 your account to view tutorials, change your password and more at: %2$s', 'woocommerce' ), esc_html( $blogname ), make_clickable( esc_url( wc_get_page_permalink( 'myaccount' ) ) ) ); ?></p><?php // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
