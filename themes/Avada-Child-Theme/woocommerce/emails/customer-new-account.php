@@ -21,25 +21,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<?php // do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
+<?php do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s Customer username */ ?>
-<?php 
-	// $current_user = get_user_by( 'email', $user_email );
-?>
-<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_email ) ); ?></p>
-<?php /* translators: %1$s: Site title, %2$s: My account link */ ?>
+<p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $user_login ) ); ?></p>
+<?php /* translators: %1$s: Site title, %2$s: Username, %3$s: My account link */ ?>
 <p><?php printf( __( 'Thanks for creating an account with %1$s. You can access
 your account to view tutorials, change your password and more at: %2$s', 'woocommerce' ), esc_html( $blogname ), make_clickable( esc_url( wc_get_page_permalink( 'myaccount' ) ) ) ); ?></p><?php // phpcs:ignore WordPress.XSS.EscapeOutput.OutputNotEscaped ?>
 
 <?php if ( 'yes' === get_option( 'woocommerce_registration_generate_password' ) && $password_generated ) : ?>
 	<?php /* translators: %s Auto generated password */ ?>
-	<p><?php printf( esc_html__( 'Username: %s', 'woocommerce' ), '<strong>' . esc_html( $user_email ) . '</strong>' ); ?></p>
+	<p><?php printf( esc_html__( 'Username: %s', 'woocommerce' ), '<strong>' . esc_html( $user_pass ) . '</strong>' ); ?></p>
 	<p><?php printf( esc_html__( 'Password: %s', 'woocommerce' ), '<strong>' . esc_html( $user_pass ) . '</strong>' ); ?></p>
 <?php endif; ?>
 
 <p><?php esc_html_e( 'We look forward to seeing you online soon!.', 'woocommerce' ); ?></p>
-<p><?php printf( esc_html__( '%s', 'woocommerce' ), . esc_html( $blogname ) ); ?></p>
+<p><?php printf( esc_html__( '%s', 'woocommerce' ), esc_html( $blogname ) ); ?></p>
 
 <?php
-// do_action( 'woocommerce_email_footer', $email );
+do_action( 'woocommerce_email_footer', $email );
