@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $first_name ) ); ?>
 <?php /* translators: %s: Store name */ ?>
-<p><?php printf( esc_html__( 'Someone has requested a new password for the email account associated with your access to %s:', 'woocommerce' ), esc_html( get_option( 'siteurl' ) ) ); ?></p>
+<p><?php printf( esc_html__( 'Someone has requested a new password for the email account associated with your access to %s.', 'woocommerce' ), esc_html( get_option( 'siteurl' ) ) ); ?></p>
 <?php /* translators: %s Customer username */ ?>
 <p><?php esc_html_e( 'If you didn\'t make this request, please ignore this email.', 'woocommerce' ); ?></p>
 <p><?php esc_html_e( 'If you\'d like to proceed, please', 'woocommerce' ); ?>
