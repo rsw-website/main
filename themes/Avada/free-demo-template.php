@@ -87,15 +87,95 @@ $avada_contact = new Avada_Demo();
 					</div>
 					<div class="custom-form-row">
 						<div class="custom-form-col">
+							<label>Company<span class="required">*</span></label>
+							<div class="custom-form-holder">
+								<input type="text" name="company" id="company" value="<?php echo esc_attr( $avada_contact->company ); ?>" aria-label="<?php esc_attr_e( 'Company', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+							</div>
+						</div>
+						<div class="custom-form-col">
+							<label>Number of Employees<span class="required">*</span></label>
+							<div class="custom-form-holder">
+								<input type="number" name="number_of_employees" id="number_of_employees" min="1" value="<?php echo esc_attr( $avada_contact->number_of_employees ); ?>" aria-label="<?php esc_attr_e( 'Number of Employees', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+							</div>
+						</div>
+					</div>
+					<div class="custom-form-row">
+						<div class="custom-form-col">
 							<label>Phone<span class="required">*</span></label>
 							<div class="custom-form-holder">
 								<input type="text" name="url" id="url" value="<?php echo esc_attr( $avada_contact->phone ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
 							</div>
 						</div>
 						<div class="custom-form-col">
-							<label>Company<span class="required">*</span></label>
+							<label>City</label>
 							<div class="custom-form-holder">
-								<input type="text" name="company" id="company" value="<?php echo esc_attr( $avada_contact->company ); ?>" aria-label="<?php esc_attr_e( 'Company', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+								<input type="text" name="city" id="city" value="<?php echo esc_attr( $avada_contact->city ); ?>" aria-label="<?php esc_attr_e( 'City', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+							</div>
+						</div>
+					</div>
+					<div class="custom-form-row">
+						<div class="custom-form-col">
+							<label>Zip</label>
+							<div class="custom-form-holder">
+								<input type="text" name="zip" id="zip" maxlength="5" value="<?php echo esc_attr( $avada_contact->zip ); ?>" aria-label="<?php esc_attr_e( 'Zip', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+							</div>
+						</div>
+						<div class="custom-form-col">
+							<label>State</label>
+							<div class="custom-form-holder">
+								<select name="state" id="state" class="custom-form-control">
+		                            <option value="AL" selected="selected">AL</option>
+		                            <option value="AK">AK</option>
+		                            <option value="AZ">AZ</option>
+		                            <option value="AR">AR</option>
+		                            <option value="CA">CA</option>
+		                            <option value="CO">CO</option>
+		                            <option value="CT">CT</option>
+		                            <option value="DE">DE</option>
+		                            <option value="DC">DC</option>
+		                            <option value="FL">FL</option>
+		                            <option value="GA">GA</option>
+		                            <option value="HI">HI</option>
+		                            <option value="ID">ID</option>
+		                            <option value="IL">IL</option>
+		                            <option value="IN">IN</option>
+		                            <option value="IA">IA</option>
+		                            <option value="KS">KS</option>
+		                            <option value="KY">KY</option>
+		                            <option value="LA">LA</option>
+		                            <option value="ME">ME</option>
+		                            <option value="MD">MD</option>
+		                            <option value="MA">MA</option>
+		                            <option value="MI">MI</option>
+		                            <option value="MN">MN</option>
+		                            <option value="MS">MS</option>
+		                            <option value="MO">MO</option>
+		                            <option value="MT">MT</option>
+		                            <option value="NE">NE</option>
+		                            <option value="NV">NV</option>
+		                            <option value="NH">NH</option>
+		                            <option value="NJ">NJ</option>
+		                            <option value="NM">NM</option>
+		                            <option value="NY">NY</option>
+		                            <option value="NC">NC</option>
+		                            <option value="ND">ND</option>
+		                            <option value="OH">OH</option>
+		                            <option value="OK">OK</option>
+		                            <option value="OR">OR</option>
+		                            <option value="PA">PA</option>
+		                            <option value="RI">RI</option>
+		                            <option value="SC">SC</option>
+		                            <option value="SD">SD</option>
+		                            <option value="TN">TN</option>
+		                            <option value="TX">TX</option>
+		                            <option value="UT">UT</option>
+		                            <option value="VT">VT</option>
+		                            <option value="VA">VA</option>
+		                            <option value="WA">WA</option>
+		                            <option value="WV">WV</option>
+		                            <option value="WI">WI</option>
+		                            <option value="WY">WY</option>
+                            	</select>
 							</div>
 						</div>
 					</div>

@@ -290,8 +290,6 @@ function updateDocument($document_id){
             $post_title = sanitize_text_field( wp_unslash( $_POST['post_title'] ) );
             $tag_ids = json_decode(stripslashes($_POST['tag_ids']), true);
             // update post title
-            echo $post_title;
-            echo $document_id;
             $updated_post = $wpdb->query($wpdb->prepare("UPDATE $post_table 
                     SET post_title = %s WHERE ID = %s",
                     $post_title, $document_id)

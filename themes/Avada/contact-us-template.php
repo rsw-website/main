@@ -76,6 +76,20 @@ $avada_contact = new Avada_Contact();
 					</div>
 					<div class="custom-form-row">
 						<div class="custom-form-col">
+							<label>Company<span class="required">*</span></label>
+							<div class="custom-form-holder">
+								<input type="text" name="company" id="company" value="<?php echo esc_attr( $avada_contact->company ); ?>" aria-label="<?php esc_attr_e( 'Company', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+							</div>
+						</div>
+						<div class="custom-form-col">
+							<label>Number of Employees<span class="required">*</span></label>
+							<div class="custom-form-holder">
+								<input type="number" name="number_of_employees" id="number_of_employees" min="1" value="<?php echo esc_attr( $avada_contact->number_of_employees ); ?>" aria-label="<?php esc_attr_e( 'Number of Employees', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+							</div>
+						</div>
+					</div>
+					<div class="custom-form-row">
+						<div class="custom-form-col">
 							<label>Phone<span class="required">*</span></label>
 							<div class="custom-form-holder">
 								<input type="text" name="url" id="url" maxlength="10" value="<?php echo esc_attr( $avada_contact->phone ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="custom-form-control input-website">

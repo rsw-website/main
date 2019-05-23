@@ -20,6 +20,7 @@ function new_modify_user_table( $column ) {
     "name" => __('Name'),
     "company" => __('Company'),
     "email" => __('E-mail'),
+    "role" => __('Role'),
     "last_login_activity" => __('Last login activity'),
     "pw_user_status" => __('Status')
   );
