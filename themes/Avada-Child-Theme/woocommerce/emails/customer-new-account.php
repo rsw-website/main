@@ -24,11 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 <?php //do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 
 <?php /* translators: %s Customer username */ ?>
-<?php 
-	$current_user = get_user_by('login', $user_login);
-	$first_name = $current_user->first_name;
-	$current_email = $current_user->user_email;
-?>
+<?php include_once('get-user-details.php'); ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $first_name ) ); ?></p>
 <?php /* translators: %1$s: Site title, %2$s: Username, %3$s: My account link */ ?>
 <p><?php printf( __( 'Thanks for creating an account with %1$s. You can access
