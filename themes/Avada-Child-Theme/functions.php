@@ -54,12 +54,12 @@ function custom_email_headers() {
 * $content the notification message
 */
 function custom_notification_message($message, $user) {
-    $message = __( 'You have been approved to access '.get_option('blogname'), 'new-user-approve' ) . "\r\n\r\n";
-  $message .= "username : ".$user->display_name." \r\n\r\n";
-  $message .= get_permalink( get_page_by_path( 'client-login' ) )." \r\n\r\n";
-    $message .= __( 'To set or reset your password, visit the following address:', 'new-user-approve' ) . "\r\n\r\n";
-    $message .= wc_lostpassword_url();
-
+  $message = "Hi ".$user->user_email.", \r\n\r\n";
+  $message .= __( 'We have excellent news! Your account has been approved for access to '.get_option('siteurl'), 'new-user-approve' ) . "\r\n\r\n";
+  $message .= "Please log in with your email address : ".$user->user_email." \r\n\r\n";
+  $message .= __( 'If you would like to set or reset your password, you can do so by clicking here.', 'new-user-approve' ) . "\r\n\r\n";
+  $message .= wc_lostpassword_url();
+  $message .= "Best Regards,\n".get_option('blogname');
   $message = apply_filters( 'new_user_approve_approve_user_message_default', $message );
   return $message;
 }
