@@ -1483,13 +1483,13 @@ form.woocommerce-form p label{
     margin-top: 10px;
 }
 
+#document-list-table td{
+    /*max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;*/
+}
 @media screen and (min-width:767px) {
-    #document-list-table td{
-        max-width: 400px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
     .mobile-column{
         display: none;
     }
@@ -1542,23 +1542,25 @@ form.woocommerce-form p label{
     td.column-title{
         display: table-cell;
         width: 100%;
+        padding-left: 0px !important;
     }
     td.column-count{
         display: table-cell;
+        padding-right: 10px !important;
     }
     td.responsive-column::before{
         position: absolute;
         left: 21px;
         display: block;
         overflow: hidden;
-        width: 32%;
+        width: auto;
         content: attr(data-attribute);
         white-space: nowrap;
         text-overflow: ellipsis;
-        top: 11px;
+        top: 10px;
     }
     td.responsive-column{
-        padding-left: 35% !important;
+        padding-left: 40% !important;
     }
     td.column-action{
         padding-left: 20px !important;
@@ -1569,5 +1571,32 @@ form.woocommerce-form p label{
     }
     .hidden-column{
         display: none;
+    }
+    td.column-title a{
+        display: block;
+        width: 93%;
+        float: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 300px;
+    }
+    #document-list-table td {
+        font-size: 17px;
+    }
+}
+
+@media screen and (max-width:500px) {
+    td.column-title a{
+        max-width: 200px;
+    }
+    td.responsive-column {
+        padding-left: 50% !important;
+    }
+    td.column-action{
+        padding-left: 20px !important;
+    }
+    #document-list-table td {
+        font-size: 14px;
     }
 }
