@@ -70,7 +70,6 @@ function get_the_user_ip() {
 }
 
 function get_user_activity(){
-  echo "User IP is : ". get_the_user_ip();
   	include_once('user_activity_table.php');
 }
 
@@ -81,6 +80,7 @@ function get_user_activity(){
  
 function user_last_login( $user_login, $user ) {
     update_user_meta( $user->ID, 'last_login', gmdate("Y-m-d h:i:s") );
+    update_user_meta( $user->ID, 'user_login_ip', get_the_user_ip() );
 }
 add_action( 'wp_login', 'user_last_login', 10, 2 );
 
