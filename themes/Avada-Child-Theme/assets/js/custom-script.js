@@ -194,9 +194,23 @@ jQuery('body.home ul.product-feature-links > li > a').on('click', function(e) {
 	ActiveSelectedTab(hashId);
 });
 
+jQuery('i.column-icon').on('click', function(){
+	if(jQuery(this).hasClass('fa-chevron-circle-down')){
+		jQuery(this).removeClass('fa-chevron-circle-down');
+		jQuery(this).addClass('fa-chevron-circle-up');
+		jQuery(this).attr('data-name', 'chevron-circle-up');
+		jQuery(this).parents('tr').find('.responsive-column').removeClass('hidden-column');
+	} else{
+		jQuery(this).removeClass('fa-chevron-circle-up');
+		jQuery(this).addClass('fa-chevron-circle-down');
+		jQuery(this).attr('data-name', 'chevron-circle-down');
+		jQuery(this).parents('tr').find('.responsive-column').addClass('hidden-column');
+	}
+});
+
 function ActiveSelectedTab(hashId){
 	if(hashId.length){
 		jQuery('a.tab-link#'+hashId).click();
 	}
-
 }
+

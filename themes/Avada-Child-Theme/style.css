@@ -1469,12 +1469,6 @@ span.document-desc {
         float: none;
     }
 }
-#document-list-table td{
-    max-width: 400px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
 form.woocommerce-form p label{
     font-size: 20px;
     line-height: 28px;
@@ -1484,4 +1478,96 @@ form.woocommerce-form p label{
     height: 40px !important;
     font-size: 18px !important;
     color: #000 !important;
+}
+#document-list-table{
+    margin-top: 10px;
+}
+
+@media screen and (min-width:767px) {
+    #document-list-table td{
+        max-width: 400px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .mobile-column{
+        display: none;
+    }
+    .column-icon{
+        display: none !important;
+    }
+}
+@media screen and (max-width:767px) {
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr { 
+        display: block; 
+    }
+    
+    /* Hide table headers (but not display: none;, for accessibility) */
+    thead tr { 
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    
+    tbody tr {
+        border: 1px solid #ccc;
+        border-top: none;
+        margin-bottom: 10px;
+    }
+    
+    td { 
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 50%; 
+    }
+    
+    td:before { 
+        /* Now like a table header */
+        position: absolute;
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+    }
+    /*.mobile-column{
+        display: block;
+    }*/
+    .desktop-column{
+        display: none;
+    }
+    td.column-title{
+        display: table-cell;
+        width: 100%;
+    }
+    td.column-count{
+        display: table-cell;
+    }
+    td.responsive-column::before{
+        position: absolute;
+        left: 21px;
+        display: block;
+        overflow: hidden;
+        width: 32%;
+        content: attr(data-attribute);
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        top: 11px;
+    }
+    td.responsive-column{
+        padding-left: 35% !important;
+    }
+    td.column-action{
+        padding-left: 20px !important;
+    }
+    .column-icon{
+        float: right;
+        padding-top: 4px;
+    }
+    .hidden-column{
+        display: none;
+    }
 }

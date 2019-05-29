@@ -465,15 +465,29 @@ function list_staff() {
           foreach ($tableListData as $key => $tableData) {
           ?>   
           <tr> 
-            <td>
+            <td class="desktop-column column-bookmark" data-attribute="Bookmakred">
               <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="<?php echo $tableData->is_bookmarked ? 'Marked' : 'Mark'; ?> as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
                 <i class="fa-star" data-name="star"></i>
               </a>
             </td>  
-            <td><?php echo ++$custom_key; ?></td>   
-            <td><a target="_blank" title="<?php echo $tableData->post_title; ?>" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a></td> 
-            <td><?php echo date('F j, Y', strtotime($tableData->post_modified)); ?></td>
-            <td><a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>">View</a></td> 
+            <td class="column-count" data-attribute="S.No.">
+              <?php echo ++$custom_key; ?>
+              </td>   
+            <td class="column-title" data-attribute="Title">
+              <a target="_blank" title="<?php echo $tableData->post_title; ?>" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>"><?php echo $tableData->post_title; ?></a>
+              <i class="fa-chevron-circle-down fas column-icon" data-name="chevron-circle-down"></i>
+            </td>
+            <td class="mobile-column column-bookmark responsive-column hidden-column" data-attribute="Bookmakred">
+              <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="<?php echo $tableData->is_bookmarked ? 'Marked' : 'Mark'; ?> as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">
+                <i class="fa-star" data-name="star"></i>
+              </a>
+            </td> 
+            <td class="column-date responsive-column hidden-column" data-attribute="Modified Date">
+              <?php echo date('F j, Y', strtotime($tableData->post_modified)); ?>
+              </td>
+            <td class="column-action responsive-column hidden-column" data-attribute="">
+              <a class="preview-link btn-c2" target="_blank" href="<?php echo add_query_arg(array('id' => base64_encode($tableData->ID)), get_permalink( get_page_by_path( 'documents' ))); ?>">View</a>
+            </td> 
           </tr>   
           <?php   
           }
