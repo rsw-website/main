@@ -596,7 +596,7 @@ class pw_new_user_approve {
 		) );
 		$message = apply_filters( 'new_user_approve_deny_user_message', $message, $user );
 
-		$subject = sprintf( __( '[%s] Registration Denied', 'new-user-approve' ), get_option( 'blogname' ) );
+		$subject = sprintf( __( 'Registration Denied', 'new-user-approve' ), get_option( 'blogname' ) );
 		$subject = apply_filters( 'new_user_approve_deny_user_subject', $subject );
 
 		// send the mail
