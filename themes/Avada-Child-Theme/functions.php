@@ -75,7 +75,8 @@ function custom_denied_notification_message($message, $user) {
   $message .= "If you feel that this is an error, please have your company's main point of
 contact reach out to us.\r\n\r\n";
   $message .= "Sorry for any inconvenience.\r\n\r\n";
-  $message .= "<p>Best Regards,".get_option('blogname')."</p>";
+  $message .= "<p>Best Regards,
+  ".get_option('blogname')."</p>";
   $message .= sprintf( esc_html__( "Blog name is : %s"), '<strong>' . get_option('blogname') . '</strong>' ); 
   return $message;
 }
