@@ -76,7 +76,7 @@ function custom_denied_notification_message($message, $user) {
 contact reach out to us.\r\n\r\n";
   $message .= "Sorry for any inconvenience.\r\n\r\n";
   $message .= "Best Regards,\n".get_option('blogname');
-  $message .= sprintf( esc_html__( 'Blog name is : %s'), '<strong>' . get_option('blogname') . '</strong>' ); 
+  $message .= <p>sprintf( esc_html__( "\nBlog name is : %s"), '<strong>' . get_option('blogname') . '</strong>' ); 
   return $message;
 }
 add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_message', 10, 2 );
