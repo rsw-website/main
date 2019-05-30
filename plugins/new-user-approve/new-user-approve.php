@@ -598,7 +598,8 @@ class pw_new_user_approve {
 
 		$subject = sprintf( __( 'Registration Denied', 'new-user-approve' ), get_option( 'blogname' ) );
 		$subject = apply_filters( 'new_user_approve_deny_user_subject', $subject );
-
+		print_r($this->email_message_headers());
+		die("Ayush");
 		// send the mail
 		wp_mail( $user_email, $subject, $message, $this->email_message_headers() );
 	}
