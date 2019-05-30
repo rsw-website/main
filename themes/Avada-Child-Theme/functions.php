@@ -66,6 +66,20 @@ function custom_notification_message($message, $user) {
 }
 add_filter('new_user_approve_approve_user_message', 'custom_notification_message', 10, 2);
 
+/**
+* Modify the content on denied user notification mail
+*/
+function custom_denied_notification_message($message, $user) {
+  $message = "Hi ".$user->first_name.", \r\n\r\n";
+  $message .= "We are sorry to inform you that your user access request for ".get_option('blogname')." has been denied.\r\n\r\n";
+  $message .= "If you feel that this is an error, please have your company's main point of
+contact reach out to us.\r\n\r\n";
+  $message .= "Sorry for any inconvenience.\r\n\r\n";
+  $message .= "Best Regards,\n".get_option('blogname');
+  return $message;
+}
+add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_message', 10, 2 );
+
 function wpdocs_enqueue_custom_admin_script() {
          wp_enqueue_script( 'custom-script', plugins_url('documents-management/custom-script.js'), __FILE__);
 }

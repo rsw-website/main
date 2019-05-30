@@ -48,9 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					</div>
 
 					<p>Hi <?php echo $userDetails->first_name; ?>, </p>
-					<p>An email has been sent to the site administrator. The administrator will review the information that has been submitted and either approve or deny your request.<br>
-					You will receive an email with instructions on what you will need to do next. Thanks for your patience.	
-					</p>
+					<p>The approval process for new user account may take up to 8 business hours (Easter Standard Time).</p>
 				</div>
 			</div>
 		</div>
