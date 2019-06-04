@@ -1615,3 +1615,12 @@ form.woocommerce-form p label{
     font-size: 15px !important;
     color: #999 !important;
 }
+
+@media screen and (min-width:481px) and (max-width:800px) {
+    .fusion-secondary-header .fusion-alignleft{
+        text-align: right !important;
+    }
+    .fusion-secondary-header .fusion-alignleft .fusion-contact-info a{
+        padding-right: 20px !important;
+    }
+}
