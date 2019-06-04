@@ -103,10 +103,44 @@ add_action( 'woocommerce_created_customer',
   'wooc_save_extra_register_fields' );
 
 /**
+ * Validate company name field in edit account page
+ *
+ * @return array
+*/
+
+function wooc_validate_custom_field( $errors ){   
+    if ( isset( $_POST['billing_company'] ) ) // Your custom field
+    {
+        if(strlen($_POST['billing_company'])<4 ) // condition to be adapted
+        $errors->add( 'error', __( '<strong>Company</strong> is a required field.', 'woocommerce' ),'');
+    }
+    return $errors;
+}
+add_action( 'woocommerce_save_account_details_errors','wooc_validate_custom_field', 10, 1 );
+
+function wc_save_account_details_required_fields( $required_fields ){
+    unset( $required_fields['account_display_name'] );
+    return $required_fields;
+}
+add_filter('woocommerce_save_account_details_required_fields', 'wc_save_account_details_required_fields' );
+
+function save_additional_account_details( $user_id ){
+  $user_details = get_userdata( $user_id );
+  $_POST['account_email'] = $user_details->user_email;
+  $_POST['account_display_name'] = $user_details->display_name;
+  if ( isset( $_POST['billing_company'] ) ) {
+      // WordPress default last name field.
+      update_user_meta( $user_id, 'billing_company', sanitize_text_field( $_POST['billing_company'] ) );
+  }
+}
+add_action( 'woocommerce_save_account_details', 'save_additional_account_details' );
+
+
+/**
  * Redirect after registration.
  *
  * @return string
- */
+*/
 
 function user_autologout(){
   if ( is_user_logged_in() ) {
