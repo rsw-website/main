@@ -89,10 +89,6 @@ add_action('restrict_manage_users', 'filter_by_company_name');
 
 function filter_by_company_name($which){
   global $wpdb;
-  $user_id = 51;
-  $user_last = get_user_meta( $user_id ); 
-  print_r($user_last['first_name'][0]);
-  // echo '<p>The '. $key . ' value for user id ' . $user_id . ' is: ' . $user_last . '</p>';
   $companies = $wpdb->get_col("SELECT DISTINCT(meta_value) FROM $wpdb->usermeta WHERE meta_key = 'billing_company' AND meta_value > ''" ); 
   // template for filtering
   $st = '<select name="company_%s" style="float:none;margin-left:10px;">
