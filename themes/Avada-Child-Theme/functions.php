@@ -85,8 +85,8 @@ add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_me
 */
 function custom_default_notification_message($message, $user) {
   $message = "<p>Hi Admin,</p>";
-  $message .= "<p>$user->first_name $user->last_name has requested a username at ".get_option('blogname').".</p>";
-  $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ".admin_url()." </p>";
+  // $message .= "<p>$user->first_name $user->last_name has requested a username at ".get_option('blogname').".</p>";
+  // $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ".admin_url()." </p>";
   $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
   return $message;
 }
