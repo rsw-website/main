@@ -61,7 +61,6 @@ function custom_notification_message($message, $user) {
   $message .= "<p>If you would like to set or reset your password, you can do so by ";
   $message .= "<a href='".wc_lostpassword_url()."'>clicking here</a>.</p>";
   $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
-  $message = apply_filters( 'new_user_approve_approve_user_message_default', $message );
   return $message;
 }
 add_filter('new_user_approve_approve_user_message', 'custom_notification_message', 10, 2);
@@ -83,9 +82,11 @@ add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_me
 /**
 * Modify the content on ddefault notification meesage
 */
-function custom_default_notification_message($message, $user) {
+function custom_default_notification_message($message, $user_login) {
+  $user = get_user_by( 'login', $user_login );
+  $first_name = get_user_meta( $user->ID, 'first_name', true );
   $message = "<p>Hi Admin,</p>";
-  $message .= "<p>".$user->first_name." has requested a username at ".get_option('blogname').".</p>";
+  $message .= "<p>".$first_name." has requested a username at ".get_option('blogname').".</p>";
   $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ".admin_url('users.php?s&pw-status-query-submit=Filter&new_user_approve_filter=pending&paged=1')." </p>";
   $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
   return $message;
