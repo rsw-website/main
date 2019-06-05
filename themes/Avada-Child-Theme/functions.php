@@ -83,14 +83,14 @@ add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_me
 /**
 * Modify the content on ddefault notification meesage
 */
-// function custom_default_notification_message($message, $user) {
-//   $message = "<p>Hi Admin,</p>";
-//   // $message .= "<p>$user->first_name $user->last_name has requested a username at ".get_option('blogname').".</p>";
-//   // $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ".admin_url()." </p>";
-//   $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
-//   return $message;
-// }
-// add_filter( 'new_user_approve_notification_message_default', 'custom_default_notification_message', 10, 2 );
+function custom_default_notification_message($message, $user) {
+  $message = "<p>Hi Admin,</p>";
+  // $message .= "<p>$user->first_name $user->last_name has requested a username at ".get_option('blogname').".</p>";
+  // $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ".admin_url()." </p>";
+  $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
+  return $message;
+}
+add_filter( 'new_user_approve_request_approval_message_default', 'custom_default_notification_message', 10, 2 );
 
 function wpdocs_enqueue_custom_admin_script() {
          wp_enqueue_script( 'custom-script', plugins_url('documents-management/custom-script.js'), __FILE__);
