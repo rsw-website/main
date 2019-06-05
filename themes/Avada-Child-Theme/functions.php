@@ -87,7 +87,7 @@ function custom_default_notification_message($message, $user_login) {
   $message = "<p>Hi Admin,</p>";
   $message .= "<p>User(".$user->user_email.") has requested an account at ".get_option('blogname').".</p>";
   $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ";
-  $message .= "<a href='".admin_url('users.php?s&pw-status-query-submit=Filter&new_user_approve_filter=pending&paged=1')."'>".admin_url('users.php?s&pw-status-query-submit=Filter&new_user_approve_filter=pending&paged=1')."</a></p>";
+  $message .= "<a href='".admin_url('users.php?s&pw-status-query-submit=Filter&new_user_approve_filter=pending&paged=1')."'>".admin_url('users.php?s&pw-status-query-submit=Filter&new_user_approve_filter=pending&paged=1')."</a>.</p>";
   $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
   return $message;
 }
