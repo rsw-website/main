@@ -89,7 +89,7 @@ add_action('restrict_manage_users', 'filter_by_company_name');
 
 function filter_by_company_name($which){
   global $wpdb;
-  $user_id = 51;
+  $user_id = 50;
   $key = 'first_name';
   $single = true;
   $user_last = get_user_meta( $user_id, 'first_name', true ); 
