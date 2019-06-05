@@ -11,6 +11,9 @@
       }
       .error-page p{font-size: 14px;}
       #setting-error-tgmpa, .update-nag{display: none !important;}
+      table.wp-list-table td, .wp-list-table a{
+            word-wrap: break-word !important;
+      }
   </style>
   <?php
     if(!isset($_GET['id'])){

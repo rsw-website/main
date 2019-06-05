@@ -2,6 +2,11 @@
 // include_once('generate-table-list.php');
     $documentsList = new Documents_list_table();
   ?>
+  <style type="text/css">
+    table.wp-list-table td, .wp-list-table a{
+          word-wrap: break-word !important;
+    }
+  </style>
   <div class="wrap">
       <h1 class="wp-heading-inline">All Documents</h1>
       <a href="<?php echo admin_url('/admin.php?page=add-new'); ?>" class="page-title-action aria-button-if-js" role="button" aria-expanded="false">Add New</a>
