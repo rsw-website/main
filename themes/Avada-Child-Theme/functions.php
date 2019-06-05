@@ -85,6 +85,10 @@ add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_me
 function custom_default_notification_message($message, $user_login) {
   $user = get_user_by( 'login', $user_login );
   $first_name = get_user_meta( $user->ID ); 
+  print_r($first_name);
+  echo $user->ID;
+  echo $first_name['first_name'][0];
+  die("Usr");
   $message = "<p>Hi Admin,</p>";
   $message .= "<p>".$first_name['first_name'][0]." has requested a username at ".get_option('blogname').".</p>";
   $message .= "<p>To approve or deny this user access to ".get_option('blogname')." go to ".admin_url('users.php?s&pw-status-query-submit=Filter&new_user_approve_filter=pending&paged=1')." </p>";
