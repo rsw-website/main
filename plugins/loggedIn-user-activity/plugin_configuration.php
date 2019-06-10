@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: LoggedIn User Activity
-Description: A plugin to customize wordpress admin dashboard 
+Plugin Name: Logged In User Activity
+Description: This plugin is used to track all the documents accessed by user. It will list the document access time, withdraw time, total time for which the document is open and it will also list whether the document is marked as favourite or not. 
 Author: Mindfire Solutions
 Version: 1.0
 */
