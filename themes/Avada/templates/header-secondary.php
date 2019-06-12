@@ -44,7 +44,7 @@ $content_2 = avada_secondary_header_content( 'header_right_content' );
 					        <a href="javascript:void(0)" class="fusion-bar-highlight">
 				    	    	<i class="fa fa-user"></i>
 				    	    	<span class="menu-text">
-				    	    		<?php echo $current_user->user_firstname; ?>
+				    	    		<?php echo $current_user->user_firstname .' '.$current_user->user_firstname; ?>
 			    	    		</span>
 				    		</a>
 				    		<ul role="menu" class="sub-menu fusion-switched-side">
