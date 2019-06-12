@@ -312,37 +312,40 @@ add_action('wp_ajax_submit_acces_request', 'submit_document_access_request');
 function document_withdraw_time() {
   global $wpdb;
   $user_id = $_POST['user_id'];
-  $document_id = base64_decode($_POST['document_id']);
   $table_name = 'wp_documents_meta';
+  $document_id = base64_decode($_POST['document_id']);
   $access_type = (int) $_POST['access_type'];
-  $query = "SELECT * FROM $table_name WHERE user_id = '".$user_id."' AND document_id = '".$document_id."'";
-  $document_meta = $wpdb->get_row($query);
-  if($wpdb->num_rows){
-    if($access_type === 1){
-      $wpdb->query($wpdb->prepare("UPDATE $table_name 
-                  SET last_access_time = %s, last_withdraw_time = NULL, 
-                  no_of_times = %s 
-                  WHERE user_id = %s AND document_id = %s", 
-                  gmdate("Y-m-d h:i:s"), intval($document_meta->no_of_times) + 1, 
-                $user_id, $document_id)
-      );
-      echo $wpdb->last_query;
-    } else{ 
-      $wpdb->query($wpdb->prepare("UPDATE $table_name 
-                    SET last_withdraw_time = %s
-                 WHERE user_id = %s AND document_id = %s",
-                  gmdate("Y-m-d h:i:s"), $user_id, $document_id)
+  if(is_user_logged_in()){
+    $query = "SELECT * FROM $table_name WHERE user_id = '".$user_id."' AND document_id = '".$document_id."'";
+    $document_meta = $wpdb->get_row($query);
+    if($wpdb->num_rows){
+      if($access_type === 1){
+        $wpdb->query($wpdb->prepare("UPDATE $table_name 
+                    SET last_access_time = %s, last_withdraw_time = NULL, 
+                    no_of_times = %s, is_active = 1 
+                    WHERE user_id = %s AND document_id = %s", 
+                    gmdate("Y-m-d h:i:s"), intval($document_meta->no_of_times) + 1, 
+                  $user_id, $document_id)
         );
+        echo $wpdb->last_query;
+      } else{ 
+        $wpdb->query($wpdb->prepare("UPDATE $table_name 
+                      SET last_withdraw_time = %s, is_active = 0
+                   WHERE user_id = %s AND document_id = %s",
+                    gmdate("Y-m-d h:i:s"), $user_id, $document_id)
+          );
+      }
+    } else{
+      $wpdb->insert( 
+        $table_name, 
+        array( 
+          'user_id' => $user_id, 
+          'document_id' => $document_id,
+          'last_access_time' => gmdate("Y-m-d h:i:s"),
+          'no_of_times' => 1,
+          'is_active' => 1
+      ));
     }
-  } else{
-    $wpdb->insert( 
-      $table_name, 
-      array( 
-        'user_id' => $user_id, 
-        'document_id' => $document_id,
-        'last_access_time' => gmdate("Y-m-d h:i:s"),
-        'no_of_times' => 1
-    ));
   }
   echo 1;
   die();
@@ -381,6 +384,8 @@ function update_document_bookmarked_status() {
     die();
 }
 add_action('wp_ajax_document_bookmarked_request', 'update_document_bookmarked_status');
+
+
 
 
 function list_staff() {
@@ -580,10 +585,7 @@ function list_staff() {
               <a href="<?php echo $lastLink; ?>"><span>Last</span> <i class="fa fa-angle-double-right" aria-hidden="true"></i> </a>
             </li>
           <?php
-          }
-
-
- 
+          } 
 }
 
 function list_staff_obj($atts, $content=null) {
@@ -595,6 +597,17 @@ function list_staff_obj($atts, $content=null) {
     ob_end_clean();
     return $output;
 }
-
 add_shortcode( 'list-staff', 'list_staff_obj' );
+
+function update_document_access_record() {
+  global $wpdb;
+  $table_name = 'wp_documents_meta';
+  $user_info = wp_get_current_user();
+  $wpdb->query($wpdb->prepare("UPDATE $table_name 
+              SET last_withdraw_time = %s, is_active = 0
+           WHERE user_id = %s AND is_active = 1",
+            gmdate("Y-m-d h:i:s"), $user_info->ID)
+  );
+}
+add_action('clear_auth_cookie', 'update_document_access_record', 10);
 
