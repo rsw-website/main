@@ -23,6 +23,7 @@ class User_activity_list_table extends WP_List_Table {
 	        case 'last_withdraw_time':
 	        case 'time_duration':
 	        case 'no_of_times':
+            case 'document_status':
 	            return $item[ $column_name ];
 	        default:
 	            return print_r( $item, true ) ; //Show the whole array for troubleshooting purposes
@@ -37,7 +38,8 @@ class User_activity_list_table extends WP_List_Table {
             'last_access_time'      => __( 'Last Access Time', 'user_activity_list' ),
             'last_withdraw_time'      => __( 'Last Withdraw Time', 'user_activity_list' ),
             'time_duration'      => __( 'Time Duration', 'user_activity_list' ),
-            'no_of_times'      => __( 'Number Of Times', 'user_activity_list' )
+            'no_of_times'      => __( 'Number Of Times', 'user_activity_list' ),
+            'document_status'      => __( 'Document Status', 'user_activity_list' )
         );
          return $columns;
     }
@@ -123,6 +125,15 @@ class User_activity_list_table extends WP_List_Table {
             /*$2%s*/ $this->row_actions($actions)
         );
     }
+
+    function column_document_status($item){
+        //Return the title contents
+        return sprintf('%1$s%2$s',
+            /*$1%s*/ $item['is_active'] === '1' ? 'Open' : 'Closed',
+            /*$2%s*/ $this->row_actions($actions)
+        );
+    }
+
     function prepare_items($user_id, $search = '') {
     	global $wpdb; //This is used only if making any database queries
     	$columns  = $this->get_columns();
