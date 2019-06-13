@@ -1489,7 +1489,7 @@ form.woocommerce-form p label{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-media screen and (min-width:768px) and (max-width:1000px){
+@media screen and (min-width:768px) and (max-width:1000px){
     #document-list-table td{
         max-width: 291px;
     }
