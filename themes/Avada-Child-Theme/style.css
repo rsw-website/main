@@ -1484,10 +1484,10 @@ form.woocommerce-form p label{
 }
 
 #document-list-table td{
-    /*max-width: 200px;
+    max-width: 440px;
     white-space: nowrap;
     overflow: hidden;
-    text-overflow: ellipsis;*/
+    text-overflow: ellipsis;
 }
 @media screen and (min-width:767px) {
     .mobile-column{
