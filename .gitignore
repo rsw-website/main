@@ -10,5 +10,5 @@
 !/plugins/new-user-approve/
 /languages
 /reliablesoftworks-updraft/
-/cache/
+/cache/*
 
