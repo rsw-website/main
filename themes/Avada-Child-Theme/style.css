@@ -1489,11 +1489,11 @@ form.woocommerce-form p label{
     overflow: hidden;
     text-overflow: ellipsis;
 }
-@media screen and (min-width:768px) and (max-width:1000px){
+/*@media screen and (min-width:767px){
     #document-list-table td{
         max-width: 291px;
     }
-}
+}*/
 @media screen and (min-width:767px) {
     .mobile-column{
         display: none;
@@ -1627,5 +1627,10 @@ form.woocommerce-form p label{
     }
     .fusion-secondary-header .fusion-alignleft .fusion-contact-info a{
         padding-right: 20px !important;
+    }
+}
+@media screen and (min-width:768px) and (max-width:1024px) {
+    #document-list-table td{
+        max-width: 291px;
     }
 }
