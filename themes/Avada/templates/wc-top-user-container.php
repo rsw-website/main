@@ -21,7 +21,7 @@ global $woocommerce, $current_user;
 				printf(
 					/* translators: %1$s: Username. %2$s: Username (same as %1$s). %3$s: "Sign Out" link. */
 					esc_attr__( 'Hello %1$s %2$s', 'Avada' ),
-					'' . esc_html( $current_user->first_name ) . '',
+					'' . esc_html( $current_user->first_name.' '.$current_user->last_name ) . '',
 					'<span class="user-email-field">(' . esc_html( $current_user->user_email ) . ')</span>'
 				);
 				?>

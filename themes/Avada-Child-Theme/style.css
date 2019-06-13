@@ -962,10 +962,12 @@ ul.custom-pagination li {
     margin-right: 40px;
 }
 .custom-form-row label {
-    color: #333;
     margin-bottom: 7px;
     display: block;
-    font-size: 19px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: bold;
+    color: #747474;
 }
 .custom-form-holder {
     position: relative;
@@ -975,9 +977,9 @@ ul.custom-pagination li {
     border: 1px solid #ccc !important;
     width: 100% !important;
     background: 0 0 !important;
-    font-size: 15px !important;
-    color: #999 !important;
-    font-family: poppins-medium !important;
+    font-size: 18px !important;
+    color: #000 !important;
+    font: 100% Arial,Helvetica,sans-serif;
 }
 .custom-form-row p {
     margin: 0px;
@@ -1008,6 +1010,11 @@ ul.custom-pagination li {
 .custom-form-area textarea {
     width: 100%;
     height: 100px;
+}
+.custom-form-holder input + span{
+    font-size: 18px !important;
+    color: #000 !important;
+    font: 100% Arial,Helvetica,sans-serif;
 }
 .page-template-contact-us-template #main, .page-template-free-demo-template #main {
     padding-left: 0!important;
@@ -1607,10 +1614,12 @@ form.woocommerce-form p label{
 }
 
 #user-dashboard .woocommerce-form-row label{
-    color: #333;
+    color: #747474;
     margin-bottom: 7px;
     display: block;
-    font-size: 19px;
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: bold;
 }
 #user-dashboard .woocommerce-form-row .woocommerce-Input{
     height: 42px !important;
@@ -1618,7 +1627,7 @@ form.woocommerce-form p label{
     width: 100% !important;
     background: 0 0 !important;
     font-size: 15px !important;
-    color: #999 !important;
+    color: #000 !important;
 }
 
 @media screen and (min-width:481px) and (max-width:800px) {
