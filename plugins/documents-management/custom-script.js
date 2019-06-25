@@ -30,7 +30,6 @@ jQuery(document).ready(function(){
   });
 
   jQuery('a.tag-list').bind('click', function(event) {
-    debugger;
     var tagsList = jQuery('#tag-id-list').val();
     if(!tagsList.length){
       tagsList = [];
@@ -53,7 +52,6 @@ jQuery(document).ready(function(){
   });
 
   jQuery('a.role-name').bind('click', function(event) {
-    debugger;
     var rolesList = jQuery('#role-names').val();
     if(!rolesList.length){
       rolesList = {};
@@ -61,10 +59,12 @@ jQuery(document).ready(function(){
       rolesList = JSON.parse(rolesList);
     }
     event.preventDefault();
+
     var roleName = jQuery(this).attr('role-slug');
     if ( jQuery(this).hasClass('selected-tag') ) {
       jQuery(this).removeClass('selected-tag');
-      delete rolesList[roleName];
+      delete rolesList;
+      rolesList[roleName] = 0;
     } else {
       jQuery(this).addClass('selected-tag');
       rolesList[roleName] = 1;
