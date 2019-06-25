@@ -107,9 +107,19 @@ function insertNewDocument(){
         } else{
                 require_once( ABSPATH . 'wp-admin/includes/file.php' );
                 require_once( ABSPATH . 'wp-admin/includes/media.php' );
-
-                $tag_ids = json_decode(stripslashes($_POST['tag_ids']), true);
-                $role_names = json_encode(json_decode(stripslashes($_POST['role_names']),true));
+                if(strlen($_POST['tag_ids'])){
+                    $tag_ids = json_decode(stripslashes($_POST['tag_ids']), true);
+                } else{
+                    $tag_ids = [];
+                }
+                if(strlen($_POST['role_names'])){
+                    $role_names = json_encode(json_decode(stripslashes($_POST['role_names']),true));
+                } else{
+                    $role_names = array(
+                        'subscriber' => 0
+                    );
+                    $role_names = json_encode($role_names);
+                }
                 $files = $_FILES["test_upload_pdf"];
                 foreach ($files['name'] as $key => $value) {
                     if ($files['name'][$key]) {
@@ -139,9 +149,7 @@ function insertNewDocument(){
                                 } else {
                                     // The image was uploaded successfully!
                                     // insert tag in database of current document ID
-                                    if(count($tag_ids)){
                                         insert_record($tag_ids, $role_names, $attachment_id);
-                                    }
                                     ?>
                                     <p><?php echo $files['name'][$key]; ?> - File uploaded successfully!!
                                     </p>
@@ -165,12 +173,6 @@ function insert_record($tag_ids, $role_names, $attachment_id) {
     global $wpdb;
     $document_tags_data = array();
     $place_holders = array();
-    foreach($tag_ids as $key => $tag_id){
-        array_push($document_tags_data,
-         $attachment_id, $tag_id);
-        $place_holders[] = "( %s, %s)";
-    }
-    
     // insert documents user role data
     $document_user_role = 'wp_document_user_role';
     $insert_record = $wpdb->insert( 
@@ -179,14 +181,20 @@ function insert_record($tag_ids, $role_names, $attachment_id) {
         'document_id' => $attachment_id, 
         'user_roles' => $role_names,
     ));
-    
-    $query = "INSERT INTO wp_document_tags_log (document_id, tag_id) VALUES ";
-    $query .= implode( ', ', $place_holders );
-    $sql = $wpdb->prepare( "$query ", $document_tags_data );
-    if ( $wpdb->query( $sql ) ) {
-        return true;
-    } else {
-        return false;
+    if(count($tag_ids)){
+        foreach($tag_ids as $key => $tag_id){
+            array_push($document_tags_data,
+             $attachment_id, $tag_id);
+            $place_holders[] = "( %s, %s)";
+        }
+        $query = "INSERT INTO wp_document_tags_log (document_id, tag_id) VALUES ";
+        $query .= implode( ', ', $place_holders );
+        $sql = $wpdb->prepare( "$query ", $document_tags_data );
+        if ( $wpdb->query( $sql ) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -304,8 +312,20 @@ function updateDocument($document_id){
             $document_user_role = 'wp_document_user_role';
 
             $post_title = sanitize_text_field( wp_unslash( $_POST['post_title'] ) );
-            $tag_ids = json_decode(stripslashes($_POST['tag_ids']), true);
-            $role_names = json_encode(json_decode(stripslashes($_POST['role_names']),true));
+
+            if(strlen($_POST['tag_ids'])){
+                $tag_ids = json_decode(stripslashes($_POST['tag_ids']), true);
+            } else{
+                $tag_ids = [];
+            }
+            if(strlen($_POST['role_names'])){
+                $role_names = json_encode(json_decode(stripslashes($_POST['role_names']),true));
+            } else{
+                $role_names = array(
+                    'subscriber' => 0
+                );
+                $role_names = json_encode($role_names);
+            }
             // update post title
             $updated_post = $wpdb->query($wpdb->prepare("UPDATE $post_table 
                     SET post_title = %s WHERE ID = %s",
@@ -320,10 +340,8 @@ function updateDocument($document_id){
                 "DELETE FROM $document_user_role WHERE document_id = %s", 
                 $document_id)
             );
-            // echo $updated_post;
-            if(count($tag_ids)){
-                insert_record($tag_ids, $role_names, $document_id);
-            }
+            insert_record($tag_ids, $role_names, $document_id);
+
             $response['status'] = 'updated';
             $response['message'] = 'Document updated successfully.';
             return $response;
