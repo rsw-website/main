@@ -50,13 +50,13 @@
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)" class="role-name echo <?php echo $user_roles['power_user'] === 1 ? 'selected-tag' : ''; ?>" title='Power User'
+                <a href="javascript:void(0)" class="default-role selected-tag" title='Power User'
                  role-slug='power_user'>
                  Power User
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0)" class="role-name <?php echo $user_roles['administrator'] === 1 ? 'selected-tag' : ''; ?>" title='Administrator'
+                <a href="javascript:void(0)" class="default-role selected-tag" title='Administrator'
                  role-slug='administrator'>
                  Administrator
                 </a>
@@ -98,7 +98,7 @@
         text-decoration: none;
         -webkit-transition: color 0.2s;
       }
-      a.role-name{
+      a.role-name, a.default-role{
         background: #fff;
         border-radius: 3px 0 0 3px;
         color: #0085ba;

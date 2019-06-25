@@ -34,13 +34,13 @@
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="role-name" title='Power User'
+            <a href="javascript:void(0)" class="default-role selected-tag" title='Power User'
              role-slug='power_user'>
              Power User
             </a>
           </li>
           <li>
-            <a href="javascript:void(0)" class="role-name" title='Administrator'
+            <a href="javascript:void(0)" class="default-role selected-tag" title='Administrator'
              role-slug='administrator'>
              Administrator
             </a>
@@ -99,7 +99,7 @@
         right: 0;
         top: 0;
       }
-      a.role-name{
+      a.role-name, a.default-role{
         background: #fff;
         border-radius: 3px 0 0 3px;
         color: #0085ba;
