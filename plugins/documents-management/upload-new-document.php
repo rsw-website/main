@@ -28,9 +28,9 @@
       <div class="tags-list">
         <ul class="tag-list-ul">
           <li>
-            <a href="javascript:void(0)" class="role-name" title='Subscriber'
-             role-slug='subscriber'>
-             Subscriber
+            <a href="javascript:void(0)" class="role-name" title='Customer'
+             role-slug='customer'>
+             Customer
             </a>
           </li>
           <li>

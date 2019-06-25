@@ -44,9 +44,9 @@
           <div class= "tags-list">
             <ul class="tag-list-ul">
               <li>
-                <a href="javascript:void(0)" class="role-name <?php echo $user_roles['subscriber'] === 1 ? 'selected-tag' : ''; ?>" title='Subscriber'
-                 role-slug='subscriber'>
-                 Subscriber
+                <a href="javascript:void(0)" class="role-name <?php echo $user_roles['customer'] === 1 ? 'selected-tag' : ''; ?>" title='Customer'
+                 role-slug='customer'>
+                 Customer
                 </a>
               </li>
               <li>

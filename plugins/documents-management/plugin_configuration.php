@@ -116,7 +116,7 @@ function insertNewDocument(){
                     $role_names = json_encode(json_decode(stripslashes($_POST['role_names']),true));
                 } else{
                     $role_names = array(
-                        'subscriber' => 0
+                        'customer' => 0
                     );
                     $role_names = json_encode($role_names);
                 }
@@ -322,7 +322,7 @@ function updateDocument($document_id){
                 $role_names = json_encode(json_decode(stripslashes($_POST['role_names']),true));
             } else{
                 $role_names = array(
-                    'subscriber' => 0
+                    'customer' => 0
                 );
                 $role_names = json_encode($role_names);
             }
