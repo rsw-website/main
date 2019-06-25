@@ -61,7 +61,6 @@ jQuery(document).ready(function(){
       rolesList = JSON.parse(rolesList);
     }
     event.preventDefault();
-
     var roleName = jQuery(this).attr('role-slug');
     if ( jQuery(this).hasClass('selected-tag') ) {
       jQuery(this).removeClass('selected-tag');
