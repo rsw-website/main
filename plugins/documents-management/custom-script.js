@@ -30,6 +30,7 @@ jQuery(document).ready(function(){
   });
 
   jQuery('a.tag-list').bind('click', function(event) {
+    debugger;
     var tagsList = jQuery('#tag-id-list').val();
     if(!tagsList.length){
       tagsList = [];
@@ -49,5 +50,26 @@ jQuery(document).ready(function(){
       tagsList.push(tagId);
     } 
     jQuery('#tag-id-list').val(JSON.stringify(tagsList));
+  });
+
+  jQuery('a.role-name').bind('click', function(event) {
+    debugger;
+    var rolesList = jQuery('#role-names').val();
+    if(!rolesList.length){
+      rolesList = {};
+    } else{
+      rolesList = JSON.parse(rolesList);
+    }
+    event.preventDefault();
+
+    var roleName = jQuery(this).attr('role-slug');
+    if ( jQuery(this).hasClass('selected-tag') ) {
+      jQuery(this).removeClass('selected-tag');
+      delete rolesList[roleName];
+    } else {
+      jQuery(this).addClass('selected-tag');
+      rolesList[roleName] = 1;
+    } 
+    jQuery('#role-names').val(JSON.stringify(rolesList));
   });
 });

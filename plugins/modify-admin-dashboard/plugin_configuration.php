@@ -390,6 +390,8 @@ add_action('wp_ajax_document_bookmarked_request', 'update_document_bookmarked_st
 
 function list_staff() {
     $current_user_id = get_current_user_id();
+    $user_role = wp_get_current_user()->roles[0];
+    // print_r($user_role);
     global $wpdb; //This is used only if making any database queries
     global $wp;
     $argsArray = array();
@@ -448,7 +450,7 @@ function list_staff() {
     $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
     $limit = 10;
     $startFrom = ($CurrentPage-1) * $limit; 
-    $preQuery = "SELECT DISTINCT(wp_documents_meta.document_id), wp_posts.ID, wp_posts.post_title, wp_posts.post_modified , wp_documents_meta.is_bookmarked FROM wp_posts LEFT JOIN wp_documents_meta ON wp_documents_meta.document_id = wp_posts.ID AND wp_documents_meta.user_id = ".$current_user_id." LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND post_status = 'inherit' AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')";
+    $preQuery = "SELECT DISTINCT(wp_documents_meta.document_id), wp_posts.ID, wp_posts.post_title, wp_posts.post_modified , wp_documents_meta.is_bookmarked FROM wp_posts LEFT JOIN wp_documents_meta ON wp_documents_meta.document_id = wp_posts.ID AND wp_documents_meta.user_id = ".$current_user_id." LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id INNER JOIN wp_document_user_role ON wp_posts.ID = wp_document_user_role.document_id WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND json_extract(user_roles, '$.".$user_role."') = 1 AND post_status = 'inherit' AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')";
 
     if(isset($_GET['type'])){
       $argsArray['type'] = $_GET['type'];
@@ -462,8 +464,11 @@ function list_staff() {
       $argsArray['orderby'] = $orderBy;
       $argsArray['order'] = $order;
       $query = $query . " ORDER BY $orderBy $order";
+    } else{
+        $query = $query . " ORDER BY wp_posts.ID desc";
     }
     $query = $query . " LIMIT $startFrom, $limit";
+    // echo $query;
     $tableListData = $wpdb->get_results($query);
   ?>
       <form action="" method="get" id="dashboard-document-filter">
