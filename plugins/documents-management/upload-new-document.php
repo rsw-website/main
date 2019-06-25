@@ -24,7 +24,31 @@
         <?php endforeach; ?>
         </ul>
       </div>
+      <h2 class="hndle ui-sortable-handle"><span>User Roles</span></h2>
+      <div class="tags-list">
+        <ul class="tag-list-ul">
+          <li>
+            <a href="javascript:void(0)" class="role-name" title='Subscriber'
+             role-slug='subscriber'>
+             Subscriber
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="role-name" title='Power User'
+             role-slug='power_user'>
+             Power User
+            </a>
+          </li>
+          <li>
+            <a href="javascript:void(0)" class="role-name" title='Administrator'
+             role-slug='administrator'>
+             Administrator
+            </a>
+          </li>
+        </ul>
+      </div>
       <input type="hidden" id="tag-id-list" name="tag_ids"/>
+      <input type="hidden" id="role-names" name="role_names"/>
       <p>
         <input type="submit" name="upload-document" id="add-document" class="button button-primary" value="Add Document">
       </p> 
@@ -75,8 +99,21 @@
         right: 0;
         top: 0;
       }
+      a.role-name{
+        background: #fff;
+        border-radius: 3px 0 0 3px;
+        color: #0085ba;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        padding: 0 20px 0 23px;
+        position: relative;
+        margin: 0 10px 10px 0;
+        text-decoration: none;
+        -webkit-transition: color 0.2s;
+      }
 
-      a.tag-list:hover {
+      a.tag-list:hover, a.role-name:hover {
         color: #000;
       }
       a.selected-tag{
@@ -87,7 +124,7 @@
       a.selected-tag::after{
         border-left-color: #0085ba; 
       }
-      a.tag-list:focus{
+      a.tag-list:focus, a.role-name:focus{
         outline: none;
         box-shadow: none;
       }
