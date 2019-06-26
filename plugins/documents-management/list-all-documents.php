@@ -27,7 +27,8 @@ function get_columns(){
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
             'post_title' => __( 'Title', 'documentslist' ),
             'guid'    => __( 'URL', 'documentslist' ),
-            'post_date_gmt'      => __( 'Published Date', 'documentslist' )
+            'post_date_gmt'      => __( 'Published Date', 'documentslist' ),
+            'user_roles'      => __( 'User Roles', 'documentslist' )
         );
          return $columns;
     }
@@ -194,6 +195,21 @@ function column_post_title($item){
         );
     }
 
+  function column_user_roles($item){
+      
+      // return the document user roles
+    $user_roles = json_decode($item['user_roles'], true);
+    if($user_roles['customer'] === 1 || $user_roles['subscriber'] === 1){
+        $user_roles_list = 'Customer, ';
+    }
+    $user_roles_list .= 'Power User, Administrator';
+      return sprintf('%1$s <span style="color:silver"></span>%3$s',
+            /*$1%s*/ $user_roles_list,
+            /*$2%s*/ $item['ID'],
+            /*$3%s*/ $this->row_actions($actions)
+        );
+  }
+
     function column_cb($item){
         return sprintf(
           '<input type="checkbox" name="bulk-delete[]" value="%s" />', $item['ID']
@@ -243,7 +259,7 @@ function prepare_items($search = '') {
 
 
   $tableListData = $wpdb->get_results
-  ( "SELECT DISTINCT({$wpdb->prefix}posts.ID), wp_posts.post_title, wp_posts.post_modified, wp_posts.post_status FROM {$wpdb->prefix}posts LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id WHERE post_type = 'attachment' 
+  ( "SELECT DISTINCT({$wpdb->prefix}posts.ID), wp_posts.post_title, wp_posts.post_modified, wp_posts.post_status, wp_document_user_role.user_roles FROM {$wpdb->prefix}posts LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id INNER JOIN wp_document_user_role ON wp_posts.ID = wp_document_user_role.document_id WHERE post_type = 'attachment' 
     ".$post_status." AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')", ARRAY_A ); 
     $per_page = 10;
   $columns  = $this->get_columns();
