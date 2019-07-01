@@ -32,7 +32,6 @@ if(!isset($_GET['id'])){
 	$user_role = wp_get_current_user()->roles[0];
 	$user_roles = $wpdb->get_var("SELECT user_roles from wp_document_user_role WHERE document_id = ".$document_id);
 	$user_roles_array = json_decode($user_roles, true);
-	print_r($user_roles_array);
 	if(!in_array($user_role, $default_admin_roles)){
 		if(array_key_exists($user_role, $user_roles_array)){
 			if($user_roles_array[$user_role] === 1){
@@ -45,7 +44,7 @@ if(!isset($_GET['id'])){
 
 	if($hide){
 		?>
-		<h2>You are not allowedd to access this document.</h2>
+		<h2>You are not allowed to access this document.</h2>
 		<?php
 		get_footer();
 		exit();
