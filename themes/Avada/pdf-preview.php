@@ -24,8 +24,33 @@ if(!isset($_GET['id'])){
 	get_footer();
 	exit();
 } else{
-	$documentId = base64_decode($_GET['id']);
-	$attchmentData = get_post($documentId);
+	$default_admin_roles = array('administrator', 'power_user');
+	global $wpdb;
+	$hide = true;
+	$document_id = base64_decode($_GET['id']);
+	$current_user_id = get_current_user_id();
+	$user_role = wp_get_current_user()->roles[0];
+	$user_roles = $wpdb->get_var("SELECT user_roles from wp_document_user_role WHERE document_id = ".$document_id);
+	$user_roles_array = json_decode($user_roles, true);
+	print_r($user_roles_array);
+	if(!in_array($user_role, $default_admin_roles)){
+		if(array_key_exists($user_role, $user_roles_array)){
+			if($user_roles_array[$user_role] === 1){
+				$hide = false;
+			}
+		}
+	} else{ 
+		$hide = false;
+	}
+
+	if($hide){
+		?>
+		<h2>You are not allowedd to access this document.</h2>
+		<?php
+		get_footer();
+		exit();
+	}
+	$attchmentData = get_post($document_id);
 }
 $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_page_by_path( 'preview-document' )));
 ?>
