@@ -46,7 +46,7 @@ function sd_register_top_level_menu(){
         'addNewtag'
     );
 }
-add_action( 'admin_menu', 'sd_register_top_level_menu' );
+// add_action( 'admin_menu', 'sd_register_top_level_menu' );
 
 function listAllDocuments(){
     global $wpdb;
