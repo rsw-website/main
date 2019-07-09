@@ -1,10 +1,20 @@
 <?php
 
+/**
+* Enqueue style sheet in the theme
+*
+* @return void
+*/
 function theme_enqueue_styles() {
     wp_enqueue_style( 'child-style', get_stylesheet_directory_uri() . '/style.css', array( 'avada-stylesheet' )  );
 }
 add_action( 'wp_enqueue_scripts', 'theme_enqueue_styles' );
 
+/**
+* Enqueue style sheet in the theme
+*
+* @return void
+*/
 function avada_lang_setup() {
 	$lang = get_stylesheet_directory() . '/languages';
 	load_child_theme_textdomain( 'Avada', $lang );
@@ -12,17 +22,20 @@ function avada_lang_setup() {
 add_action( 'after_setup_theme', 'avada_lang_setup' );
 
 /**
-* Add new custom script file
+* Enqueue script file in the theme
 *
 * @return void
 */
-
 function add_custom_theme_scripts() {
   wp_enqueue_script( 'custom-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array ( 'jquery' ), null, true);
 }
 add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
 
-add_action( 'phpmailer_init', 'send_smtp_email' );
+/**
+* Configure SMTP credentials 
+*
+* @return void
+*/
 function send_smtp_email( $phpmailer ) {
   $phpmailer->isSMTP();
   $phpmailer->Host       = 'mail.reliablesoftworks.info';
@@ -34,6 +47,13 @@ function send_smtp_email( $phpmailer ) {
   $phpmailer->From       = 'web@reliablesoftworks.info';
   $phpmailer->FromName   = 'Reliable Softworks';
 }
+add_action( 'phpmailer_init', 'send_smtp_email' );
+
+/**
+* Create custom header for emails
+*
+* @return array
+*/
 
 function custom_email_headers() {
   $admin_email = get_option( 'admin_email' );
@@ -50,8 +70,9 @@ function custom_email_headers() {
 }
 
 /**
-* Modify the notification message
-* $content the notification message
+* Create custom message template for approved user register
+*
+* @return string
 */
 function custom_notification_message($message, $user) {
   $message = "<p>Hi ".$user->first_name.",</p>";
@@ -66,13 +87,15 @@ function custom_notification_message($message, $user) {
 add_filter('new_user_approve_approve_user_message', 'custom_notification_message', 10, 2);
 
 /**
-* Modify the content on denied user notification mail
+* Create custom message template for denied user registration
+*
+* @return string
 */
 function custom_denied_notification_message($message, $user) {
   $message = "<p>Hi ".$user->first_name.",</p>";
   $message .= "<p>We are sorry to inform you that your user access request for ".get_option('blogname')." has been denied.</p>";
   $message .= "<p>If you feel that this is an error, please have your company's main point of
-contact reach out to us.</p>";
+  contact reach out to us.</p>";
   $message .= "<p>Sorry for any inconvenience.</p>";
   $message .= "<p>Best Regards,<br>".get_option('blogname')."</p>";
   return $message;
@@ -80,7 +103,9 @@ contact reach out to us.</p>";
 add_filter( 'new_user_approve_deny_user_message', 'custom_denied_notification_message', 10, 2 );
 
 /**
-* Modify the content on ddefault notification meesage
+* Create custom message template for new user register
+*
+* @return string
 */
 function custom_default_notification_message($message, $user_login) {
   $user = get_user_by( 'login', $user_login );
@@ -93,7 +118,12 @@ function custom_default_notification_message($message, $user_login) {
 }
 add_filter( 'new_user_approve_request_approval_message', 'custom_default_notification_message', 10, 2 );
 
-function wpdocs_enqueue_custom_admin_script() {
-         wp_enqueue_script( 'custom-script', plugins_url('documents-management/custom-script.js'), __FILE__);
+/**
+* Enqueue custom script file in custom plugin
+*
+* @return void
+*/
+function enqueue_custom_admin_script() {
+  wp_enqueue_script( 'custom-script', plugins_url('documents-management/custom-script.js'), __FILE__);
 }
-add_action( 'admin_enqueue_scripts', 'wpdocs_enqueue_custom_admin_script' );
+add_action( 'admin_enqueue_scripts', 'enqueue_custom_admin_script' );

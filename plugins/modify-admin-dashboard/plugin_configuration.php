@@ -275,6 +275,8 @@ function wk_endpoint_content() {
     <span class="document-desc"> ( Search document by Document Name, Tag Name and Tag Description )</span></h2>
 
   <?php
+  // echo do_shortcode( '[client-documents-list]' );
+  
   echo do_shortcode( '[list-staff]' );
 }
 
