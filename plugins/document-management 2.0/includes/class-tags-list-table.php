@@ -1,5 +1,27 @@
 <?php
 
+/**
+ * Register all actions and filters for the plugin
+ *
+ * @link       document-management
+ * @since      1.0.0
+ *
+ * @package    Document_Management
+ * @subpackage Document_Management/includes
+ */
+
+/**
+ * Register all actions and filters for the plugin.
+ *
+ * Maintain a list of all hooks that are registered throughout
+ * the plugin, and register them with the WordPress API. Call the
+ * run function to execute the list of actions and filters.
+ *
+ * @package    Document_Management
+ * @subpackage Document_Management/includes
+ * @author     Mindfire Solutions <ayushs@mindfiresolutions.com>
+*/
+
 if( ! class_exists( 'WP_List_Table' ) ) {
     require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
@@ -14,6 +36,14 @@ class Tags_list_table extends WP_List_Table {
         ) );
     }
 
+    /**
+     * Get table column details
+     *
+     * @param array $item
+     * @param string $coulumn_name
+     *
+     * @return string $item[ $column_name ]
+     */
     function column_default( $item, $column_name ) {
         switch( $column_name ) { 
             case 'tag_name':
@@ -25,6 +55,11 @@ class Tags_list_table extends WP_List_Table {
         }
     }
     
+    /**
+     * Register column names in array
+     *
+     * @return array $column column names
+     */
     function get_columns(){
         $columns = array(
             'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
@@ -35,6 +70,11 @@ class Tags_list_table extends WP_List_Table {
          return $columns;
     }
 
+    /**
+     * Create array of sortable columns on which the tables data will be sorted
+     *
+     * @return array $sortable_columns
+     */
     function get_sortable_columns() {
         $sortable_columns = array(
             'tag_name'     => array('tag_name', false),     //true means it's already sorted
@@ -44,6 +84,13 @@ class Tags_list_table extends WP_List_Table {
         return $sortable_columns;
     }
 
+    /**
+     * Get column tag name content
+     *
+     * @param array $item tags data
+     *
+     * @return  string tag title
+     */
     function column_tag_name($item){
       //Return the title contents
         $delete_nonce = wp_create_nonce( 'wp_delete_tag' );
@@ -58,6 +105,13 @@ class Tags_list_table extends WP_List_Table {
       );
     }
 
+    /**
+     * Get column tag description content
+     *
+     * @param array $item tags data
+     *
+     * @return  string tag description
+     */
     function column_tag_description($item){
         //Return the title contents
         return sprintf('%1$s <span style="color:silver"></span>%3$s',
@@ -67,6 +121,13 @@ class Tags_list_table extends WP_List_Table {
         );
     }
 
+    /**
+     * Get column tag slug content
+     *
+     * @param array $item tags data
+     *
+     * @return  string tag slug
+     */
     function column_tag_slug($item){
         //Return the title contents
         return sprintf('%1$s <span style="color:silver"></span>%3$s',
@@ -76,12 +137,24 @@ class Tags_list_table extends WP_List_Table {
         );
     }
 
+    /**
+     * Add checkbox column for bulk actions
+     *
+     * @param array $item tags data
+     *
+     * @return string check box html
+     */
     function column_cb($item){
         return sprintf(
           '<input type="checkbox" name="bulk-delete[]" value="%s" />', $item['ID']
         );
     }
 
+    /**
+     * Create array of options required to perform bulk action
+     *
+     * @return array $actions
+     */
     function get_bulk_actions() {
         $actions = array(
             'bulk-delete'    => 'Delete'
@@ -89,6 +162,11 @@ class Tags_list_table extends WP_List_Table {
         return $actions;
     }
 
+    /**
+     * Function to perform bulk actions like delelte multiple records or single record
+     *
+     * @return void
+     */
     function process_bulk_action() {
         //Detect when a bulk action is being triggered...
         $nonce = esc_attr( $_REQUEST['tag_wpnonce'] );
@@ -126,20 +204,26 @@ class Tags_list_table extends WP_List_Table {
     }
 
     /**
-   * Delete the document.
-   *
-   * @param int $id post ID
-   */
-  public static function delete_tag( $id ) {
-    global $wpdb;
-    $deleted_tag = $wpdb->query($wpdb->prepare(
-        "DELETE FROM {$wpdb->prefix}document_tags WHERE ID = %s", 
-        $id)
-    );
-    return $deleted_tag;
-  }
+     * Delete the document.
+     *
+     * @param int $id post ID
+     */
+    public static function delete_tag( $id ) {
+        global $wpdb;
+        $deleted_tag = $wpdb->query($wpdb->prepare(
+            "DELETE FROM {$wpdb->prefix}document_tags WHERE ID = %s", 
+            $id)
+        );
+        return $deleted_tag;
+    }
 
-    function prepare_items($search = '') {
+    /**
+     * Function to gather all documents list data and list at one place
+     * @param string $search
+     *
+     * @return void
+     */
+    public function prepare_items($search = '') {
         global $wpdb; //This is used only if making any database queries
         $columns  = $this->get_columns();
         $sortable = $this->get_sortable_columns();

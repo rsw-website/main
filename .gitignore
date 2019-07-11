@@ -3,10 +3,12 @@
 /themes/twentyseventeen
 /themes/twentysixteen
 /plugins/*
-!/plugins/documents-management/
-!/plugins/modify-admin-dashboard/
+/plugins/documents-management/
+/plugins/modify-admin-dashboard/
 !/plugins/no-captcha-recaptcha-for-woocommerce/
-!/plugins/loggedIn-user-activity/
+/plugins/loggedIn-user-activity/
 !/plugins/new-user-approve/
 /languages
 /reliablesoftworks-updraft/
+!/plugins/document-management 2.0/
+!/plugins/user-document-activity-record/

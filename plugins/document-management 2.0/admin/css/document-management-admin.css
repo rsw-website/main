@@ -1,0 +1,103 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+  ul.tag-list-ul{
+    list-style: none;
+    margin: 0;
+    overflow: hidden; 
+    padding: 0;
+  }
+  ul.tag-list-ul li {
+    float: left;
+  }
+  a.tag-list {
+    background: #fff;
+    border-radius: 3px 0 0 3px;
+    color: #0085ba;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+  }
+  a.tag-list::before {
+    background: #f1f1f1;
+    border-radius: 10px;
+    box-shadow: inset 0 1px rgba(0, 0, 0, 0.25);
+    content: '';
+    height: 6px;
+    left: 10px;
+    position: absolute;
+    width: 6px;
+    top: 10px;
+  }
+
+  a.tag-list::after {
+    background: #f1f1f1;
+    border-bottom: 13px solid transparent;
+    border-left: 10px solid #fff;
+    border-top: 13px solid transparent;
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  a.role-name, a.default-role{
+    background: #fff;
+    border-radius: 3px 0 0 3px;
+    color: #0085ba;
+    display: inline-block;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 20px 0 23px;
+    position: relative;
+    margin: 0 10px 10px 0;
+    text-decoration: none;
+    -webkit-transition: color 0.2s;
+  }
+
+  a.tag-list:hover, a.role-name:hover {
+    color: #000;
+  }
+  a.selected-tag{
+    color: #fff !important;
+    background: #0085ba !important;
+    border-color: #0085ba !important;
+  }
+  a.selected-tag::after{
+    border-left-color: #0085ba; 
+  }
+  a.tag-list:focus, a.role-name:focus{
+    outline: none;
+    box-shadow: none;
+  }
+  .upload-file-description span{
+    background: #f5f5f5;
+    color: #666;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: .2em .5em;
+    margin-right: 5px;
+    text-decoration: none;
+  }
+  .error-page{
+    background: #fff;
+    color: #444;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    padding: 1em 2em;
+    max-width: 700px;
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+  }
+  .error-page p{
+    font-size: 14px;
+  }
+  table.wp-list-table td, .wp-list-table a{
+    word-wrap: break-word !important;
+  }
