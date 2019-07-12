@@ -628,7 +628,7 @@ class pw_new_user_approve {
 
 		$headers = array(
 			"From: \"{$from_name}\" <{$admin_email}>\n",
-			'Cc: ayush.sachdev8@gmail.com',
+			'Cc: itadmin@reliablesoftworks.com',
 		);
 		$headers[] = 'Content-Type: text/html; charset=UTF-8';
 		$headers = apply_filters( 'new_user_approve_email_header', $headers );

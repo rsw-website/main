@@ -72,6 +72,10 @@ function custom_email_headers() {
 /**
  * Create custom message template for approved user register
  *
+ * @param string $message 
+ *
+ * @param array $user
+ * 
  * @return string $message
  */
 function custom_notification_message($message, $user) {

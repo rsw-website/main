@@ -21,7 +21,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 ?>
 
-<?php //do_action( 'woocommerce_email_header', $email_heading, $email ); ?>
 <?php include_once('get-user-details.php'); ?>
 <?php /* translators: %s: Customer first name */ ?>
 <p><?php printf( esc_html__( 'Hi %s,', 'woocommerce' ), esc_html( $first_name ) ); ?>
@@ -39,4 +38,3 @@ if ( ! defined( 'ABSPATH' ) ) {
 <p><?php esc_html_e( 'Best Regards,', 'woocommerce' ); ?></p>
 <p><?php printf( esc_html__( '%s', 'woocommerce' ), esc_html( $blogname ) ); ?></p>
 
-<?php //do_action( 'woocommerce_email_footer', $email ); ?>

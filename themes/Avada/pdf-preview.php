@@ -119,10 +119,10 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
     var thePdf = null;
     var scale = 2;
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
-var pdfjsLib = window['pdfjs-dist/build/pdf'];
+	var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-// The workerSrc property shall be specified.
-pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+	// The workerSrc property shall be specified.
+	pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
     pdfjsLib.getDocument(url).promise.then(function(pdf) {
         thePdf = pdf;
@@ -144,7 +144,7 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.w
           canvas.height = viewport.height;
           canvas.width = viewport.width;          
           page.render({canvasContext: canvas.getContext('2d'), viewport: viewport});
-    });
+    	});
     }
 </script>
 <?php

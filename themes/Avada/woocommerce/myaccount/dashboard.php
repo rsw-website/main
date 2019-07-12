@@ -23,17 +23,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 
-<!-- <p> -->
-<?php
-	/* translators: 1: user display name 2: logout url */
-	// printf(
-	// 	__( 'Hello %1$s,', 'woocommerce' ),
-	// 	'<strong>' . esc_html( $current_user->first_name.' '.$current_user->last_name ) . '</strong>',
-	// 	esc_url( wc_logout_url( wc_get_page_permalink( 'myaccount' ) ) )
-	// );
-?>
-<!-- </p> -->
-
 <p><?php
 	printf(
 		__( 'From your account dashboard you can view all your shared <a href="%1$s">documents</a>, manage your  <a href="%2$s">account details and edit your password</a>.', 'woocommerce' ),
