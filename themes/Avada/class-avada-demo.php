@@ -508,11 +508,9 @@ class Avada_Demo {
 		$auto_body = "Hello $split_name[0], \n\n";
 		$auto_body .= "Thank you for contacting ".get_bloginfo( 'name' ).". Our business team will contact you soon. \n\n";
 		$auto_body .= "Best Regards, \n".get_bloginfo( 'name' );
-		wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
+		$email_status = wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
 
-		$this->email_sent = true;
-
-		if ( $this->email_sent ) {
+		if ( $email_status ) {
 			$_POST['contact_name']              = '';
 			$_POST['email']                     = '';
 			$_POST['url']                       = '';

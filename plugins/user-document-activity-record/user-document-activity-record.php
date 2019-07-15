@@ -1,28 +1,11 @@
 <?php
 
 /**
- * The plugin bootstrap file
- *
- * This file is read by WordPress to generate the plugin information in the plugin
- * admin area. This file also includes all of the dependencies used by the plugin,
- * registers the activation and deactivation functions, and defines a function
- * that starts the plugin.
- *
- * @link              user-document-activity-record
- * @since             1.0.0
- * @package           User_Document_Activity_Record
- *
  * @wordpress-plugin
  * Plugin Name:       User Document Activity Record 2.0
- * Plugin URI:        user-document-activity-record
  * Description:       This is to track all the document activities performed by user. It will list the document access time, withdraw time, total time for which the document is open and it will also list whether the document is marked as favourite or not.
  * Version:           1.0.0
  * Author:            Mindfire Solutions
- * Author URI:        user-document-activity-record
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       user-document-activity-record
- * Domain Path:       /languages
  */
 
 // If this file is called directly, abort.
@@ -33,7 +16,6 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
- * Rename this for your plugin and update it as you release new versions.
  */
 define( 'USER_DOCUMENT_ACTIVITY_RECORD_VERSION', '1.0.0' );
 

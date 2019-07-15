@@ -28,7 +28,9 @@ add_action( 'after_setup_theme', 'avada_lang_setup' );
  */
 function add_custom_theme_scripts() {
   wp_enqueue_script( 'custom-script', get_stylesheet_directory_uri() . '/assets/js/custom-script.js', array ( 'jquery' ), null, true);
+  wp_enqueue_script( 'pdf-build', 'http://mozilla.github.io/pdf.js/build/pdf.js', array ( 'jquery' ), null, false );
 }
+
 add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
 
 /**
@@ -38,14 +40,14 @@ add_action( 'wp_enqueue_scripts', 'add_custom_theme_scripts' );
  */
 function send_smtp_email( $phpmailer ) {
   $phpmailer->isSMTP();
-  $phpmailer->Host       = 'mail.reliablesoftworks.info';
-  $phpmailer->SMTPAuth   = true;
-  $phpmailer->Port       = '465';
-  $phpmailer->Username   = 'web@reliablesoftworks.info';
-  $phpmailer->Password   = 'Z@n3*Gs!gV';
-  $phpmailer->SMTPSecure = 'ssl';
-  $phpmailer->From       = 'web@reliablesoftworks.info';
-  $phpmailer->FromName   = 'Reliable Softworks';
+  $phpmailer->Host       = SMTP_HOST;
+  $phpmailer->SMTPAuth   = SMTP_AUTH;
+  $phpmailer->Port       = SMTP_PORT;
+  $phpmailer->Username   = SMTP_USER;
+  $phpmailer->Password   = SMTP_PASS;
+  $phpmailer->SMTPSecure = SMTP_SECURE;
+  $phpmailer->From       = SMTP_FROM;
+  $phpmailer->FromName   = SMTP_NAME;
 }
 add_action( 'phpmailer_init', 'send_smtp_email' );
 

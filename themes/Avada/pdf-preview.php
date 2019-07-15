@@ -11,30 +11,30 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit( 'Direct script access denied.' );
 }
-if(!is_user_logged_in()){
-	wp_redirect(home_url('/client-login/'));
+if( !is_user_logged_in() ) {
+	wp_redirect( home_url( '/client-login/' ) );
 }
 ?>
 
 <?php get_header(); 
-if(!isset($_GET['id'])){
+if( !isset( $_GET['id'] ) ) {
 	?>
 	<h2>Invalid file path</h2>
 	<?php
 	get_footer();
 	exit();
 } else{
-	$default_admin_roles = array('administrator', 'power_user');
+	$default_admin_roles = array( 'administrator', 'power_user' );
 	global $wpdb;
 	$hide = true;
-	$document_id = base64_decode($_GET['id']);
+	$document_id = base64_decode( $_GET['id'] );
 	$current_user_id = get_current_user_id();
 	$user_role = wp_get_current_user()->roles[0];
-	$user_roles = $wpdb->get_var("SELECT user_roles from wp_document_user_role WHERE document_id = ".$document_id);
-	$user_roles_array = json_decode($user_roles, true);
-	if(!in_array($user_role, $default_admin_roles)){
-		if(array_key_exists($user_role, $user_roles_array)){
-			if($user_roles_array[$user_role] === 1){
+	$user_roles_list = $wpdb->get_var( "SELECT user_roles from wp_document_user_role WHERE document_id = ".$document_id );
+	$user_roles_list = json_decode( $user_roles_list, true );
+	if( !in_array( $user_role, $default_admin_roles ) ){
+		if( array_key_exists( $user_role, $user_roles_list ) ) {
+			if( $user_roles_list[$user_role] === 1 ) {
 				$hide = false;
 			}
 		}
@@ -42,18 +42,18 @@ if(!isset($_GET['id'])){
 		$hide = false;
 	}
 
-	if($hide){
+	if( $hide ) {
 		?>
 		<h2>You are not allowed to access this document.</h2>
 		<?php
 		get_footer();
 		exit();
 	}
-	$attchmentData = get_post($document_id);
+	$attchmentData = get_post( $document_id );
 }
-$fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_page_by_path( 'preview-document' )));
+$fileAccessUrl = add_query_arg( array( 'id' => $_GET['id'] ), get_permalink( get_page_by_path( 'preview-document' ) ) );
 ?>
-<script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script>
+<!-- <script src="http://mozilla.github.io/pdf.js/build/pdf.js"></script> -->
 <section id="content" class="full-width">
 	<?php while ( have_posts() ) : ?>
 		<?php the_post(); ?>
@@ -150,4 +150,3 @@ $fileAccessUrl = add_query_arg(array('id' => $_GET['id']), get_permalink( get_pa
 <?php
 get_footer();
 
-/* Omit closing PHP tag to avoid "Headers already sent" issues. */

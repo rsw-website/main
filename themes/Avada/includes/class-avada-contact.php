@@ -472,11 +472,10 @@ class Avada_Contact {
 		$auto_body .= "Best Regards, \n".get_bloginfo( 'name' );
 
 		$stat = wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
-		wp_mail( $email_to, $subject, $body, $headers );
+		$email_status = wp_mail( $email_to, $subject, $body, $headers );
 
-		$this->email_sent = true;
 
-		if ( $this->email_sent ) {
+		if ( $email_status ) {
 			$_POST['contact_name']              = '';
 			$_POST['email']                     = '';
 			$_POST['url']                       = '';
