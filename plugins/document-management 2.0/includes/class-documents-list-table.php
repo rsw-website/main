@@ -64,7 +64,8 @@ class Documents_list_table extends WP_List_Table {
     $columns = array(
         'cb'        => '<input type="checkbox" />', //Render a checkbox instead of text
         'post_title' => __( 'Title', 'documentslist' ),
-        'guid'    => __( 'URL', 'documentslist' ),
+        'guid'    => __( 'Preview URL', 'documentslist' ),
+        'post_permalink'    => __( 'Permalink', 'documentslist' ),
         'post_date_gmt'      => __( 'Published Date', 'documentslist' ),
         'user_roles'      => __( 'User Roles', 'documentslist' )
     );
@@ -274,6 +275,22 @@ class Documents_list_table extends WP_List_Table {
   }
 
   /**
+   * Get column post permalink
+   *
+   * @param array $item post data
+   *
+   * @return string post modified date
+   */
+  function column_post_permalink($item){
+    //Return the title contents
+    return sprintf('<a target="_blank" href="%1$s">%1$s</a> <span style="color:silver"></span>%3$s',
+        /*$1%s*/ $item['guid'],
+        /*$2%s*/ $item['ID'],
+        /*$3%s*/ $this->row_actions($actions)
+    );
+  }
+
+  /**
    * Get column user roles content
    *
    * @param array $item post data
@@ -388,7 +405,7 @@ class Documents_list_table extends WP_List_Table {
   public function get_documents_result($post_status, $search){
     global $wpdb; //This is used only if making any database queries
     $tableListData = $wpdb->get_results
-    ( "SELECT DISTINCT({$wpdb->prefix}posts.ID), wp_posts.post_title, wp_posts.post_modified, wp_posts.post_status, wp_document_user_role.user_roles FROM {$wpdb->prefix}posts LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id INNER JOIN wp_document_user_role ON wp_posts.ID = wp_document_user_role.document_id WHERE post_type = 'attachment' 
+    ( "SELECT DISTINCT({$wpdb->prefix}posts.ID), wp_posts.post_title, wp_posts.post_modified, wp_posts.post_status, wp_posts.guid, wp_document_user_role.user_roles FROM {$wpdb->prefix}posts LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id INNER JOIN wp_document_user_role ON wp_posts.ID = wp_document_user_role.document_id WHERE post_type = 'attachment' 
       ".$post_status." AND post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4') AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')", ARRAY_A ); 
     return $tableListData;
   }
