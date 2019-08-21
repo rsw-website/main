@@ -15,3 +15,5 @@
 !/plugins/user-document-activity-record/
 /w3tc-config/
 /webp-express/
+/.scannerwork/
+/sonar-project.properties
