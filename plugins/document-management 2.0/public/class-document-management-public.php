@@ -188,7 +188,7 @@ class Document_Management_Public {
 		          </tr> 
 	          	</thead> 
 	          	<tbody> 
-	          		<?php foreach ($tableListData as $key => $tableData) : ?>   
+	          		<?php foreach ($tableListData as $tableData) : ?>   
 			          <tr> 
 			            <td class="desktop-column column-bookmark" data-attribute="Bookmakred">
 			              <a href="javascript:void(0)" class="toggle-bookmark <?php echo $tableData->is_bookmarked ? 'solid-star' : 'empty-star'; ?>" title="<?php echo $tableData->is_bookmarked ? 'Marked' : 'Mark'; ?> as favourite" document-id="<?php echo base64_encode($tableData->ID); ?>" _nonce="<?php echo wp_create_nonce("bookmark_status"); ?>">

@@ -9,7 +9,6 @@
 	      	event.preventDefault();
 	      	return false;
 	    }
-	    return false;
 	}
 
 	jQuery(document).ready(function(){
@@ -33,7 +32,6 @@
 	  	});
 	  	
 	  	jQuery('a.tag-list').bind('click', function(event) {
-	  		debugger;
 		    var tagsList = jQuery('#tag-id-list').val();
 		    if(!tagsList.length){
 		    	tagsList = [];
@@ -56,7 +54,6 @@
 	  	});
 
 	  	jQuery('a.role-name').bind('click', function(event) {
-	  		debugger;
     		var rolesList = jQuery('#role-names').val();
 		    if(!rolesList.length){
 		    	rolesList = {};
