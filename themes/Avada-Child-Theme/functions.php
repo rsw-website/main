@@ -316,10 +316,18 @@ add_action( 'woocommerce_registration_redirect', 'user_autologout', 2 );
  *
  * @return string URL
  */
-function custom_login_redirect( $redirect ) {
-  wp_redirect( home_url( '/client-dashboard/' ) );
-}
-add_filter( 'woocommerce_login_redirect', 'custom_login_redirect' );
+
+function custom_login_redirect( $redirect, $user ) { 
+  if(in_array('administrator', $user->roles)){
+   wp_logout();
+   $message = 'Admin user not allowed to login from here. Please, login from wordpress admin dashboard.';
+   throw new Exception( $message );
+  } else{
+    wp_redirect( home_url( '/client-dashboard/' ) );
+  }
+} 
+add_filter( 'woocommerce_login_redirect', 'custom_login_redirect', 10, 2 ); 
+
 
 /**
  * Create custom footer logo widgit.
