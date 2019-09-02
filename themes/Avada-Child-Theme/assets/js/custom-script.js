@@ -70,7 +70,6 @@ jQuery('form.woocommerce-form-register .woocommerce-Button')
 
 jQuery('.tab-link').on('click', function(e){
 	enableTimer = false;
-
 });
 
 jQuery('.home-tabs-arrow').on('click', function(e){
@@ -214,3 +213,12 @@ function ActiveSelectedTab(hashId){
 	}
 }
 
+jQuery(".isPhoneNumber").live('keydown', function(evt){
+  debugger;
+  	evt = (evt) ? evt : window.event;
+	var charCode = (evt.which) ? evt.which : evt.keyCode;
+	if (charCode > 31 && (charCode < 48 || charCode > 57)){
+	    return false;
+	}
+	return true;
+  });
