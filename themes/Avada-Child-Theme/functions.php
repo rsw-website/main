@@ -234,6 +234,10 @@ function wooc_save_extra_register_fields( $customer_id ) {
     // WordPress default last name field.
     update_user_meta( $customer_id, 'billing_company', sanitize_text_field( $_POST['billing_company'] ) );
   }
+  if ( isset( $_POST['billing_phone'] ) ) {
+    // WordPress default last name field.
+    update_user_meta( $customer_id, 'billing_phone', sanitize_text_field( $_POST['billing_phone'] ) );
+  }
 }
 add_action( 'woocommerce_created_customer', 'wooc_save_extra_register_fields' );
 
