@@ -169,7 +169,7 @@ function wooc_extra_register_fields() {
   <label for="reg_billing_phone"><?php _e( 'Phone', 'woocommerce' ); ?>
     <span class="required">*</span>
   </label>
-  <input type="text" class="input-text isPhoneNumber" name="billing_phone" id="reg_billing_phone" value="
+  <input type="text" class="input-text isPhoneNumber" name="billing_phone" id="reg_billing_phone" maxlength="10" value="
   <?php
   if ( ! empty( $_POST['billing_phone'] ) ) {
     esc_attr_e( $_POST['billing_phone'] );}
