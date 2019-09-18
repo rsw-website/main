@@ -92,7 +92,7 @@ $avada_contact = new Avada_Contact();
 						<div class="custom-form-col">
 							<label>Phone<span class="required">*</span></label>
 							<div class="custom-form-holder">
-								<input type="text" name="url" id="url" maxlength="10" value="<?php echo esc_attr( $avada_contact->phone ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="custom-form-control input-website">
+								<input type="text" name="url" id="url" maxlength="10" value="<?php echo esc_attr( $avada_contact->phone ); ?>" aria-label="<?php esc_attr_e( 'Phone', 'Avada' ); ?>" size="22" class="custom-form-control input-website isPhoneNumber">
 							</div>
 						</div>
 						<div class="custom-form-col">
