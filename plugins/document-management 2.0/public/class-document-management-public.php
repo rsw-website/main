@@ -91,46 +91,42 @@ class Document_Management_Public {
 	    } else{
 	      $search = '';
 	    }
-	    if(get_query_var('order', 1) == 'ASC'){
-	      $order = get_query_var('order', 1);
-	      $newOrder = 'DESC';
-	    } elseif(get_query_var('order', 1) == 'DESC'){
-	      $order = get_query_var('order', 1);
-	      $newOrder = 'ASC';
-	    } else{
-	      $order = '';
-	      $newOrder = 'ASC';
-	    }
+	    $newOrder = 'ASC';
+	    $title_new_order = 'DESC';
+	    $date_new_order = 'DESC';
+      	$date_order_icon = 'fa-sort fas';
+      	$title_order_icon = 'fa-sort fas';
+	    
 	    if(get_query_var('orderby', 1) == 'post_title'){
 	      $orderBy = get_query_var('orderby', 1);
-	      if($newOrder == 'ASC'){
-	        $titleOrder = 'fa-sort-down fas';
-	      } elseif ($newOrder == 'DESC') {
-	        $titleOrder = 'fa-sort-up fas';
-	      } else{
-	        $titleOrder = 'fa-sort fas';
-	      }
-	      // $titleOrder = $newOrder;
-	      $dateOrder = 'fa-sort fas';
+	      $title_order = get_query_var('order', 1);
 
-	    } elseif(get_query_var('orderby', 1) == 'post_modified'){
-	      $orderBy = get_query_var('orderby', 1);
-	      if($newOrder == 'ASC'){
-	        $dateOrder = 'fa-sort-down fas';
-	      } elseif ($newOrder == 'DESC') {
-	        $dateOrder = 'fa-sort-up fas';
+	      if($title_order == 'ASC'){
+	        $title_order_icon = 'fa-sort-up fas';
+	        $title_new_order = 'DESC';
+	      } elseif ($title_order == 'DESC') {
+	        $title_order_icon = 'fa-sort-down fas';
+	        $title_new_order = 'ASC';
 	      } else{
-	        $dateOrder = 'fa-sort fas';
+	        $title_order_icon = 'fa-sort fas';
 	      }
-	      // $dateOrder = $newOrder;
-	      $titleOrder = 'fa-sort fas';
-	    } else{
-	      $orderBy = '';
-	      $dateOrder = 'fa-sort fas';
-	      $titleOrder = 'fa-sort fas';
+	      $order = $title_order;
+	    } else if(get_query_var('orderby', 1) == 'post_modified'){
+	      $orderBy = get_query_var('orderby', 1);
+	      $date_order = get_query_var('order', 1);
+	      if($date_order == 'ASC'){
+	        $date_order_icon = 'fa-sort-up fas';
+	        $date_new_order = 'DESC';
+	      } elseif ($date_order == 'DESC') {
+	        $date_order_icon = 'fa-sort-down fas';
+	        $date_new_order = 'ASC';
+	      } else{
+	        $date_order_icon = 'fa-sort fas';
+	      }
+	      $order = $date_order;
 	    }
-	    $titleArgsArray = array('orderby' => 'post_title', 'order' => $newOrder);
-	    $dateArgsArray = array('orderby' => 'post_modified', 'order' => $newOrder);
+	    $titleArgsArray = array('orderby' => 'post_title', 'order' => $title_new_order);
+	    $dateArgsArray = array('orderby' => 'post_modified', 'order' => $date_new_order);
 	    $limit = 10;
 	    $startFrom = ($CurrentPage-1) * $limit;
 	    $preQuery = "SELECT DISTINCT(wp_documents_meta.document_id), wp_posts.ID, wp_posts.post_title, wp_posts.post_modified , wp_documents_meta.is_bookmarked FROM wp_posts LEFT JOIN wp_documents_meta ON wp_documents_meta.document_id = wp_posts.ID AND wp_documents_meta.user_id = ".$current_user_id." LEFT JOIN wp_document_tags_log ON wp_posts.ID = wp_document_tags_log.document_id LEFT JOIN wp_document_tags ON wp_document_tags.ID = wp_document_tags_log.tag_id INNER JOIN wp_document_user_role ON wp_posts.ID = wp_document_user_role.document_id WHERE post_mime_type IN ('application/pdf', 'text/plain', 'application/vnd.oasis.opendocument.spreadsheet', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'video/mp4')".$user_role_query." AND post_status = 'inherit' AND (wp_posts.post_title LIKE '%".$search."%' OR wp_document_tags.tag_name LIKE '%".$search."%' OR wp_document_tags.tag_description LIKE '%".$search."%')";
@@ -141,16 +137,14 @@ class Document_Management_Public {
 	      $dateArgsArray['type'] = $_GET['type'];
 	      $preQuery = $preQuery . " AND wp_documents_meta.is_bookmarked = 1";
 	    }
-
 	    $query = $preQuery;
 	    if($order && $orderBy){
 	      $argsArray['orderby'] = $orderBy;
 	      $argsArray['order'] = $order;
 	      $query = $query . " ORDER BY $orderBy $order";
 	    } else{
-	        $query = $query . " ORDER BY wp_posts.ID desc";
+	        $query = $query . " ORDER BY wp_posts.post_title asc";
 	    }
-
 	    $query = $query . " LIMIT $startFrom, $limit";
 	    $tableListData = $wpdb->get_results($query);
 	    ?>
@@ -178,11 +172,11 @@ class Document_Management_Public {
 		            <th>S.No.</th>
 		            <th> 
 		              <a href="<?php echo home_url(add_query_arg($titleArgsArray, $wp->request)); ?>">
-		                Title <i class="fa <?php echo $titleOrder; ?>" aria-hidden="true"></i>
+		                Title <i class="fa <?php echo $title_order_icon; ?>" aria-hidden="true"></i>
 		                </a>
 		              </th> 
 		            <th><a href="<?php echo home_url(add_query_arg($dateArgsArray, $wp->request)); ?>"">
-		              Modified Date <i class="fa <?php echo $dateOrder; ?>" aria-hidden="true"></i>
+		              Modified Date <i class="fa <?php echo $date_order_icon; ?>" aria-hidden="true"></i>
 		              </a></th> 
 		              <th>Action</th>
 		          </tr> 

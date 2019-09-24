@@ -725,7 +725,7 @@ function login_failed( $username ) {
         $datas = get_transient( 'attempted_login' );
         $datas['tried']++;
 
-        if ( $datas['tried'] <= 3 )
+        if ( $datas['tried'] <= 5 )
             set_transient( 'attempted_login', $datas , 300 );
     } else {
         $datas = array(
@@ -769,3 +769,10 @@ function time_to_go($timestamp)
             return $output;
     }
 }
+
+function custom_password_validation ($user, $password) {
+  if( strlen($password) < 8 ){
+    return new WP_Error( 'invalid_password',  sprintf( __( '<strong>ERROR</strong>: Password length must be greater than 8 characters.' ) ) );
+  } 
+}
+add_filter('wp_authenticate_user', 'custom_password_validation',10,2);
