@@ -707,7 +707,7 @@ function check_attempted_login( $user, $username, $password ) {
     if ( get_transient( 'attempted_login' ) ) {
         $datas = get_transient( 'attempted_login' );
 
-        if ( $datas['tried'] >= 3 ) {
+        if ( $datas['tried'] >= 5 ) {
             $until = get_option( '_transient_timeout_' . 'attempted_login' );
             $time = time_to_go( $until );
 
