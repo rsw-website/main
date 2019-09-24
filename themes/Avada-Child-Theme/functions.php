@@ -773,6 +773,8 @@ function time_to_go($timestamp)
 function custom_password_validation ($user, $password) {
   if( strlen($password) < 8 ){
     return new WP_Error( 'invalid_password',  sprintf( __( '<strong>ERROR</strong>: Password length must be greater than 8 characters.' ) ) );
-  } 
+  }
+  return $user; 
 }
+
 add_filter('wp_authenticate_user', 'custom_password_validation',10,2);
