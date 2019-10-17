@@ -1313,6 +1313,7 @@ if ( ! function_exists( 'avada_main_menu' ) ) {
 
 			echo '<nav class="fusion-main-menu' . esc_attr( $additional_menu_class ) . '" aria-label="' . esc_attr__( 'Main Menu', 'Avada' ) . '">';
 			echo wp_nav_menu( $main_menu_args );
+			// include_once('custom-menu.php');
 			echo '</nav>';
 
 			if ( has_nav_menu( 'sticky_navigation' ) && 'Top' === Avada()->settings->get( 'header_position' ) && ( ! function_exists( 'ubermenu_get_menu_instance_by_theme_location' ) || ( function_exists( 'ubermenu_get_menu_instance_by_theme_location' ) && ! ubermenu_get_menu_instance_by_theme_location( 'sticky_navigation' ) ) ) ) {

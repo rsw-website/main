@@ -19,31 +19,38 @@ $display_footer = get_post_meta( $c_page_id, 'pyre_display_footer', true );
 ?>
 <?php if ( ( Avada()->settings->get( 'footer_widgets' ) && 'no' !== $display_footer ) || ( ! Avada()->settings->get( 'footer_widgets' ) && 'yes' === $display_footer ) ) : ?>
 	<?php $footer_widget_area_center_class = ( Avada()->settings->get( 'footer_widgets_center_content' ) ) ? ' fusion-footer-widget-area-center' : ''; ?>
+	<?php if ( is_active_sidebar( 'partner_logo_widgit' ) ) : ?>
+		<?php if((!is_page('free-demo')) && (!is_page('contact-us'))) : ?>
+		<div class="fusion-row partner-logo">
+			<div class="fusion-columns fusion-columns-1 fusion-widget-area">
+				<div class="fusion-column col-lg-12 col-md-12 col-sm-12">
+					<div id="partner-logo-widgit" class="primary-sidebar widget-area" role="complementary">
+						<?php dynamic_sidebar( 'partner_logo_widgit' ); ?>
+					</div><!-- #primary-sidebar -->
+				</div>
+			</div>
+		</div>
+		<?php endif; ?>
+	<?php endif; ?>
 	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area">
 		<div class="fusion-row">
 			<div class="fusion-columns fusion-columns-2 fusion-widget-area">
-				<div class="fusion-column col-lg-6 col-md-6 col-sm-6">
+				<div class="fusion-column col-lg-4 col-md-4 col-sm-12">
 					<?php if ( is_active_sidebar( 'footer_logo' ) ) : ?>
-						<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+						<div id="footer-logo" class="primary-sidebar widget-area" role="complementary">
 							<?php dynamic_sidebar( 'footer_logo' ); ?>
 						</div><!-- #primary-sidebar -->
 					<?php endif; ?>
 				</div>
-			</div>
-		</div>
-	</footer>
-
-	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area">
-		<div class="fusion-row">
-			<div class="fusion-columns fusion-columns-2 fusion-widget-area">
-				<div class="fusion-column col-lg-6 col-md-6 col-sm-6">
+			
+            <div class="fusion-column col-lg-8 col-md-8 col-sm-12">
 					<?php if ( is_active_sidebar( 'footer_quote' ) ) : ?>
-						<div id="primary-sidebar" class="primary-sidebar widget-area" role="complementary">
+						<div id="footer-quote" class="primary-sidebar widget-area" role="complementary">
 							<?php dynamic_sidebar( 'footer_quote' ); ?>
 						</div><!-- #primary-sidebar -->
 					<?php endif; ?>
 				</div>
-			</div>
+            </div>
 		</div>
 	</footer>
 	<footer role="contentinfo" class="fusion-footer-widget-area fusion-widget-area<?php echo esc_attr( $footer_widget_area_center_class ); ?>">

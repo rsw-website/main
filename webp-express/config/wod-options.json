@@ -1,0 +1,26 @@
+{
+    "destination-folder": "mingled",
+    "destination-extension": "set",
+    "forward-query-string": true,
+    "converters": [
+        {
+            "converter": "gd",
+            "options": {
+                "skip-pngs": false
+            }
+        }
+    ],
+    "metadata": "none",
+    "fail": "original",
+    "success-response": "converted",
+    "base-htaccess-on-these-capability-tests": {
+        "passThroughHeaderWorking": false,
+        "passThroughEnvWorking": true,
+        "modHeaderWorking": false
+    },
+    "cache-control-header": "",
+    "quality": 70,
+    "paths": {
+        "uploadDirRel": "wp-content/uploads"
+    }
+}

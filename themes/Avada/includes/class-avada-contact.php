@@ -19,7 +19,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Handle contact pages.
  */
 class Avada_Contact {
-
 	/**
 	 * The recaptcha class instance.
 	 *
@@ -54,12 +53,12 @@ class Avada_Contact {
 	public $name = '';
 
 	/**
-	 * Subject.
+	 * Phone.
 	 *
 	 * @access public
 	 * @var string
 	 */
-	public $subject = '';
+	public $phone = '';
 
 	/**
 	 * Email address.
@@ -68,6 +67,46 @@ class Avada_Contact {
 	 * @var string
 	 */
 	public $email = '';
+
+	/**
+	 * Contact Company.
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $company = '';
+
+	/**
+	 * Contact number_of_employees.
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $number_of_employees = '';
+
+	/**
+	 * Contact City.
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $city = '';
+
+	/**
+	 * Contact Zip.
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $zip = '';
+
+	/**
+	 * Contact State.
+	 *
+	 * @access public
+	 * @var string
+	 */
+	public $state = '';	
 
 	/**
 	 * The message.
@@ -103,9 +142,14 @@ class Avada_Contact {
 		if ( isset( $_POST['submit'] ) ) { // WPCS: CSRF ok.
 			$this->set_error_message();
 			$this->process_name();
-			$this->process_subject();
+			$this->process_phone();
 			$this->process_email();
+			$this->process_company();
+			$this->process_number_of_employees();
 			$this->process_message();
+			$this->process_city();
+			$this->process_zip();
+			$this->process_state();
 
 			if ( Avada()->settings->get( 'contact_form_privacy_checkbox' ) ) {
 				$this->process_data_privacy_confirmation();
@@ -174,14 +218,18 @@ class Avada_Contact {
 	}
 
 	/**
-	 * Subject field is not required.
+	 * Phone field is required.
 	 *
 	 * @access private
 	 * @return void
 	 */
-	private function process_subject() {
-		$post_url      = ( isset( $_POST['url'] ) ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : ''; // WPCS: CSRF ok.
-		$this->subject = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_url ) : $post_url;
+	private function process_phone() {
+		$post_url = ( isset( $_POST['url'] ) ) ? sanitize_text_field( wp_unslash( $_POST['url'] ) ) : ''; // WPCS: CSRF ok.
+		if ( '' === $post_url || esc_attr__( 'Phone (required)', 'Avada' ) === $post_url ) {
+			$this->has_error = true;
+		} else {
+			$this->phone = $post_url;
+		}
 	}
 
 	/**
@@ -200,6 +248,69 @@ class Avada_Contact {
 		} else {
 			$this->email = trim( $email );
 		}
+	}
+
+	/**
+	 * Company field is required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_company() {
+		$post_company = ( isset( $_POST['company'] ) ) ? sanitize_text_field( wp_unslash( $_POST['company'] ) ) : ''; // WPCS: CSRF ok.
+		if ( '' === $post_company || esc_attr__( 'Company (required)', 'Avada' ) === $post_company ) {
+			$this->has_error = true;
+		} else {
+			$this->company = $post_company;
+		}
+	}
+
+	/**
+	 * No. of employees field is required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_number_of_employees() {
+		$post_number_of_employees = ( isset( $_POST['number_of_employees'] ) ) ? sanitize_text_field( wp_unslash( $_POST['number_of_employees'] ) ) : ''; // WPCS: CSRF ok.
+		if ( '' === $post_number_of_employees || esc_attr__( 'Number of employees (required)', 'Avada' ) === $post_number_of_employees ) {
+			$this->has_error = true;
+		} else {
+			$this->number_of_employees = $post_number_of_employees;
+		}
+	}
+
+	/**
+	 * City field is not required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_city() {
+		$post_city      = ( isset( $_POST['city'] ) ) ? sanitize_text_field( wp_unslash( $_POST['city'] ) ) : ''; // WPCS: CSRF ok.
+		$this->city = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_city ) : $post_city;
+	}
+
+	/**
+	 * Zip field is not required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_zip() {
+		$post_zip      = ( isset( $_POST['zip'] ) ) ? sanitize_text_field( wp_unslash( $_POST['zip'] ) ) : ''; // WPCS: CSRF ok.
+		$this->zip = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_zip ) : $post_zip;
+	}
+
+	/**
+	 * State field is not required.
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function process_state() {
+		$post_state      = ( isset( $_POST['state'] ) ) ? sanitize_text_field( wp_unslash( $_POST['state'] ) ) : ''; // WPCS: CSRF ok.
+		$this->state = ( function_exists( 'stripslashes' ) ) ? stripslashes( $post_state ) : $post_state;
 	}
 
 	/**
@@ -286,20 +397,38 @@ class Avada_Contact {
 	}
 
 	/**
+	 * Send the emailplit name into first name and last name.
+	 *
+	 * @access private
+	 * @return array
+	 */
+	private static function split_name($name) {
+	    $name = trim($name);
+	    $last_name = (strpos($name, ' ') === false) ? '' : preg_replace('#.*\s([\w-]*)$#', '$1', $name);
+	    $first_name = trim( preg_replace('#'.$last_name.'#', '', $name ) );
+	    return array($first_name, $last_name);
+	}
+
+	/**
 	 * Send the email.
 	 *
 	 * @access private
 	 * @return void
 	 */
 	private function send_email() {
-		$name                      = esc_html( $this->name );
-		$email                     = sanitize_email( $this->email );
-		$subject                   = wp_filter_kses( $this->subject );
-		$message                   = wp_filter_kses( $this->message );
+		$name                = esc_html( $this->name );
+		$email               = sanitize_email( $this->email );
+		$company 			 = wp_filter_kses($this->company);
+		$number_of_employees = wp_filter_kses($this->number_of_employees);
+		$phone               = wp_filter_kses( $this->phone );
+		$city 				 = wp_filter_kses($this->city);
+		$zip 				 = wp_filter_kses($this->zip);
+		$state 				 = wp_filter_kses($this->state);
+		$message             = wp_filter_kses( $this->message );
 		$data_privacy_confirmation = ( $this->data_privacy_confirmation ) ? esc_html__( 'confirmed', 'Avada' ) : '';
 
 		if ( function_exists( 'stripslashes' ) ) {
-			$subject = stripslashes( $subject );
+			$phone = stripslashes( $phone );
 			$message = stripslashes( $message );
 		}
 
@@ -310,23 +439,43 @@ class Avada_Contact {
 		$body = sprintf( esc_attr__( 'Name: %s', 'Avada' ), " $name \n\n" );
 		/* translators: The email. */
 		$body .= sprintf( esc_attr__( 'Email: %s', 'Avada' ), " $email \n\n" );
-		/* translators: The subject. */
-		$body .= sprintf( esc_attr__( 'Subject: %s', 'Avada' ), " $subject \n\n" );
-		/* translators: The comments. */
+		/* translators: The Phone. */
+		$body .= sprintf( esc_attr__( 'Phone: %s', 'Avada' ), " $phone \n\n\n" );
+		/* translators: The Company. */
+		$body .= sprintf( esc_attr__( 'Company: %s', 'Avada' ), " $company \n\n" );
+		/* translators: The Number of employees. */
+		$body .= sprintf( esc_attr__( 'Number of Employees : %s', 'Avada' ), " $number_of_employees \n\n\n" );
+		/* translators: The city. */
+		$body .= sprintf( esc_attr__( 'City: %s', 'Avada' ), " $city \n\n" );
+		/* translators: The State. */
+		$body .= sprintf( esc_attr__( 'State: %s', 'Avada' ), " $state \n\n" );
+		/* translators: The Zip. */
+		$body .= sprintf( esc_attr__( 'Zip Code: %s', 'Avada' ), " $zip \n\n\n" );
+
+
 		$body .= sprintf( esc_attr__( 'Message: %s', 'Avada' ), "\n$message \n\n" );
+
 
 		if ( Avada()->settings->get( 'contact_form_privacy_checkbox' ) ) {
 			/* translators: The data privacy terms. */
 			$body .= sprintf( esc_attr__( 'Data Privacy Terms: %s', 'Avada' ), " $data_privacy_confirmation" );
 		}
-
+		
+		$split_name = Avada_Contact::split_name($name);
+		$subject = "Contact Request - $name from ".get_option('blogname');
 		$headers = 'Reply-To: ' . $name . ' <' . $email . '>' . "\r\n";
+		// Send auto response mail to user
+		$auto_headers = 'Reply-To: ' . get_bloginfo( 'name' ) . ' <' . $email_to . '>' . "\r\n";
+		$auto_subject = 'Request Received – Contact form submitted';
+		$auto_body = "Hello $split_name[0], \n\n";
+		$auto_body .= "Thank you for contacting ".get_bloginfo( 'name' ).". Our business team will contact you soon. \n\n";
+		$auto_body .= "Best Regards, \n".get_bloginfo( 'name' );
 
-		wp_mail( $email_to, $subject, $body, $headers );
+		$stat = wp_mail( $email, $auto_subject, $auto_body, $auto_headers );
+		$email_status = wp_mail( $email_to, $subject, $body, $headers );
 
-		$this->email_sent = true;
 
-		if ( $this->email_sent ) {
+		if ( $email_status ) {
 			$_POST['contact_name']              = '';
 			$_POST['email']                     = '';
 			$_POST['url']                       = '';
@@ -335,7 +484,7 @@ class Avada_Contact {
 
 			$this->name                      = '';
 			$this->email                     = '';
-			$this->subject                   = '';
+			$this->phone                   = '';
 			$this->message                   = '';
 			$this->data_privacy_confirmation = 0;
 		}
