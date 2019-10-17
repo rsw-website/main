@@ -15,7 +15,6 @@ if( !is_user_logged_in() ) {
 	wp_redirect( home_url( '/client-login/' ) );
 }
 ?>
-
 <?php
 	if(isset($_GET['id'])){
 	$documentId = base64_decode($_GET['id']);
