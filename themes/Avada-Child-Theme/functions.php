@@ -778,3 +778,8 @@ function custom_password_validation ($user, $password) {
 }
 
 add_filter('wp_authenticate_user', 'custom_password_validation',10,2);
+
+// Disable theme an plugis auto update
+
+add_filter( 'auto_update_theme', '__return_false' );
+add_filter( 'auto_update_plugin', '__return_false' );
